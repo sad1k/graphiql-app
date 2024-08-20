@@ -23,10 +23,5 @@
     "husky": "^9.1.5",
     "lint-staged": "^15.2.9",
     "typescript": "^5"
-  },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "npx eslint --fix"
-    ]
   }
 }
