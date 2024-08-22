@@ -10,7 +10,7 @@
     "prepare": "husky",
     "lint:fix": "eslint . --fix",
     "format:fix": "prettier --write .",
-    "test": "vitest --coverage",
+    "test": "vitest run --coverage",
     "commit": "cz"
   },
   "dependencies": {
