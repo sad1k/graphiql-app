@@ -34,25 +34,6 @@
   "rules": {
     "import/extensions": "off",
     "import/prefer-default-export": "off",
-    "import/order": [
-      "error",
-      {
-        "newlines-between": "always",
-        "pathGroupsExcludedImportTypes": ["react"],
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        },
-        "groups": ["builtin", "external", "parent", "sibling", "index"],
-        "pathGroups": [
-          {
-            "pattern": "react",
-            "group": "external",
-            "position": "before"
-          }
-        ]
-      }
-    ],
     "no-debugger": "warn",
     "no-shadow": "off",
     "class-methods-use-this": "off",
@@ -120,7 +101,10 @@
         "varsIgnorePattern": "^_"
       }
     ],
-    "@typescript-eslint/no-unused-expressions": ["error", { "allowTernary": true }],
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      { "allowTernary": true }
+    ],
     "prettier/prettier": [
       "error",
       {
