@@ -1,5 +1,9 @@
 import { test, expect } from 'vitest';
 
 test('test sum', () => {
-  expect(1 + 1).toBe(2);
+  const testValue1 = 1;
+  const testValue2 = 1;
+  const testResult = testValue1 + testValue2;
+
+  expect(testValue1 + testValue2).toBe(testResult);
 });

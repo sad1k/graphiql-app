@@ -1,0 +1,3 @@
+# .hucky/pre-push
+echo "Running Vitest..."
+npm run test
