@@ -120,12 +120,6 @@
         "varsIgnorePattern": "^_"
       }
     ],
-    "@typescript-eslint/explicit-function-return-type": [
-      "error",
-      {
-        "allowExpressions": true
-      }
-    ],
     "@typescript-eslint/no-unused-expressions": ["error", { "allowTernary": true }],
     "prettier/prettier": [
       "error",
