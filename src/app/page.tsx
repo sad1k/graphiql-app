@@ -1,5 +1,17 @@
-import styles from './page.module.css';
+import Footer from '@/components/Footer/Footer';
+import Header from '@/components/Header/Header';
+import Navigation from '@/components/Navigation/Navigation';
 
-const Home = (): JSX.Element => <main className={styles.main} />;
+const Home = (): JSX.Element => (
+  <>
+    <Header>
+      <Navigation />{' '}
+    </Header>
+    <main>Welcome Page</main>
+    <Footer />
+  </>
+);
 
-export default Home;
+const Page = () => <Home />;
+
+export default Page;

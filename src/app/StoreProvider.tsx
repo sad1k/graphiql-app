@@ -1,9 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-
 import { Provider } from 'react-redux';
-
 import { AppStore, makeStore } from '@utils/store/store';
 
 const StoreProvider = ({
