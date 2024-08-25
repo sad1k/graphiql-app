@@ -24,7 +24,7 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
       role='presentation'
       onClick={toggleDrawer(false)}
     >
-      {user ? (
+      {!user ? (
         <>
           <NavLink path='/login' text='Login' />
           <NavLink path='/signup' text='Sign Up' />
