@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import './globals.css';
+import Footer from '@/components/Footer/Footer';
+import Header from '@/components/Header/Header';
 import StoreProvider from './StoreProvider';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -18,7 +20,11 @@ const RootLayout = ({
 }>): JSX.Element => (
   <html lang='en' data-lt-installed='true'>
     <StoreProvider>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </StoreProvider>
   </html>
 );
