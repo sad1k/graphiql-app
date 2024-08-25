@@ -16,7 +16,7 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>): JSX.Element => (
-  <html lang='en'>
+  <html lang='en' data-lt-installed>
     <StoreProvider>
       <body className={inter.className}>{children}</body>
     </StoreProvider>

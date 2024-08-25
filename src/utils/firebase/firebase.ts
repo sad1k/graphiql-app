@@ -1,5 +1,4 @@
 import { initializeApp, FirebaseError } from 'firebase/app';
-// import { FirebaseError } from '@firebase/util';
 import {
   GoogleAuthProvider,
   getAuth,
