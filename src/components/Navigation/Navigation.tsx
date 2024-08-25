@@ -6,18 +6,23 @@ import {
   Box,
   ToggleButtonGroup,
   ToggleButton,
+  Drawer,
 } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
-import navStyle from './NavStyle';
-import NavLinks from './NavLinks/NavLinks';
 
-const { toogleButton, hr, iconContainer } = navStyle;
+import NavLinks from './NavLinks/NavLinks';
+import navStyle from './NavStyle';
+
+const { toogleButton, hr, burger } = navStyle;
 
 const Navigation = () => {
   const [isDrawerOpened, setIsDrawerOpened] = useState(false);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setIsDrawerOpened(newOpen);
+  };
 
   return (
     <Toolbar>
@@ -30,7 +35,7 @@ const Navigation = () => {
         </ToggleButton>
       </ToggleButtonGroup>
       <Box sx={hr}>|</Box>
-      <NavLinks />
+      <NavLinks toggleDrawer={toggleDrawer} isDriverBar={false} />
 
       <IconButton
         size='large'
@@ -38,10 +43,21 @@ const Navigation = () => {
         color='inherit'
         aria-label='menu'
         onClick={() => setIsDrawerOpened(true)}
-        sx={iconContainer}
+        sx={burger}
       >
         <MenuIcon />
       </IconButton>
+
+      <Drawer
+        anchor='right'
+        open={isDrawerOpened}
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          sx: { width: '60vw', padding: '20px 0', backgroundColor: '#1976d2;' },
+        }}
+      >
+        <NavLinks toggleDrawer={toggleDrawer} isDriverBar />
+      </Drawer>
     </Toolbar>
   );
 };

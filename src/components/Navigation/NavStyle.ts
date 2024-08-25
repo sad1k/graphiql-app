@@ -14,7 +14,23 @@ const navStyle = {
     },
   },
   hr: { mr: 1, display: { xs: 'none', sm: 'block' } },
-  iconContainer: { display: { xs: 'block', sm: 'none' } },
+  burger: {
+    display: { xs: 'block', sm: 'none' },
+    ml: 2,
+    '&:hover': {
+      '& .MuiSvgIcon-root': {
+        color: 'red',
+      },
+    },
+  },
+  driverContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    rowGap: 3,
+    mt: 2,
+    color: 'white',
+  },
 };
 
 export default navStyle;

@@ -1,29 +1,39 @@
 'use client';
 
-import { useState } from 'react';
-
+import { FC } from 'react';
 import { Box } from '@mui/material';
-import Link from 'next/link';
 
-import { usePathname } from 'next/navigation';
-import { IUser } from '@/types/user';
+import { useAppSelector } from '@/utils/store/hooks';
 
 import navStyle from '../NavStyle';
+import NavLink from './NavLink';
 
-const { container } = navStyle;
+const { container, driverContainer } = navStyle;
 
-const NavLinks = () => {
-  const [user, setUser] = useState<IUser | null>(null);
+interface INavLinks {
+  toggleDrawer: (newOpen: boolean) => () => void;
+  isDriverBar: boolean;
+}
+
+const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
+  const { user } = useAppSelector((state) => state.user);
 
   return (
-    <Box sx={container}>
-      {!user ? (
+    <Box
+      sx={isDriverBar ? driverContainer : container}
+      role='presentation'
+      onClick={toggleDrawer(false)}
+    >
+      {user ? (
         <>
-          <Link href='/login'>Login</Link>
-          <Link href='/signup'>Sign Up</Link>
+          <NavLink path='/login' text='Login' />
+          <NavLink path='/signup' text='Sign Up' />
         </>
       ) : (
-        <Link href='/'>Log Out</Link>
+        <>
+          <NavLink path='/' text='Home' />
+          <NavLink path='/' text='Log Out' />
+        </>
       )}
     </Box>
   );
