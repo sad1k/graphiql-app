@@ -5,35 +5,17 @@ import { ReactNode } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import {
-  Box,
-  Button,
-  Grid,
-  TextField,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { ISignUpUser } from '@/types/IUser';
 import { SignUpSchema } from '@/utils/validation/userSchema';
 
 import { userFormStyle } from './UserFormStyle';
+import FormInput from '../FormInput/FormInput';
 
-const { form, buttonContainer, button, title, icon, error } = userFormStyle;
-
-const InputErrorMessage = ({ err }: { err: string }) => (
-  <Typography variant='inherit' component='p' sx={error}>
-    {err || ''}
-  </Typography>
-);
+const { form, buttonContainer, button, title, icon, container } = userFormStyle;
 
 const SignUp = (): ReactNode => {
-  const matches = useMediaQuery('(min-width:600px)', { noSsr: true });
-
-  let containerWidth = '500px';
-
-  if (!matches) containerWidth = '100%';
-
   const {
     register,
     handleSubmit,
@@ -51,56 +33,35 @@ const SignUp = (): ReactNode => {
   };
 
   return (
-    <Grid
-      container
-      rowSpacing={2}
-      sx={{ p: '0 1rem', width: containerWidth, m: 'auto' }}
-    >
+    <Grid container sx={container}>
       <Box component='form' sx={form} onSubmit={handleSubmit(onSubmit)}>
         <Typography variant='h3' component='h2' sx={title}>
           SignUp
         </Typography>
-        <Grid item xs={12}>
-          <TextField
-            label='Name'
-            {...register('name')}
-            type='text'
-            size='small'
-            sx={button}
-          />
-          <InputErrorMessage err={errors.name?.message || ''} />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label='Email'
-            {...register('email')}
-            type='email'
-            size='small'
-            sx={button}
-          />{' '}
-          <InputErrorMessage err={errors.email?.message || ''} />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label='Password'
-            {...register('password')}
-            type='password'
-            size='small'
-            sx={button}
-          />{' '}
-          <InputErrorMessage err={errors.password?.message || ''} />
-        </Grid>
-
-        <Grid item xs={12}>
-          <TextField
-            label='Confirm Password'
-            {...register('confirmPassword')}
-            type='password'
-            size='small'
-            sx={button}
-          />
-          <InputErrorMessage err={errors.confirmPassword?.message || ''} />
-        </Grid>
+        <FormInput
+          label='Name'
+          type='text'
+          register={{ ...register('name') }}
+          err={errors.name?.message || ''}
+        />
+        <FormInput
+          label='Email'
+          type='email'
+          register={{ ...register('email') }}
+          err={errors.email?.message || ''}
+        />
+        <FormInput
+          label='Password'
+          type='password'
+          register={{ ...register('password') }}
+          err={errors.password?.message || ''}
+        />
+        <FormInput
+          label='Confirm Password'
+          type='password'
+          register={{ ...register('confirmPassword') }}
+          err={errors.confirmPassword?.message || ''}
+        />
 
         <Grid item xs={12} sx={buttonContainer}>
           <Button
