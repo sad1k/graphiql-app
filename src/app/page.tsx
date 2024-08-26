@@ -1,5 +1,3 @@
-import styles from './page.module.css';
+const Page = () => <section>Welcome Page</section>;
 
-const Home = (): JSX.Element => <main className={styles.main} />;
-
-export default Home;
+export default Page;
