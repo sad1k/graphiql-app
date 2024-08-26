@@ -1,6 +1,6 @@
 export const userFormStyle = {
   form: {
-    maxWidth: 'md',
+    width: '100%',
     m: 'auto',
     display: 'flex',
     flexDirection: 'column',
@@ -20,4 +20,5 @@ export const userFormStyle = {
     textAlign: 'center',
   },
   icon: { pr: 1 },
+  error: { mt: 2, color: 'red', fontSize: '1.2rem' },
 };
