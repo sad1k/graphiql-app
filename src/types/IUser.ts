@@ -12,3 +12,10 @@ export interface ILoginUser {
   email: string;
   password: string;
 }
+
+export interface IFetchUser {
+  uid: string;
+  name: string;
+  email: string;
+  authProvider: string;
+}

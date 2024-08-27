@@ -7,11 +7,15 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { Box, Button, Grid, Typography } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
+
 import { ISignUpUser } from '@/types/IUser';
 import { SignUpSchema } from '@/utils/validation/userSchema';
+import { signInWithGoogle } from '@/utils/firebase/signInWithGoogle';
+import { signUp } from '@/utils/firebase/signUp';
+
+import FormInput from '../FormInput/FormInput';
 
 import { userFormStyle } from './UserFormStyle';
-import FormInput from '../FormInput/FormInput';
 
 const { form, buttonContainer, button, title, icon, container } = userFormStyle;
 
@@ -26,8 +30,12 @@ const SignUp = (): ReactNode => {
     mode: 'onChange',
   });
 
-  const onSubmit: SubmitHandler<ISignUpUser> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<ISignUpUser> = async (data) => {
+    const { name, email, password } = data;
+
+    const user = await signUp(name, email, password);
+
+    console.log(user);
 
     reset();
   };
@@ -76,7 +84,12 @@ const SignUp = (): ReactNode => {
             OR
           </Typography>
 
-          <Button type='button' variant='contained' sx={button}>
+          <Button
+            type='button'
+            variant='contained'
+            sx={button}
+            onClick={signInWithGoogle}
+          >
             <GoogleIcon sx={icon} />
             authorization with google
           </Button>

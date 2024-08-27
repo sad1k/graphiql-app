@@ -11,6 +11,7 @@ export const userFormStyle = {
     display: 'flex',
     flexDirection: 'column',
     rowGap: 2,
+    '@media (max-width:600px)': { rowGap: 3 },
     mt: 5,
   },
   buttonContainer: {

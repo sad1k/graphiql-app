@@ -3,5 +3,11 @@ export const FormInputStyle = {
     width: '100%',
     textTransform: 'capitalize',
   },
-  error: { mt: 2, color: 'red', fontSize: '1.2rem', height: '24px' },
+  error: {
+    mt: 2,
+    color: 'red',
+    fontSize: '1rem',
+    height: '24px',
+    textAlign: 'center',
+  },
 };
