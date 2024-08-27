@@ -1,7 +1,7 @@
 import { DEFAULT_METHOD, isMethod } from './method-type';
 import IRouteUrl from './route-url-interface';
 
-const parseRestUrl = ({ params, searchParams: _searchParams }: IRouteUrl) => {
+const parseRestUrl = ({ params, searchParams }: IRouteUrl) => {
   let method = DEFAULT_METHOD;
   let url = '';
   const { slug } = params;
@@ -20,7 +20,7 @@ const parseRestUrl = ({ params, searchParams: _searchParams }: IRouteUrl) => {
     url = atob(encodedUrl);
   }
 
-  return { method, url };
+  return { method, url, headers: searchParams };
 };
 
 export default parseRestUrl;

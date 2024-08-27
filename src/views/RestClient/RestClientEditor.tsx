@@ -1,11 +1,13 @@
 import { TMethod } from '@utils/restclient/method-type';
+import { v4 as uuidv4 } from 'uuid';
 
 interface IRestClientEditor {
   method: TMethod;
   url: string;
+  headers: { [key: string]: string | string[] | undefined };
 }
 
-const RestClientEditor = ({ method, url }: IRestClientEditor) => (
+const RestClientEditor = ({ method, url, headers }: IRestClientEditor) => (
   <section>
     <h3>RestClient Editor</h3>
     <div>
@@ -18,6 +20,9 @@ const RestClientEditor = ({ method, url }: IRestClientEditor) => (
       <div>
         <h4>Headers: </h4>
         {/* TODO: add add-headers button */}
+        {Object.entries(headers).map(([key, value]) => (
+          <li key={uuidv4()}>{`key: ${key}: value ${value as string}`}</li>
+        ))}
       </div>
       {/* TODO: add headers table */}
     </section>
