@@ -8,9 +8,9 @@ import addUserToDb from './addUserToDb';
 
 const googleProvider = new GoogleAuthProvider();
 
-export const signInWithGoogle = async (): Promise<
-  string | IFetchUser | null
-> => {
+type TSignInWithGoogle = () => Promise<string | IFetchUser | null>;
+
+export const signInWithGoogle: TSignInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const { user } = res;

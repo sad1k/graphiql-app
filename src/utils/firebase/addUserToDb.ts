@@ -1,12 +1,17 @@
 import { User } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 
-import { setCookie } from 'cookies-next';
-
 import { db } from './firebaseConfig';
 import { convertDataToMs } from '../data/convertDataToMs';
+import { setTokens } from '../tokens/setTokens';
 
-const addUserToDb = async (user: User, authProvider: string, name?: string) => {
+type TAddUserToDb = (
+  user: User,
+  authProvider: string,
+  name?: string,
+) => Promise<void>;
+
+const addUserToDb: TAddUserToDb = async (user, authProvider, name?) => {
   const accessToken = await user.getIdTokenResult();
 
   const expirationTime = convertDataToMs(accessToken.expirationTime);
@@ -20,8 +25,8 @@ const addUserToDb = async (user: User, authProvider: string, name?: string) => {
     refreshToken: user.refreshToken,
     expirationTime,
   });
-  setCookie('access-token', accessToken.token, { maxAge: expirationTime });
-  setCookie('refresh-token', user.refreshToken);
+
+  setTokens(accessToken.token, expirationTime, user.refreshToken);
 };
 
 export default addUserToDb;
