@@ -18,4 +18,7 @@ export interface IFetchUser {
   name: string;
   email: string;
   authProvider: string;
+  accessToken: string;
+  refreshToken: string;
+  expirationTime: number;
 }

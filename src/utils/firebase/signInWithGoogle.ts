@@ -1,29 +1,27 @@
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
+import { IFetchUser } from '@/types/IUser';
 
-import { auth, db } from './firebaseConfig';
+import { auth } from './firebaseConfig';
 import { getUser } from './getUser';
 import { getFirebaseErrorMessage } from './getFirebaseErrorMessage';
+import addUserToDb from './addUserToDb';
 
 const googleProvider = new GoogleAuthProvider();
 
-export const signInWithGoogle = async (): Promise<string | boolean> => {
+export const signInWithGoogle = async (): Promise<
+  string | IFetchUser | null
+> => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const { user } = res;
 
     const isUser = await getUser(user.uid);
 
-    if (!isUser) {
-      await addDoc(collection(db, 'users'), {
-        uid: user.uid,
-        name: user.displayName,
-        authProvider: 'google ',
-        email: user.email,
-      });
-    }
+    if (!isUser) await addUserToDb(user, 'google');
 
-    return !isUser;
+    const newUser = await getUser(user.uid);
+
+    return newUser;
   } catch (error: unknown) {
     return getFirebaseErrorMessage(error);
   }
