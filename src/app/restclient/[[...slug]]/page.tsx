@@ -1,3 +1,4 @@
+import getResponseResults from '@/utils/restclient/getResponseResults';
 import parseRestUrl from '@/utils/restclient/parse-rest-url';
 import IRouteUrl from '@/utils/restclient/route-url-interface';
 import RestClientEditor from '@/views/RestClient/RestClientEditor';
@@ -6,13 +7,7 @@ import { Stack } from '@mui/material';
 
 const RestClient = async (params: IRouteUrl) => {
   const { method, url, headers } = parseRestUrl(params);
-  const response = await fetch(url, {
-    method,
-    headers: headers.map(({ key, value }) => [key, value]),
-  });
-  const dataObj = (await response.json()) as JSON;
-  const data = JSON.stringify(dataObj);
-  const { status } = response;
+  const { status, data } = await getResponseResults(method, url, headers);
 
   return (
     <Stack
