@@ -1,5 +1,6 @@
 'use client';
 
+import { TMethod } from '@/utils/restclient/method-type';
 import {
   Box,
   FormControl,
@@ -10,14 +11,12 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 
-type TMethod = 'get' | 'post';
-
 interface IMethodSelect {
-  initialValue?: TMethod;
+  initialValue: TMethod;
 }
 
 const MethodSelect = ({ initialValue }: IMethodSelect) => {
-  const [method, setMethod] = useState<TMethod>(initialValue || 'get');
+  const [method, setMethod] = useState<TMethod>(initialValue);
   const handleChange = (event: SelectChangeEvent) => {
     setMethod(event.target.value as TMethod);
   };
@@ -32,8 +31,8 @@ const MethodSelect = ({ initialValue }: IMethodSelect) => {
           value={method}
           onChange={handleChange}
         >
-          <MenuItem value='get'>GET</MenuItem>
-          <MenuItem value='post'>POST</MenuItem>
+          <MenuItem value='GET'>GET</MenuItem>
+          <MenuItem value='POST'>POST</MenuItem>
         </Select>
       </FormControl>
     </Box>

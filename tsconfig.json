@@ -24,7 +24,7 @@
       "@components/*": ["./src/components/*"],
       "@views/*": ["./src/views/*"],
       "@utils/*": ["./src/utils/*"],
-      "@types/*": ["./src/types/*"],
+      "@customTypes/*": ["./src/types/*"],
       "@styles/*": ["./src/styles/*"]
     },
     "noImplicitAny": true
