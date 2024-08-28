@@ -6,7 +6,10 @@ import { Stack } from '@mui/material';
 
 const RestClient = async (params: IRouteUrl) => {
   const { method, url, headers } = parseRestUrl(params);
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    method,
+    headers: headers.map(({ key, value }) => [key, value]),
+  });
   const dataObj = (await response.json()) as JSON;
   const data = JSON.stringify(dataObj);
   const { status } = response;
