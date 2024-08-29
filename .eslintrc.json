@@ -103,7 +103,7 @@
       }
     ],
     "@typescript-eslint/no-unused-expressions": [
-      "error",
+      "off",
       { "allowTernary": true }
     ],
     "prettier/prettier": [

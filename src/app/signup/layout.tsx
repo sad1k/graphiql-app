@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-const RootLayout = ({ children }: { children: ReactNode }): JSX.Element => (
+const RootLayout = ({ children }: { children: ReactNode }): ReactNode => (
   <section>{children}</section>
 );
 
