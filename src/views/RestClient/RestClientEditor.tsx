@@ -2,9 +2,9 @@ import { THeaders } from '@customTypes/headers';
 import { Button, Grid, Paper } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { TMethod } from '@utils/restclient/method-type';
-import { v4 as uuidv4 } from 'uuid';
 import MethodSelect from './MethodSelect';
 import UrlInput from '../UrlInput';
+import HeadersTable from '../HeadersTable';
 
 interface IRestClientEditor {
   method: TMethod;
@@ -43,11 +43,8 @@ const RestClientEditor = ({ method, url, headers }: IRestClientEditor) => (
         </Grid>
 
         <Grid item xs={12}>
+          <HeadersTable initialHeaders={headers} />
           {/* TODO: add add-headers button */}
-          {headers.map(({ key, value }) => (
-            <li key={uuidv4()}>{`key: ${key}: value: ${value}`}</li>
-          ))}
-          {/* TODO: add headers table */}
         </Grid>
 
         <Grid item xs={12}>
