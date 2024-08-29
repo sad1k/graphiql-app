@@ -23,7 +23,7 @@ const SignUp = (): ReactNode => {
     <Grid container sx={container}>
       <Box component='form' sx={form} onSubmit={handleSubmit(onSubmit)}>
         <Typography variant='h3' component='h2' sx={title}>
-          SignUp
+          Sign Up
         </Typography>
         <FormInput
           label='Name'

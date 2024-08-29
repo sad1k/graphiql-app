@@ -1,6 +1,5 @@
 import { IFetchUser } from '@/types/IUser';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { useAppSelector } from '../hooks';
 
 export interface ICartState {
   authState: IFetchUser | null;

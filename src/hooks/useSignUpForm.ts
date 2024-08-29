@@ -7,7 +7,7 @@ import { signUp } from '@/utils/firebase/signUp';
 
 import useSaveAuthData from './useSaveAuthData';
 
-export default function useHandleReactHookForm() {
+const useSignUpForm = () => {
   const {
     register,
     handleSubmit,
@@ -37,4 +37,6 @@ export default function useHandleReactHookForm() {
   };
 
   return { register, handleSubmit, errors, isValid, onSubmit, saveAuthData };
-}
+};
+
+export default useSignUpForm;
