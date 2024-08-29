@@ -1,8 +1,10 @@
 import { THeaders } from '@customTypes/headers';
-import { Grid, Paper } from '@mui/material';
+import { Button, Grid, Paper } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 import { TMethod } from '@utils/restclient/method-type';
 import { v4 as uuidv4 } from 'uuid';
 import MethodSelect from './MethodSelect';
+import UrlInput from '../UrlInput';
 
 interface IRestClientEditor {
   method: TMethod;
@@ -13,7 +15,7 @@ interface IRestClientEditor {
 const RestClientEditor = ({ method, url, headers }: IRestClientEditor) => (
   <section>
     <Paper sx={{ padding: 3 }}>
-      <Grid container spacing={3}>
+      <Grid container spacing={1}>
         <Grid item xs={12}>
           <h3>RestClient Editor</h3>
         </Grid>
@@ -22,9 +24,18 @@ const RestClientEditor = ({ method, url, headers }: IRestClientEditor) => (
           <MethodSelect initialValue={method} />
         </Grid>
 
-        <Grid item xs={10}>
-          {/* TODO: add url input */}
-          <span>{url}</span>
+        <Grid item xs={8}>
+          <UrlInput initialUrl={url} />
+        </Grid>
+
+        <Grid item xs={2}>
+          <Button
+            variant='contained'
+            sx={{ height: 0.95, width: 1 }}
+            endIcon={<SendIcon />}
+          >
+            Send
+          </Button>
         </Grid>
 
         <Grid item xs={12}>
