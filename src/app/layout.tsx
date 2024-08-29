@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import './globals.css';
+import ToastProvider from '@components/ToastProvider/ToastProvider';
 import StoreProvider from './StoreProvider';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +19,9 @@ const RootLayout = ({
 }>): JSX.Element => (
   <html lang='en' data-lt-installed>
     <StoreProvider>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ToastProvider>{children}</ToastProvider>
+      </body>
     </StoreProvider>
   </html>
 );

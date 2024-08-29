@@ -12,6 +12,8 @@ const isAuth = (Component: ElementType) => (props: object) => {
   }, []);
 
   return !authState ? <Component {...props} /> : null;
+
+  return <Component {...props} />;
 };
 
 export default isAuth;

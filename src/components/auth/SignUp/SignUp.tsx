@@ -1,17 +1,12 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { ToastContainer } from 'react-toastify';
-
 import isAuth from '@/HOC/isAuth';
 import useHandleReactHookForm from '@/hooks/useSignUpForm';
-
 import { Box, Grid, Typography } from '@mui/material';
 import FormInput from '../FormInput/FormInput';
 import AuthButtons from '../AuthButtons/AuthButtons';
-
 import { userFormStyle } from './UserFormStyle';
-import 'react-toastify/dist/ReactToastify.css';
 
 const { form, title, container } = userFormStyle;
 
@@ -56,7 +51,6 @@ const SignUp = (): ReactNode => {
           saveAuthData={saveAuthData}
         />
       </Box>
-      <ToastContainer />
     </Grid>
   );
 };
