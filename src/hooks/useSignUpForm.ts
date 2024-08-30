@@ -20,8 +20,6 @@ const useSignUpForm = () => {
   const [dispatchAuthUser] = useSaveAuthData();
 
   const saveAuthData = (newUser: IFetchUser | string) => {
-    console.log(newUser);
-
     typeof newUser !== 'string'
       ? dispatchAuthUser(newUser)
       : notification('error', newUser);

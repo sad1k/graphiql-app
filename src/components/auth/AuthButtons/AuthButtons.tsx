@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { IFetchUser } from '@/types/IUser';
 
 import GoogleLoginButton from './GoogleLoginButton/GoogleLoginButton';
