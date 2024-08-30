@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import isAuth from '@/HOC/isAuth';
+import isAuth from '@/hocs/isAuth';
 import useHandleReactHookForm from '@/hooks/useSignUpForm';
 import { Box, Grid, Typography } from '@mui/material';
 import FormInput from '../FormInput/FormInput';

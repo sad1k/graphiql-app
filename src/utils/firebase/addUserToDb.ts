@@ -2,7 +2,7 @@ import { User } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 
 import { db } from './firebaseConfig';
-import { convertDataToMs } from '../data/convertDataToMs';
+import { convertDateToMs } from '../date/convertDateToMs';
 import { setTokens } from '../tokens/setTokens';
 
 type TAddUserToDb = (
@@ -14,7 +14,7 @@ type TAddUserToDb = (
 const addUserToDb: TAddUserToDb = async (user, authProvider, name?) => {
   const accessToken = await user.getIdTokenResult();
 
-  const expirationTime = convertDataToMs(accessToken.expirationTime);
+  const expirationTime = convertDateToMs(accessToken.expirationTime);
 
   await addDoc(collection(db, 'users'), {
     uid: user.uid,
