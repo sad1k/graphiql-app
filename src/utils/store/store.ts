@@ -1,10 +1,42 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
+import userSlice from '@/utils/store/slices/userSlice';
 
-export const makeStore = () =>
-  configureStore({
-    reducer: {},
-  });
+const createNoopStorage = () => ({
+  getItem() {
+    return Promise.resolve(null);
+  },
+  setItem(_key: string, value: number) {
+    return Promise.resolve(value);
+  },
+  removeItem() {
+    return Promise.resolve();
+  },
+});
 
-export type AppStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<AppStore['getState']>;
-export type AppDispatch = AppStore['dispatch'];
+const storage =
+  typeof window !== 'undefined'
+    ? createWebStorage('local')
+    : createNoopStorage();
+
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['authState'],
+};
+
+const persistedReducer = persistReducer(authPersistConfig, userSlice);
+
+const rootReducer = combineReducers({
+  auth: persistedReducer,
+});
+
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

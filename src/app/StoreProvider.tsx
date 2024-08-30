@@ -1,23 +1,14 @@
 'use client';
 
-import { useRef } from 'react';
-
+import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
+import { store } from '@utils/store/store';
+import { persistStore } from 'redux-persist';
 
-import { AppStore, makeStore } from '@utils/store/store';
+persistStore(store);
 
-const StoreProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element => {
-  const storeRef = useRef<AppStore>();
-
-  if (!storeRef.current) {
-    storeRef.current = makeStore();
-  }
-
-  return <Provider store={storeRef.current}>{children}</Provider>;
-};
+const StoreProvider = ({ children }: { children: ReactNode }) => (
+  <Provider store={store}>{children}</Provider>
+);
 
 export default StoreProvider;
