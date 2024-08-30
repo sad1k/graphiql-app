@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import { IFetchUser } from '@/types/IUser';
 
 import GoogleLoginButton from './GoogleLoginButton/GoogleLoginButton';
@@ -14,7 +14,7 @@ interface IAuthButtons {
 const { buttonContainer, button, title } = AuthButtonsStyle;
 
 const AuthButtons: FC<IAuthButtons> = ({ text, isValid, saveAuthData }) => (
-  <Grid item xs={12} sx={buttonContainer}>
+  <Box sx={buttonContainer}>
     <Button type='submit' variant='contained' sx={button} disabled={!isValid}>
       {text}
     </Button>
@@ -22,7 +22,7 @@ const AuthButtons: FC<IAuthButtons> = ({ text, isValid, saveAuthData }) => (
       OR
     </Typography>
     <GoogleLoginButton saveAuthData={saveAuthData} />
-  </Grid>
+  </Box>
 );
 
 export default AuthButtons;

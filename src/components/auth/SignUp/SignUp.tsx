@@ -3,23 +3,21 @@
 import { ReactNode } from 'react';
 import isAuth from '@/hocs/isAuth';
 import useHandleReactHookForm from '@/hooks/useSignUpForm';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import FormInput from '../FormInput/FormInput';
 import AuthButtons from '../AuthButtons/AuthButtons';
 import { userFormStyle } from './UserFormStyle';
+import FormContainer from '../FormContainer/FormContainer';
 
-const { form, title, container } = userFormStyle;
+const { form } = userFormStyle;
 
 const SignUp = (): ReactNode => {
   const { register, handleSubmit, errors, isValid, onSubmit, saveAuthData } =
     useHandleReactHookForm();
 
   return (
-    <Grid container sx={container}>
+    <FormContainer text='sign up'>
       <Box component='form' sx={form} onSubmit={handleSubmit(onSubmit)}>
-        <Typography variant='h3' component='h2' sx={title}>
-          Sign Up
-        </Typography>
         <FormInput
           label='Name'
           type='text'
@@ -51,7 +49,7 @@ const SignUp = (): ReactNode => {
           saveAuthData={saveAuthData}
         />
       </Box>
-    </Grid>
+    </FormContainer>
   );
 };
 

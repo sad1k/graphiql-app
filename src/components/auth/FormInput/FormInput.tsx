@@ -1,5 +1,5 @@
-import { Grid, TextField, Typography } from '@mui/material';
 import { FC } from 'react';
+import { Box, TextField, Typography } from '@mui/material';
 import { FormInputStyle } from './FormInputStyle';
 
 const { input, error } = FormInputStyle;
@@ -12,7 +12,7 @@ interface IFormInput {
 }
 
 const FormInput: FC<IFormInput> = ({ label, register, type, err }) => (
-  <Grid item xs={12}>
+  <Box>
     <TextField
       label={label}
       {...register}
@@ -23,7 +23,7 @@ const FormInput: FC<IFormInput> = ({ label, register, type, err }) => (
     <Typography variant='inherit' component='p' sx={error}>
       {err || ''}
     </Typography>
-  </Grid>
+  </Box>
 );
 
 export default FormInput;
