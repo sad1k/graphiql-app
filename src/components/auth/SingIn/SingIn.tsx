@@ -11,19 +11,13 @@ import FormContainer from '../FormContainer/FormContainer';
 
 const { form } = AuthFormStyle;
 
-const SignUp = (): ReactNode => {
+const SignIn = (): ReactNode => {
   const { register, handleSubmit, errors, isValid, onSubmit, saveAuthData } =
     useHandleReactHookForm();
 
   return (
-    <FormContainer text='sign up'>
+    <FormContainer text='sign in'>
       <Box component='form' sx={form} onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          label='Name'
-          type='text'
-          register={{ ...register('name') }}
-          err={errors.name?.message || ''}
-        />
         <FormInput
           label='Email'
           type='email'
@@ -36,13 +30,6 @@ const SignUp = (): ReactNode => {
           register={{ ...register('password') }}
           err={errors.password?.message || ''}
         />
-        <FormInput
-          label='Confirm Password'
-          type='password'
-          register={{ ...register('confirmPassword') }}
-          err={errors.confirmPassword?.message || ''}
-        />
-
         <AuthButtons
           text='sign up'
           isValid={isValid}
@@ -53,4 +40,4 @@ const SignUp = (): ReactNode => {
   );
 };
 
-export default isAuth(SignUp);
+export default isAuth(SignIn);

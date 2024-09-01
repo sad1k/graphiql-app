@@ -1,4 +1,4 @@
-export const userFormStyle = {
+export const AuthFormStyle = {
   form: {
     width: '100%',
     m: 'auto',
