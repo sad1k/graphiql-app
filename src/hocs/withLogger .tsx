@@ -1,12 +1,13 @@
 import { ComponentType, useEffect } from 'react';
 
-// eslint-disable-next-line
-const withLogger = (Component: ComponentType<any>) => (props: object) => {
-  useEffect(() => {
-    console.log(`Component ${Component.name} is updated.`);
-  });
+const withLogger =
+  <P extends object>(Component: ComponentType<P>) =>
+  (props: P) => {
+    useEffect(() => {
+      console.log(`Component ${Component.name} is updated.`);
+    });
 
-  return <Component {...props} />;
-};
+    return <Component {...props} />;
+  };
 
 export default withLogger;
