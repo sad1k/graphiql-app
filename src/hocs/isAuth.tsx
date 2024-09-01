@@ -1,10 +1,10 @@
 'use client';
 
-import { ElementType, useLayoutEffect } from 'react';
+import { ComponentType, ElementType, useLayoutEffect } from 'react';
 import { redirect } from 'next/navigation';
 import { useAppSelector } from '@/utils/store/hooks';
 
-const isAuth = (Component: ElementType) => (props: object) => {
+const isAuth = (Component: ComponentType<unknown>) => (props: object) => {
   const { authState } = useAppSelector((state) => state.auth);
 
   // useLayoutEffect((): void => {

@@ -1,29 +1,46 @@
-import { FC } from 'react';
 import { Box, TextField, Typography } from '@mui/material';
+import { memo } from 'react';
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
+
 import { FormInputStyle } from './FormInputStyle';
 
 const { input, error } = FormInputStyle;
 
-interface IFormInput {
+interface IFormInput<T extends FieldValues> {
+  name: Path<T>;
   label: string;
-  register: object;
+  register?: UseFormRegister<T>;
   type: string;
   err: string;
 }
 
-const FormInput: FC<IFormInput> = ({ label, register, type, err }) => (
+const FormInput = <T extends FieldValues>({
+  name,
+  label,
+  register,
+  type,
+  err,
+}: IFormInput<T>) => (
   <Box>
     <TextField
       label={label}
-      {...register}
+      {...(register ? register(name) : { name })}
       type={type}
       size='small'
       sx={input}
     />
     <Typography variant='inherit' component='p' sx={error}>
-      {err || ''}
+      {err}
     </Typography>
   </Box>
 );
 
-export default FormInput;
+const MemoizedFormInput = memo(FormInput) as <T extends FieldValues>({
+  name,
+  label,
+  register,
+  type,
+  err,
+}: IFormInput<T>) => JSX.Element;
+
+export default MemoizedFormInput;

@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ISignUpUser } from '@/types/IUser';
-import { SignUpSchema } from '@/utils/validation/userSchema';
+import { ISignUpUser, ISignInUser } from '@/types/IUser';
+import { SignInSchema } from '@/utils/validation/userSchema';
 import { signUp } from '@/utils/firebase/signUp';
 
 import useSaveAuthData from './useSaveAuthData';
@@ -12,8 +12,8 @@ const useAuthUpForm = () => {
     handleSubmit,
     reset,
     formState: { errors, isValid },
-  } = useForm<ISignUpUser>({
-    resolver: yupResolver(SignUpSchema),
+  } = useForm<ISignInUser>({
+    resolver: yupResolver(SignInSchema),
     mode: 'onChange',
   });
   const [saveAuthData] = useSaveAuthData();
@@ -29,7 +29,7 @@ const useAuthUpForm = () => {
     reset();
   };
 
-  return { register, handleSubmit, errors, isValid, onSubmit, saveAuthData };
+  return { register, handleSubmit, errors, isValid, onSubmit };
 };
 
 export default useAuthUpForm;

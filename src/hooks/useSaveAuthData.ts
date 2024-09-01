@@ -1,4 +1,5 @@
 import { IFetchUser } from '@/types/IUser';
+import notification from '@/utils/notification/notification';
 import { useAppDispatch } from '@/utils/store/hooks';
 import { setAuthState } from '@/utils/store/slices/userSlice';
 import { useRouter } from 'next/navigation';
@@ -12,7 +13,13 @@ const useSaveAuthData = () => {
     router.push('/');
   };
 
-  return [dispatchAuthUser] as const;
+  const saveAuthData = (newUser: IFetchUser | string) => {
+    typeof newUser !== 'string'
+      ? dispatchAuthUser(newUser)
+      : notification('error', newUser);
+  };
+
+  return [saveAuthData] as const;
 };
 
 export default useSaveAuthData;

@@ -1,17 +1,16 @@
 import { Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { signInWithGoogle } from '@/utils/firebase/signInWithGoogle';
-import { IFetchUser } from '@/types/IUser';
-import { FC } from 'react';
+
+import useSaveAuthData from '@/hooks/useSaveAuthData';
+
 import { AuthButtonsStyle } from '../AuthButtonsStyle';
 
 const { button, icon } = AuthButtonsStyle;
 
-interface IGoogleLoginButton {
-  saveAuthData: (newUser: IFetchUser | string) => void;
-}
+const GoogleLoginButton = () => {
+  const [saveAuthData] = useSaveAuthData();
 
-const GoogleLoginButton: FC<IGoogleLoginButton> = ({ saveAuthData }) => {
   const handleLoginWithGoogle = async () => {
     const newUser = await signInWithGoogle();
 
