@@ -6,7 +6,7 @@ import { signUp } from '@/utils/firebase/signUp';
 
 import useSaveAuthData from './useSaveAuthData';
 
-const useAuthUpForm = () => {
+const useSignUpForm = () => {
   const {
     register,
     handleSubmit,
@@ -32,4 +32,4 @@ const useAuthUpForm = () => {
   return { register, handleSubmit, errors, isValid, onSubmit, saveAuthData };
 };
 
-export default useAuthUpForm;
+export default useSignUpForm;

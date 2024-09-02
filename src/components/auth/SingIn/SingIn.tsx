@@ -2,9 +2,11 @@
 
 import { ReactNode } from 'react';
 import isAuth from '@/hocs/isAuth';
-import useHandleReactHookForm from '@/hooks/useSignUpForm';
+import useSignInForm from '@/hooks/useSignInForm';
+
 import { Box } from '@mui/material';
 import FormInput from '../FormInput/FormInput';
+
 import AuthButtons from '../AuthButtons/AuthButtons';
 import { AuthFormStyle } from '../AuthFormStyle';
 import FormContainer from '../FormContainer/FormContainer';
@@ -12,8 +14,7 @@ import FormContainer from '../FormContainer/FormContainer';
 const { form } = AuthFormStyle;
 
 const SignIn = (): ReactNode => {
-  const { register, handleSubmit, errors, isValid, onSubmit } =
-    useHandleReactHookForm();
+  const { register, handleSubmit, errors, isValid, onSubmit } = useSignInForm();
 
   return (
     <FormContainer text='sign in'>

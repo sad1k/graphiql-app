@@ -1,6 +1,6 @@
 'use client';
 
-import { ComponentType, ElementType, useLayoutEffect } from 'react';
+import { ComponentType, useLayoutEffect } from 'react';
 import { redirect } from 'next/navigation';
 import { useAppSelector } from '@/utils/store/hooks';
 
