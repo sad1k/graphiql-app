@@ -23,9 +23,10 @@ const useSignInForm = () => {
   const onSubmit: SubmitHandler<ISignInUser> = async ({ email, password }) => {
     const newUser = await signIn(email, password);
 
-    if (newUser && typeof newUser !== 'string') {
+    if (newUser) {
       saveAuthData(newUser);
-      router.push('/');
+
+      if (typeof newUser !== 'string') router.push('/');
     }
     reset();
   };

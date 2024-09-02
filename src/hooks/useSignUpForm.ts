@@ -27,9 +27,9 @@ const useSignUpForm = () => {
   }) => {
     const newUser = await signUp(name, email, password);
 
-    if (newUser && typeof newUser !== 'string') {
+    if (newUser) {
       saveAuthData(newUser);
-      router.push('/');
+      if (typeof newUser !== 'string') router.push('/');
     }
     reset();
   };
