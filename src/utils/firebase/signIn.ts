@@ -23,6 +23,7 @@ export const signIn: TSignIn = async (email, password) => {
 
       return newUser;
     }
+
     return 'Wrong email or Password';
   } catch (error) {
     return getFirebaseErrorMessage(error);

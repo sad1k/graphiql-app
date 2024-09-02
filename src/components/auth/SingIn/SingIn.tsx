@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react';
 import useSignInForm from '@/hooks/useSignInForm';
+import isAuth from '@/hocs/isAuth';
 
 import { Box } from '@mui/material';
 import FormInput from '../FormInput/FormInput';
@@ -38,6 +39,4 @@ const SignIn = (): ReactNode => {
   );
 };
 
-export default SignIn;
-
-// export default isAuth(SignIn);
+export default isAuth(SignIn);
