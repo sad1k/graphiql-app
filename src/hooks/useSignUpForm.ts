@@ -25,9 +25,10 @@ const useSignUpForm = () => {
   }) => {
     const newUser = await signUp(name, email, password);
 
-    if (newUser) saveAuthData(newUser, '/');
-
-    reset();
+    if (newUser) {
+      saveAuthData(newUser, '/');
+      reset();
+    }
   };
 
   return { register, handleSubmit, errors, isValid, onSubmit, saveAuthData };

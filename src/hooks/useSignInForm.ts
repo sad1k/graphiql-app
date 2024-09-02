@@ -21,9 +21,10 @@ const useSignInForm = () => {
   const onSubmit: SubmitHandler<ISignInUser> = async ({ email, password }) => {
     const newUser = await signIn(email, password);
 
-    if (newUser) saveAuthData(newUser, '/');
-
-    reset();
+    if (newUser) {
+      saveAuthData(newUser, '/');
+      reset();
+    }
   };
 
   return { register, handleSubmit, errors, isValid, onSubmit };
