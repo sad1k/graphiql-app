@@ -1,7 +1,6 @@
 'use client';
 
 import { ReactNode } from 'react';
-import isAuth from '@/hocs/isAuth';
 import useSignInForm from '@/hooks/useSignInForm';
 
 import { Box } from '@mui/material';
@@ -39,4 +38,6 @@ const SignIn = (): ReactNode => {
   );
 };
 
-export default isAuth(SignIn);
+export default SignIn;
+
+// export default isAuth(SignIn);

@@ -1,9 +1,8 @@
 import { User } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 
-import { db } from './firebaseConfig';
-import { convertDateToMs } from '../date/convertDateToMs';
-import { setTokens } from '../tokens/setTokens';
+import { db } from '../firebaseConfig';
+import getUserAccessToken from './getUserAccessToken';
 
 type TAddUserToDb = (
   user: User,
@@ -12,9 +11,7 @@ type TAddUserToDb = (
 ) => Promise<void>;
 
 const addUserToDb: TAddUserToDb = async (user, authProvider, name?) => {
-  const accessToken = await user.getIdTokenResult();
-
-  const expirationTime = convertDateToMs(accessToken.expirationTime);
+  const { accessToken, expirationTime } = await getUserAccessToken(user);
 
   await addDoc(collection(db, 'users'), {
     uid: user.uid,
@@ -25,8 +22,6 @@ const addUserToDb: TAddUserToDb = async (user, authProvider, name?) => {
     refreshToken: user.refreshToken,
     expirationTime,
   });
-
-  setTokens(accessToken.token, expirationTime, user.refreshToken);
 };
 
 export default addUserToDb;

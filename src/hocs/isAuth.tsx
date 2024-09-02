@@ -9,13 +9,11 @@ const isAuth =
   (props: P) => {
     const { authState } = useAppSelector((state) => state.auth);
 
-    // useLayoutEffect((): void => {
-    //   if (authState) redirect('/');
-    // }, []);
+    useLayoutEffect((): void => {
+      if (authState) redirect('/');
+    }, []);
 
-    // return !authState ? <Component {...props} /> : null;
-
-    return <Component {...props} />;
+    return !authState ? <Component {...props} /> : null;
   };
 
 export default isAuth;

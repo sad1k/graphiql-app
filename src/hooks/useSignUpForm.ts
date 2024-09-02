@@ -4,6 +4,7 @@ import { ISignUpUser } from '@/types/IUser';
 import { SignUpSchema } from '@/utils/validation/userSchema';
 import { signUp } from '@/utils/firebase/signUp';
 
+import { useRouter } from 'next/navigation';
 import useSaveAuthData from './useSaveAuthData';
 
 const useSignUpForm = () => {
@@ -17,6 +18,7 @@ const useSignUpForm = () => {
     mode: 'onChange',
   });
   const [saveAuthData] = useSaveAuthData();
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<ISignUpUser> = async ({
     name,
@@ -25,7 +27,10 @@ const useSignUpForm = () => {
   }) => {
     const newUser = await signUp(name, email, password);
 
-    if (newUser) saveAuthData(newUser);
+    if (newUser && typeof newUser !== 'string') {
+      saveAuthData(newUser);
+      router.push('/');
+    }
     reset();
   };
 

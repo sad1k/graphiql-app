@@ -2,9 +2,10 @@ import { IFetchUser } from '@/types/IUser';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 
-import { getUser } from './getUser';
+import { getUser } from './user/getUser';
 import { getFirebaseErrorMessage } from './getFirebaseErrorMessage';
-import addUserToDb from './addUserToDb';
+import addUserToDb from './user/addUserToDb';
+import { setTokens } from '../tokens/setTokens';
 
 type TSignUp = (
   name: string,
@@ -20,6 +21,8 @@ export const signUp: TSignUp = async (name, email, password) => {
     await addUserToDb(user, 'local', name);
 
     const newUser = await getUser(user.uid);
+
+    if (newUser) setTokens(newUser);
 
     return newUser;
   } catch (error) {
