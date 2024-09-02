@@ -24,7 +24,11 @@
       "@components/*": ["./src/components/*"],
       "@views/*": ["./src/views/*"],
       "@utils/*": ["./src/utils/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@styles/*": ["./src/styles/*"],
+      "@hocs/*": ["./src/hocs/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@providers/*": ["./src/providers/*"],
+      "@constants/*": ["./src/constants/*"]
     },
     "noImplicitAny": true
   },

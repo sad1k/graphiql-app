@@ -16,9 +16,12 @@ const userSlice = createSlice({
     setAuthState: (state, { payload }: PayloadAction<IFetchUser>) => {
       state.authState = payload;
     },
+    removeAuthState: (state) => {
+      state.authState = null;
+    },
   },
 });
 
-export const { setAuthState } = userSlice.actions;
+export const { setAuthState, removeAuthState } = userSlice.actions;
 
 export default userSlice.reducer;

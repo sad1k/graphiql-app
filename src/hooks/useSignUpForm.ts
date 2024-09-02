@@ -1,11 +1,11 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { IFetchUser, ISignUpUser } from '@/types/IUser';
+import { ISignUpUser } from '@/types/IUser';
 import { SignUpSchema } from '@/utils/validation/userSchema';
-import notification from '@/utils/notification/notification';
 import { signUp } from '@/utils/firebase/signUp';
+import { HOME } from '@/constants/path';
 
-import useSaveAuthData from './useSaveAuthData';
+import useSaveAuthData from './useAuthData';
 
 const useSignUpForm = () => {
   const {
@@ -17,13 +17,7 @@ const useSignUpForm = () => {
     resolver: yupResolver(SignUpSchema),
     mode: 'onChange',
   });
-  const [dispatchAuthUser] = useSaveAuthData();
-
-  const saveAuthData = (newUser: IFetchUser | string) => {
-    typeof newUser !== 'string'
-      ? dispatchAuthUser(newUser)
-      : notification('error', newUser);
-  };
+  const [saveAuthData] = useSaveAuthData();
 
   const onSubmit: SubmitHandler<ISignUpUser> = async ({
     name,
@@ -32,8 +26,10 @@ const useSignUpForm = () => {
   }) => {
     const newUser = await signUp(name, email, password);
 
-    if (newUser) saveAuthData(newUser);
-    reset();
+    if (newUser) {
+      saveAuthData(newUser, HOME);
+      reset();
+    }
   };
 
   return { register, handleSubmit, errors, isValid, onSubmit, saveAuthData };

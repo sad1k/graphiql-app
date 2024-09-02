@@ -3,7 +3,7 @@ export const FormContainerStyle = {
     p: '0 1rem',
     m: 'auto',
     width: '100%',
-    '@media (min-width:600px)': { width: '500px' },
+    '@media (min-width:600px)': { width: '400px' },
     mt: 3,
   },
   title: {

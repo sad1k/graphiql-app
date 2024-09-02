@@ -8,7 +8,7 @@ export interface ISignUpUser extends IUser {
   confirmPassword: string;
 }
 
-export interface ILoginUser {
+export interface ISignInUser {
   email: string;
   password: string;
 }
