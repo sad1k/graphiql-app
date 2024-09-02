@@ -1,5 +1,6 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { IFetchUser } from '@/types/IUser';
+import { LOGIN_ERROR } from '@/constants/errors';
 import { auth } from './firebaseConfig';
 import { getFirebaseErrorMessage } from './getFirebaseErrorMessage';
 import { getUser } from './user/getUser';
@@ -24,7 +25,7 @@ export const signIn: TSignIn = async (email, password) => {
       return newUser;
     }
 
-    return 'Wrong email or Password';
+    return LOGIN_ERROR;
   } catch (error) {
     return getFirebaseErrorMessage(error);
   }

@@ -1,3 +1,4 @@
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/constants/cookies';
 import { CookieValueTypes, getCookie } from 'cookies-next';
 
 type TGetTokens = () => {
@@ -6,8 +7,8 @@ type TGetTokens = () => {
 };
 
 export const getTokens: TGetTokens = () => {
-  const accessToken = getCookie('access-token');
-  const refreshToken = getCookie('refresh-token');
+  const accessToken = getCookie(ACCESS_TOKEN);
+  const refreshToken = getCookie(REFRESH_TOKEN);
 
   return { accessToken, refreshToken };
 };

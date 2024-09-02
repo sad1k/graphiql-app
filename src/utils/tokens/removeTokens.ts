@@ -1,8 +1,9 @@
 import { deleteCookie } from 'cookies-next';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/constants/cookies';
 
 type TSetTokens = () => void;
 
 export const removeTokens: TSetTokens = () => {
-  deleteCookie('access-token');
-  deleteCookie('refresh-token');
+  deleteCookie(ACCESS_TOKEN);
+  deleteCookie(REFRESH_TOKEN);
 };

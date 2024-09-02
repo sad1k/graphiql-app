@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ISignInUser } from '@/types/IUser';
 import { SignInSchema } from '@/utils/validation/userSchema';
 import { signIn } from '@/utils/firebase/signIn';
+import { HOME } from '@/constants/path';
 
 import useSaveAuthData from './useAuthData';
 
@@ -22,7 +23,7 @@ const useSignInForm = () => {
     const newUser = await signIn(email, password);
 
     if (newUser) {
-      saveAuthData(newUser, '/');
+      saveAuthData(newUser, HOME);
       reset();
     }
   };

@@ -1,11 +1,12 @@
 import { IFetchUser } from '@/types/IUser';
 import { setCookie } from 'cookies-next';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/constants/cookies';
 
 type TSetTokens = (user: IFetchUser) => void;
 
 export const setTokens: TSetTokens = (user: IFetchUser) => {
   const { accessToken, expirationTime, refreshToken } = user;
 
-  setCookie('access-token', accessToken, { maxAge: expirationTime });
-  setCookie('refresh-token', refreshToken);
+  setCookie(ACCESS_TOKEN, accessToken, { maxAge: expirationTime });
+  setCookie(REFRESH_TOKEN, refreshToken);
 };

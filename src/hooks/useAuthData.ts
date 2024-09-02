@@ -1,3 +1,4 @@
+import { SIGN_IN } from '@/constants/path';
 import { IFetchUser } from '@/types/IUser';
 import notification from '@/utils/notification/notification';
 import { useAppDispatch } from '@/utils/store/hooks';
@@ -23,7 +24,7 @@ const useAuthData = () => {
   const removeAuthData = () => {
     dispatch(removeAuthState());
     removeTokens();
-    router.push('/signin');
+    router.push(SIGN_IN);
   };
 
   return [saveAuthData, removeAuthData] as const;
