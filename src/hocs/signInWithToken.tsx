@@ -1,15 +1,13 @@
 import { ComponentType, useLayoutEffect } from 'react';
-import useSaveAuthData from '@/hooks/useSaveAuthData';
+import useAuthData from '@/hooks/useAuthData';
 import { signInWithToken } from '@/utils/firebase/signInWithToken';
 import notification from '@/utils/notification/notification';
 import { getTokens } from '@/utils/tokens/getTokens';
-import { useRouter } from 'next/navigation';
 
 const withTokenSignIn =
   <P extends object>(Component: ComponentType<P>) =>
   (props: P) => {
-    const router = useRouter();
-    const [saveAuthData] = useSaveAuthData();
+    const [saveAuthData, removeAuthData] = useAuthData();
 
     const { refreshToken } = getTokens();
 
@@ -19,7 +17,7 @@ const withTokenSignIn =
 
         if (user) saveAuthData(user);
       } else {
-        router.push('/signin');
+        removeAuthData();
       }
     };
 
