@@ -4,7 +4,7 @@ export const headerStyle = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    p: 1,
+    p: '.5rem 2rem',
   },
   header: { '& .MuiToolbar-root': { padding: 0 } },
 };

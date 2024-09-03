@@ -29,7 +29,7 @@ const RootLayout = ({
         <ToastProvider>
           <Header />
           <main>{children}</main>
-          <Footer />{' '}
+          <Footer />
         </ToastProvider>
       </body>
     </StoreProvider>

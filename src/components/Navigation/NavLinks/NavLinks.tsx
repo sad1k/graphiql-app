@@ -5,10 +5,10 @@ import { Box, Button } from '@mui/material';
 
 import { useAppSelector } from '@/utils/store/hooks';
 import { HOME, SIGN_IN, SIGN_UP } from '@/constants/path';
-import NavLink from '@components/Navigation/NavLinks/NavLink';
 import useAuthData from '@/hooks/useAuthData';
 
 import navStyle from '../NavStyle';
+import CustomLink from '@/components/Link/Link';
 
 const { container, driverContainer, signOut } = navStyle;
 
@@ -19,7 +19,6 @@ interface INavLinks {
 
 const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
   const { authState } = useAppSelector((state) => state.auth);
-
   const { removeAuthData } = useAuthData();
 
   return (
@@ -30,12 +29,12 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
     >
       {!authState ? (
         <>
-          <NavLink path={SIGN_IN} text='Sign In' />
-          <NavLink path={SIGN_UP} text='Sign Up' />
+          <CustomLink href={SIGN_IN} text='Sign In' />
+          <CustomLink href={SIGN_UP} text='Sign Up' />
         </>
       ) : (
         <>
-          <NavLink path={HOME} text='Home' />
+          <CustomLink href={HOME} text='Home' />
           <Button type='button' onClick={removeAuthData} sx={signOut}>
             Sign Out
           </Button>
