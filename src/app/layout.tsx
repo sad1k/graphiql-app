@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import ToastProvider from '@/providers/ToastProvider';
+import Footer from '@/components/Footer/Footer';
+import Header from '@/components/Header/Header';
 import StoreProvider from './StoreProvider';
 import './globals.css';
 
@@ -17,11 +19,15 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>): JSX.Element => (
-  <html lang='en' data-lt-installed>
+  <html lang='en' data-lt-installed='true'>
     <StoreProvider>
-      <body className={inter.className}>
-        <ToastProvider>{children}</ToastProvider>
-      </body>
+      <ToastProvider>
+        <body className={inter.className}>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </ToastProvider>
     </StoreProvider>
   </html>
 );
