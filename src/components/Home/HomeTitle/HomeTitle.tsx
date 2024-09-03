@@ -11,7 +11,7 @@ interface IHomeTitle {
 const HomeTitle: FC<IHomeTitle> = ({ name }) => (
   <Typography component='h2' variant='h2' sx={title}>
     {name ? `Welcome Back, ` : 'Welcome!'}
-    {name && <span style={spanTitle}>{name}</span>}
+    {name && <span style={spanTitle}>{name}!</span>}
   </Typography>
 );
 

@@ -4,13 +4,15 @@ import { FC } from 'react';
 import { Box, Button } from '@mui/material';
 
 import { useAppSelector } from '@/utils/store/hooks';
-import { HOME, SIGN_IN, SIGN_UP } from '@/constants/path';
+import { ABOUT, HOME, SIGN_IN, SIGN_UP } from '@/constants/path';
 import useAuthData from '@/hooks/useAuthData';
 
-import navStyle from '../NavStyle';
 import CustomLink from '@/components/Link/Link';
+import { RED_COLOR } from '@/constants/colors';
+import navStyle from '../NavStyle';
+import LanguageButtons from '../LanguageButtons/LanguageButtons';
 
-const { container, driverContainer, signOut } = navStyle;
+const { container, driverContainer, button, hr, linkContainer } = navStyle;
 
 interface INavLinks {
   toggleDrawer: (newOpen: boolean) => () => void;
@@ -27,18 +29,25 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
       role='presentation'
       onClick={toggleDrawer(false)}
     >
+      <LanguageButtons languages={['rus', 'eng']} />
+      <Box sx={hr}>|</Box>
       {!authState ? (
         <>
           <CustomLink href={SIGN_IN} text='Sign In' />
           <CustomLink href={SIGN_UP} text='Sign Up' />
         </>
       ) : (
-        <>
-          <CustomLink href={HOME} text='Home' />
-          <Button type='button' onClick={removeAuthData} sx={signOut}>
+        <Box sx={linkContainer}>
+          <CustomLink href={HOME} text='Home' />{' '}
+          <CustomLink href={ABOUT} text='about us' />
+          <Button
+            type='button'
+            onClick={removeAuthData}
+            sx={{ ...button, color: RED_COLOR }}
+          >
             Sign Out
           </Button>
-        </>
+        </Box>
       )}
     </Box>
   );

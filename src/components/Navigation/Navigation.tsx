@@ -15,7 +15,7 @@ import { useState } from 'react';
 import NavLinks from './NavLinks/NavLinks';
 import navStyle from './NavStyle';
 
-const { toogleButton, hr, burger, drawer } = navStyle;
+const { burger, drawer } = navStyle;
 
 const Navigation = () => {
   const [isDrawerOpened, setIsDrawerOpened] = useState(false);
@@ -26,15 +26,6 @@ const Navigation = () => {
 
   return (
     <Toolbar>
-      <ToggleButtonGroup exclusive aria-label='Platform'>
-        <ToggleButton sx={toogleButton} value='eng'>
-          Eng
-        </ToggleButton>
-        <ToggleButton sx={toogleButton} value='rus'>
-          Rus
-        </ToggleButton>
-      </ToggleButtonGroup>
-      <Box sx={hr}>|</Box>
       <NavLinks toggleDrawer={toggleDrawer} isDriverBar={false} />
 
       <IconButton

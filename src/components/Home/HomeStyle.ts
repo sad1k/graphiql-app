@@ -1,15 +1,6 @@
-import { LIGHT_PINK_COLOR, PINK_COLOR, YELLOW_COLOR } from '@/constants/colors';
+import { LIGHT_PINK_COLOR } from '@/constants/colors';
 
 const style = {
-  link: {
-    textTransform: 'capitalize',
-    color: PINK_COLOR,
-    fontWeight: '600',
-    '&:hover': {
-      color: YELLOW_COLOR,
-    },
-  },
-
   linkContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -32,9 +23,9 @@ const style = {
     color: LIGHT_PINK_COLOR,
     fontWeight: 'bold',
     fontStyle: 'Italic',
-
     fontSize: '2rem',
     '@media (min-width: 670px)': { fontSize: '3.75rem' },
+    lineHeight: '3rem',
   },
   spanTitle: {
     color: LIGHT_PINK_COLOR,
