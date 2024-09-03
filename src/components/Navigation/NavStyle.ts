@@ -8,13 +8,25 @@ const navStyle = {
     '@media (min-width: 600px)': { paddingRight: 0, paddingLeft: 0 },
   },
   button: {
-    color: YELLOW_COLOR,
+    color: PINK_COLOR,
     fontWeight: 600,
     border: 'none',
     p: 0,
     '&:hover': {
       backgroundColor: 'transparent',
+      color: YELLOW_COLOR,
+    },
+  },
+
+  signOutButton: {
+    color: YELLOW_COLOR,
+    fontWeight: 600,
+    border: `2px solid ${YELLOW_COLOR}`,
+    borderRadius: 0,
+    p: 0.5,
+    '&:hover': {
       color: PINK_COLOR,
+      border: `2px solid ${PINK_COLOR}`,
     },
   },
   hr: {
@@ -24,9 +36,12 @@ const navStyle = {
   burger: {
     display: { xs: 'block', sm: 'none' },
     ml: 2,
+    '& .MuiSvgIcon-root': {
+      color: PINK_COLOR,
+    },
     '&:hover': {
       '& .MuiSvgIcon-root': {
-        color: 'red',
+        color: YELLOW_COLOR,
       },
     },
   },

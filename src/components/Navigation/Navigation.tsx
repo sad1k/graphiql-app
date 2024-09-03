@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  Toolbar,
-  IconButton,
-  Box,
-  ToggleButtonGroup,
-  ToggleButton,
-  Drawer,
-} from '@mui/material';
+import { Toolbar, IconButton, Drawer } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
@@ -20,9 +13,7 @@ const { burger, drawer } = navStyle;
 const Navigation = () => {
   const [isDrawerOpened, setIsDrawerOpened] = useState(false);
 
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setIsDrawerOpened(newOpen);
-  };
+  const toggleDrawer = (newOpen: boolean) => () => setIsDrawerOpened(newOpen);
 
   return (
     <Toolbar>

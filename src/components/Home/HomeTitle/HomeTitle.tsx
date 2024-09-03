@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Typography } from '@mui/material';
 import style from '../HomeStyle';
 
-const { title, spanTitle } = style;
+const { title } = style;
 
 interface IHomeTitle {
   name: undefined | string;
@@ -11,7 +11,7 @@ interface IHomeTitle {
 const HomeTitle: FC<IHomeTitle> = ({ name }) => (
   <Typography component='h2' variant='h2' sx={title}>
     {name ? `Welcome Back, ` : 'Welcome!'}
-    {name && <span style={spanTitle}>{name}!</span>}
+    {name && <span>{name}!</span>}
   </Typography>
 );
 

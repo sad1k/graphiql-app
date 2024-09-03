@@ -9,10 +9,10 @@ interface ILink {
 
 const style = {
   textTransform: 'capitalize',
-  color: YELLOW_COLOR,
+  color: PINK_COLOR,
   fontWeight: '600',
   '&:hover': {
-    color: PINK_COLOR,
+    color: YELLOW_COLOR,
   },
 };
 

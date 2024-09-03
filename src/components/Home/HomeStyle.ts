@@ -1,4 +1,4 @@
-import { LIGHT_PINK_COLOR } from '@/constants/colors';
+import { BLUE_COLOR } from '@/constants/colors';
 
 const style = {
   linkContainer: {
@@ -20,15 +20,12 @@ const style = {
   title: {
     textAlign: 'center',
     mt: 5,
-    color: LIGHT_PINK_COLOR,
+    color: BLUE_COLOR,
     fontWeight: 'bold',
     fontStyle: 'Italic',
     fontSize: '2rem',
     '@media (min-width: 670px)': { fontSize: '3.75rem' },
     lineHeight: '3rem',
-  },
-  spanTitle: {
-    color: LIGHT_PINK_COLOR,
   },
 };
 

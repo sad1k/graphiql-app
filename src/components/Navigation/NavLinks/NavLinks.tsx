@@ -8,11 +8,11 @@ import { ABOUT, HOME, SIGN_IN, SIGN_UP } from '@/constants/path';
 import useAuthData from '@/hooks/useAuthData';
 
 import CustomLink from '@/components/Link/Link';
-import { RED_COLOR } from '@/constants/colors';
 import navStyle from '../NavStyle';
 import LanguageButtons from '../LanguageButtons/LanguageButtons';
 
-const { container, driverContainer, button, hr, linkContainer } = navStyle;
+const { container, driverContainer, hr, linkContainer, signOutButton } =
+  navStyle;
 
 interface INavLinks {
   toggleDrawer: (newOpen: boolean) => () => void;
@@ -40,11 +40,7 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
         <Box sx={linkContainer}>
           <CustomLink href={HOME} text='Home' />{' '}
           <CustomLink href={ABOUT} text='about us' />
-          <Button
-            type='button'
-            onClick={removeAuthData}
-            sx={{ ...button, color: RED_COLOR }}
-          >
+          <Button type='button' onClick={removeAuthData} sx={signOutButton}>
             Sign Out
           </Button>
         </Box>
