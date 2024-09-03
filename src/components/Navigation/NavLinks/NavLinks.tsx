@@ -1,14 +1,16 @@
 'use client';
 
 import { FC } from 'react';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 import { useAppSelector } from '@/utils/store/hooks';
+import { HOME, SIGN_IN, SIGN_UP } from '@/constants/path';
+import NavLink from '@components/Navigation/NavLinks/NavLink';
+import useAuthData from '@/hooks/useAuthData';
 
 import navStyle from '../NavStyle';
-import NavLink from './NavLink';
 
-const { container, driverContainer } = navStyle;
+const { container, driverContainer, signOut } = navStyle;
 
 interface INavLinks {
   toggleDrawer: (newOpen: boolean) => () => void;
@@ -16,7 +18,9 @@ interface INavLinks {
 }
 
 const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
-  const { user } = useAppSelector((state) => state.user);
+  const { authState } = useAppSelector((state) => state.auth);
+
+  const { removeAuthData } = useAuthData();
 
   return (
     <Box
@@ -24,15 +28,17 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
       role='presentation'
       onClick={toggleDrawer(false)}
     >
-      {!user ? (
+      {!authState ? (
         <>
-          <NavLink path='/login' text='Login' />
-          <NavLink path='/signup' text='Sign Up' />
+          <NavLink path={SIGN_IN} text='Sign In' />
+          <NavLink path={SIGN_UP} text='Sign Up' />
         </>
       ) : (
         <>
-          <NavLink path='/' text='Home' />
-          <NavLink path='/' text='Log Out' />
+          <NavLink path={HOME} text='Home' />
+          <Button type='button' onClick={removeAuthData} sx={signOut}>
+            Sign Out
+          </Button>
         </>
       )}
     </Box>

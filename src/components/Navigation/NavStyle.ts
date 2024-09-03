@@ -31,6 +31,14 @@ const navStyle = {
     mt: 2,
     color: 'white',
   },
+  drawer: { width: '60vw', padding: '20px 0', backgroundColor: '#1976d2;' },
+  signOut: {
+    textTransform: 'capitalize',
+    color: 'white',
+    '&:hover': {
+      color: 'red',
+    },
+  },
 };
 
 export default navStyle;

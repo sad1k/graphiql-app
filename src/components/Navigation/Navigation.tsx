@@ -15,7 +15,7 @@ import { useState } from 'react';
 import NavLinks from './NavLinks/NavLinks';
 import navStyle from './NavStyle';
 
-const { toogleButton, hr, burger } = navStyle;
+const { toogleButton, hr, burger, drawer } = navStyle;
 
 const Navigation = () => {
   const [isDrawerOpened, setIsDrawerOpened] = useState(false);
@@ -52,9 +52,7 @@ const Navigation = () => {
         anchor='right'
         open={isDrawerOpened}
         onClose={toggleDrawer(false)}
-        PaperProps={{
-          sx: { width: '60vw', padding: '20px 0', backgroundColor: '#1976d2;' },
-        }}
+        PaperProps={{ sx: drawer }}
       >
         <NavLinks toggleDrawer={toggleDrawer} isDriverBar />
       </Drawer>

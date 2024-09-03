@@ -1,11 +1,15 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import dynamic from 'next/dynamic';
 
 import ToastProvider from '@/providers/ToastProvider';
 import Footer from '@/components/Footer/Footer';
-import Header from '@/components/Header/Header';
 import StoreProvider from './StoreProvider';
 import './globals.css';
+
+const Header = dynamic(() => import('@/components/Header/Header'), {
+  ssr: false,
+});
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,13 +25,13 @@ const RootLayout = ({
 }>): JSX.Element => (
   <html lang='en' data-lt-installed='true'>
     <StoreProvider>
-      <ToastProvider>
-        <body className={inter.className}>
+      <body className={inter.className}>
+        <ToastProvider>
           <Header />
           <main>{children}</main>
-          <Footer />
-        </body>
-      </ToastProvider>
+          <Footer />{' '}
+        </ToastProvider>
+      </body>
     </StoreProvider>
   </html>
 );
