@@ -3,15 +3,20 @@
 import { IRestClientForm } from '@/types/rest-client-form';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { Grid } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import compileRestUrl from '@/utils/restclient/compile-rest-url';
 import MethodSelect from './MethodSelect';
 import UrlInput from './UrlInput';
 import HeadersTable from './HeadersTable';
 import SubmitButton from './SubmitButton';
 
 const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
-  const methods = useForm<IRestClientForm>({});
+  const methods = useForm<IRestClientForm>({ mode: 'all' });
+  const router = useRouter();
   const onSubmit: SubmitHandler<IRestClientForm> = (data) => {
-    console.log(data);
+    const newRoute = compileRestUrl(data.url, data.method, []);
+
+    router.push(newRoute);
   };
 
   return (

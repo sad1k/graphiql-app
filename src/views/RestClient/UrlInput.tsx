@@ -11,6 +11,7 @@ interface IUrlInput {
 
 const UrlInput = ({ initialUrl, xs }: IUrlInput) => {
   const { control } = useFormContext<IRestClientForm>();
+
   return (
     <Grid item xs={xs}>
       <Controller

@@ -109,6 +109,14 @@
         "varsIgnorePattern": "^_"
       }
     ],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": {
+          "attributes": false
+        }
+      }
+    ],
     "@typescript-eslint/no-unused-expressions": [
       "error",
       { "allowTernary": true }

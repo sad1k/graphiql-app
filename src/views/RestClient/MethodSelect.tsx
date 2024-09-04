@@ -10,9 +10,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
 } from '@mui/material';
-import { useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 interface IMethodSelect {
