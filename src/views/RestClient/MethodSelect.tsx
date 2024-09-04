@@ -1,5 +1,6 @@
 'use client';
 
+import { IRestClientForm } from '@/types/rest-client-form';
 import { TMethod } from '@/utils/restclient/method-type';
 import {
   Box,
@@ -12,6 +13,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import { useState } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
 
 interface IMethodSelect {
   initialValue: TMethod;
@@ -19,25 +21,24 @@ interface IMethodSelect {
 }
 
 const MethodSelect = ({ initialValue, xs }: IMethodSelect) => {
-  const [method, setMethod] = useState<TMethod>(initialValue);
-  const handleChange = (event: SelectChangeEvent) => {
-    setMethod(event.target.value as TMethod);
-  };
+  const { control } = useFormContext<IRestClientForm>();
 
   return (
     <Grid item xs={xs}>
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
           <InputLabel id='method-selector-label'>Method</InputLabel>
-          <Select
-            labelId='method-selector-label'
-            label='Method'
-            value={method}
-            onChange={handleChange}
-          >
-            <MenuItem value='GET'>GET</MenuItem>
-            <MenuItem value='POST'>POST</MenuItem>
-          </Select>
+          <Controller
+            name='method'
+            control={control}
+            defaultValue={initialValue}
+            render={({ field }) => (
+              <Select {...field} labelId='method-selector-label' label='Method'>
+                <MenuItem value='GET'>GET</MenuItem>
+                <MenuItem value='POST'>POST</MenuItem>
+              </Select>
+            )}
+          />
         </FormControl>
       </Box>
     </Grid>
