@@ -1,4 +1,4 @@
-import { BLUE_COLOR, PINK_COLOR, YELLOW_COLOR } from '@/constants/colors';
+import { BLUE_COLOR, PINK_COLOR, WHITE_COLOR } from '@/constants/colors';
 
 const navStyle = {
   container: {
@@ -14,14 +14,14 @@ const navStyle = {
     p: 0,
     '&:hover': {
       backgroundColor: 'transparent',
-      color: YELLOW_COLOR,
+      color: WHITE_COLOR,
     },
   },
 
   signOutButton: {
-    color: YELLOW_COLOR,
+    color: WHITE_COLOR,
     fontWeight: 600,
-    border: `2px solid ${YELLOW_COLOR}`,
+    border: `2px solid ${WHITE_COLOR}`,
     borderRadius: 0,
     p: 0.5,
     '&:hover': {
@@ -41,7 +41,7 @@ const navStyle = {
     },
     '&:hover': {
       '& .MuiSvgIcon-root': {
-        color: YELLOW_COLOR,
+        color: WHITE_COLOR,
       },
     },
   },

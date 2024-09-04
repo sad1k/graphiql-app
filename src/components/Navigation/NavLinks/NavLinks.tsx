@@ -33,13 +33,13 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
       <Box sx={hr}>|</Box>
       {!authState ? (
         <>
-          <CustomLink href={SIGN_IN} text='Sign In' />
-          <CustomLink href={SIGN_UP} text='Sign Up' />
+          <CustomLink href={SIGN_IN} text='Sign In' type='nav' />
+          <CustomLink href={SIGN_UP} text='Sign Up' type='nav' />
         </>
       ) : (
         <Box sx={linkContainer}>
-          <CustomLink href={HOME} text='Home' />{' '}
-          <CustomLink href={ABOUT} text='about us' />
+          <CustomLink href={HOME} text='Home' type='nav' />
+          <CustomLink href={ABOUT} text='about us' type='nav' />
           <Button type='button' onClick={removeAuthData} sx={signOutButton}>
             Sign Out
           </Button>

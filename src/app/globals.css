@@ -87,11 +87,6 @@ body {
 
 body {
   min-height: 100vh;
-  background-color: rgb(180, 214, 205, 0.5);
-}
-
-section {
-  padding: 0 1rem;
 }
 
 a {

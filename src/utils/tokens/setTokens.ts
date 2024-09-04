@@ -7,6 +7,8 @@ type TSetTokens = (user: IFetchUser) => void;
 export const setTokens: TSetTokens = (user: IFetchUser) => {
   const { accessToken, expirationTime, refreshToken } = user;
 
-  setCookie(ACCESS_TOKEN, accessToken, { maxAge: expirationTime });
+  setCookie(ACCESS_TOKEN, accessToken, {
+    maxAge: expirationTime,
+  });
   setCookie(REFRESH_TOKEN, refreshToken);
 };
