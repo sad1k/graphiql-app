@@ -4,8 +4,11 @@ import DynamicInputTable, {
   ICeil,
 } from '@/components/DynamicInputTable/DynamicInputTable';
 import { THeaders } from '@/types/headers';
+import { IRestClientForm } from '@/types/rest-client-form';
 import { Grid, GridSize } from '@mui/material';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useFieldArray, useFormContext } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
 
 interface IHeadersTable {
   initialHeaders: THeaders;
@@ -13,20 +16,32 @@ interface IHeadersTable {
 }
 
 const HeadersTable = ({ initialHeaders, xs }: IHeadersTable) => {
-  const [headers, _setHeaders] = useState<THeaders>(initialHeaders);
+  const { control } = useFormContext<IRestClientForm>();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'headers',
+  });
+
+  useEffect(() => {
+    remove();
+    initialHeaders.forEach((header) => {
+      append(header);
+    });
+  }, []);
 
   const legends: ICeil[] = [
     { value: 'key', width: 0.3 },
     { value: 'value', width: 0.7 },
   ];
-  const rows: ICeil[][] = headers.map((header) => [
-    { value: header.key, width: 0.3 },
-    { value: header.value, width: 0.65 },
+
+  const rows: ICeil[][] = fields.map((header) => [
+    { value: header.key, width: 0.3, key: uuidv4() },
+    { value: header.value, width: 0.65, key: uuidv4() },
   ]);
 
   return (
     <Grid item xs={xs}>
-      <DynamicInputTable legends={legends} rows={rows} />
+      <DynamicInputTable legends={legends} rows={rows} remove={remove} />
     </Grid>
   );
 };
