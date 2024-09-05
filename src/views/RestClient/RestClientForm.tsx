@@ -14,7 +14,7 @@ const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
   const methods = useForm<IRestClientForm>({ mode: 'all' });
   const router = useRouter();
   const onSubmit: SubmitHandler<IRestClientForm> = (data) => {
-    const newRoute = compileRestUrl(data.url, data.method, []);
+    const newRoute = compileRestUrl(data.url, data.method, data.headers);
 
     router.push(newRoute);
   };

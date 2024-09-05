@@ -1,21 +1,40 @@
 import { DeleteForever } from '@mui/icons-material';
 import { Box, Divider, IconButton, Stack, TextField } from '@mui/material';
-import { UseFieldArrayRemove } from 'react-hook-form';
+import {
+  Control,
+  Controller,
+  FieldValues,
+  Path,
+  PathValue,
+  UseFieldArrayRemove,
+} from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 
-export interface ICeil {
+export interface ILegendCeil {
   width: number | string;
   value: string;
   key?: string;
+  name?: string;
 }
 
-export interface IDynamicInputTable {
-  legends: ICeil[];
+export interface ICeil extends ILegendCeil {
+  key: string;
+  name: string;
+}
+
+export interface IDynamicInputTable<T extends FieldValues> {
+  legends: ILegendCeil[];
   rows: ICeil[][];
   remove: UseFieldArrayRemove;
+  control: Control<T>;
 }
 
-const DynamicInputTable = ({ legends, rows, remove }: IDynamicInputTable) => (
+const DynamicInputTable = <T extends FieldValues>({
+  legends,
+  rows,
+  remove,
+  control,
+}: IDynamicInputTable<T>) => (
   <Stack spacing={2}>
     <Stack
       direction='row'
@@ -37,12 +56,19 @@ const DynamicInputTable = ({ legends, rows, remove }: IDynamicInputTable) => (
         key={uuidv4()}
       >
         {row.map((ceil) => (
-          <TextField
-            variant='standard'
-            autoComplete='off'
-            defaultValue={ceil.value}
-            sx={{ width: ceil.width }}
+          <Controller
+            name={ceil.name as Path<T>}
+            control={control}
+            defaultValue={ceil.value as PathValue<T, Path<T>>}
             key={ceil.key ?? uuidv4()}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                variant='standard'
+                autoComplete='off'
+                sx={{ width: ceil.width }}
+              />
+            )}
           />
         ))}
         <IconButton

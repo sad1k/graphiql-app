@@ -2,6 +2,7 @@
 
 import DynamicInputTable, {
   ICeil,
+  ILegendCeil,
 } from '@/components/DynamicInputTable/DynamicInputTable';
 import { THeaders } from '@/types/headers';
 import { IRestClientForm } from '@/types/rest-client-form';
@@ -29,19 +30,34 @@ const HeadersTable = ({ initialHeaders, xs }: IHeadersTable) => {
     });
   }, []);
 
-  const legends: ICeil[] = [
+  const legends: ILegendCeil[] = [
     { value: 'key', width: 0.3 },
     { value: 'value', width: 0.7 },
   ];
 
-  const rows: ICeil[][] = fields.map((header) => [
-    { value: header.key, width: 0.3, key: uuidv4() },
-    { value: header.value, width: 0.65, key: uuidv4() },
+  const rows: ICeil[][] = fields.map((header, index) => [
+    {
+      value: header.key,
+      width: 0.3,
+      key: uuidv4(),
+      name: `headers.${index}.key`,
+    },
+    {
+      value: header.value,
+      width: 0.65,
+      key: uuidv4(),
+      name: `headers.${index}.value`,
+    },
   ]);
 
   return (
     <Grid item xs={xs}>
-      <DynamicInputTable legends={legends} rows={rows} remove={remove} />
+      <DynamicInputTable
+        legends={legends}
+        rows={rows}
+        remove={remove}
+        control={control}
+      />
     </Grid>
   );
 };
