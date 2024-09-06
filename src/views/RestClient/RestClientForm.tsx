@@ -22,7 +22,7 @@ const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <Grid container spacing={1}>
+        <Grid container spacing={3}>
           <Grid item xs={12}>
             <h3>RestClient Editor</h3>
           </Grid>
@@ -36,7 +36,6 @@ const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
           </Grid>
 
           <HeadersTable initialHeaders={headers} xs={12} />
-          {/* TODO: add add-headers button */}
 
           <Grid item xs={12}>
             <h4>Body </h4>

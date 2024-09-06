@@ -6,9 +6,10 @@ import DynamicInputTable, {
 } from '@/components/DynamicInputTable/DynamicInputTable';
 import { THeaders } from '@/types/headers';
 import { IRestClientForm } from '@/types/rest-client-form';
-import { Grid, GridSize } from '@mui/material';
+import { Button, Grid, GridSize } from '@mui/material';
 import { useEffect } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { v4 as uuidv4 } from 'uuid';
 
 interface IHeadersTable {
@@ -51,14 +52,32 @@ const HeadersTable = ({ initialHeaders, xs }: IHeadersTable) => {
   ]);
 
   return (
-    <Grid item xs={xs}>
-      <DynamicInputTable
-        legends={legends}
-        rows={rows}
-        remove={remove}
-        control={control}
-      />
-    </Grid>
+    <>
+      <Grid item xs={xs}>
+        <DynamicInputTable
+          legends={legends}
+          rows={rows}
+          remove={remove}
+          control={control}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <Button
+          variant='contained'
+          endIcon={<AddBoxIcon />}
+          sx={{
+            width: 0.5,
+            display: 'flex',
+            mx: 'auto',
+          }}
+          onClick={() => {
+            append({ key: '', value: '' });
+          }}
+        >
+          Add header
+        </Button>
+      </Grid>
+    </>
   );
 };
 
