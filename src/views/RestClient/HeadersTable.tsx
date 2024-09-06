@@ -30,12 +30,12 @@ const HeadersTable = ({ initialHeaders, xs }: IHeadersTable) => {
     });
   }, []);
 
-  const legends: ILegendCeil[] = [
+  const legends: ILegendCeil<IRestClientForm>[] = [
     { value: 'key', width: 0.3 },
     { value: 'value', width: 0.7 },
   ];
 
-  const rows: ICeil[][] = fields.map((header, index) => [
+  const rows: ICeil<IRestClientForm>[][] = fields.map((header, index) => [
     {
       value: header.key,
       width: 0.3,

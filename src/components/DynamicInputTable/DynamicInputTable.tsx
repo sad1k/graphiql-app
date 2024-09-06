@@ -10,21 +10,21 @@ import {
 } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 
-export interface ILegendCeil {
+export interface ILegendCeil<T> {
   width: number | string;
-  value: string;
+  value: string | PathValue<T, Path<T>>;
   key?: string;
-  name?: string;
 }
 
-export interface ICeil extends ILegendCeil {
+export interface ICeil<T> extends ILegendCeil<T> {
   key: string;
-  name: string;
+  name: Path<T>;
+  value: PathValue<T, Path<T>>;
 }
 
 export interface IDynamicInputTable<T extends FieldValues> {
-  legends: ILegendCeil[];
-  rows: ICeil[][];
+  legends: ILegendCeil<T>[];
+  rows: ICeil<T>[][];
   remove: UseFieldArrayRemove;
   control: Control<T>;
 }
@@ -57,9 +57,9 @@ const DynamicInputTable = <T extends FieldValues>({
       >
         {row.map((ceil) => (
           <Controller
-            name={ceil.name as Path<T>}
+            name={ceil.name}
             control={control}
-            defaultValue={ceil.value as PathValue<T, Path<T>>}
+            defaultValue={ceil.value}
             key={ceil.key ?? uuidv4()}
             render={({ field }) => (
               <TextField
