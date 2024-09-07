@@ -1,11 +1,24 @@
-import { InputLabel, styled, TextField } from '@mui/material';
+import {
+  Box,
+  InputLabel,
+  styled,
+  TextField,
+  TextFieldProps,
+} from '@mui/material';
 
-interface IStyledInput {
+interface IStyledInput extends TextFieldProps<'outlined'> {
+  value?: string;
   placeholder: string;
   label: string;
 }
 
-export const StyledInput = ({ placeholder, label }: IStyledInput) => {
+export const StyledInput = ({
+  value,
+  onChange,
+  placeholder,
+  label,
+  ...props
+}: IStyledInput) => {
   const StyledTextField = styled(TextField)({
     borderColor: '#F2F2F2',
     backgroundColor: '#F2F2F2',
@@ -13,7 +26,7 @@ export const StyledInput = ({ placeholder, label }: IStyledInput) => {
   });
 
   return (
-    <>
+    <Box sx={props.sx}>
       <InputLabel htmlFor='url-id'>{label}</InputLabel>
       <StyledTextField
         sx={{
@@ -25,9 +38,11 @@ export const StyledInput = ({ placeholder, label }: IStyledInput) => {
         name='url-id'
         required
         placeholder={placeholder}
-        variant='outlined'
         fullWidth
+        onChange={onChange}
+        value={value}
+        {...props}
       />
-    </>
+    </Box>
   );
 };
