@@ -48,7 +48,7 @@ const TeamItem = ({ item }: { item: ITeamMember }) => {
             </Box>
           </Box>
 
-          <Typography sx={s.bio}>{bio}</Typography>
+          <Typography sx={s.bio(id)}>{bio}</Typography>
         </Box>
       </Box>
     </Box>

@@ -1,8 +1,8 @@
-import { BLUE_COLOR, WHITE_COLOR } from '@/constants/colors';
+import { BLUE_COLOR, PINK_COLOR, WHITE_COLOR } from '@/constants/colors';
 
 const style = {
   container: {
-    backgroundColor: BLUE_COLOR,
+    backgroundColor: PINK_COLOR,
     mt: '-175px',
     pb: 10,
     '@media (min-width: 400px)': {

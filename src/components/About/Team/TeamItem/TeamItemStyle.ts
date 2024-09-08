@@ -5,7 +5,7 @@ const flexCenter = { display: 'flex', alignItems: 'center' };
 const even = 2;
 
 const backgroundColor = (position: number) =>
-  position % even === 0 ? WHITE_COLOR : BLUE_COLOR;
+  position % even === 0 ? WHITE_COLOR : PINK_COLOR;
 
 const color = (position: number) =>
   position % even === 0 ? BLUE_COLOR : WHITE_COLOR;
@@ -26,6 +26,7 @@ const style = {
     flexDirection: 'column',
     p: '5rem 1rem',
     margin: 'auto',
+    maxWidth: '1200px',
   },
   wrapper: (position: number) => ({
     maxWidth: '40rem',
@@ -51,12 +52,12 @@ const style = {
     color: color(position),
   }),
   role: flexCenter,
-  bio: {
+  bio: (position: number) => ({
     textAlign: 'center',
     letterSpacing: '0.05rem',
     lineHeight: 1.5,
-    color: PINK_COLOR,
-  },
+    color: color(position),
+  }),
   icon: (position: number) => ({
     color: color(position),
   }),
