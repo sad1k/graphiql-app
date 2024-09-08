@@ -26,11 +26,11 @@ const RootLayout = ({
   <html lang='en' data-lt-installed='true'>
     <StoreProvider>
       <body className={inter.className}>
-        <ToastProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </ToastProvider>
+        <Header />{' '}
+        <main>
+          <ToastProvider>{children} </ToastProvider>
+        </main>{' '}
+        <Footer />
       </body>
     </StoreProvider>
   </html>

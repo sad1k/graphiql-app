@@ -1,4 +1,4 @@
-import { BLUE_COLOR, PINK_COLOR, WHITE_COLOR } from '@/constants/colors';
+import { PINK_COLOR, WHITE_COLOR } from '@/constants/colors';
 
 const style = {
   container: {
@@ -29,30 +29,6 @@ const style = {
     pb: '2rem',
     '@media (min-width: 800px)': {
       pt: '350px',
-    },
-  },
-
-  info__container: {
-    maxWidth: '700px',
-    m: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
-    rowGap: '30px',
-    color: WHITE_COLOR,
-    fontWeight: 400,
-    p: '0 1rem',
-    '@media (min-width: 600px)': {
-      flexDirection: 'row',
-      columnGap: '30px',
-    },
-  },
-
-  info: {
-    maxWidth: '100%',
-    textAlign: 'center',
-    lineHeight: 1.8,
-    '@media (min-width: 600px)': {
-      maxWidth: '350px',
     },
   },
 };

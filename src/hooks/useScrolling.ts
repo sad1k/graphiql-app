@@ -1,16 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const useScrolling = () => {
-  const scroll = useRef(0);
+  let scroll = 0;
 
   const [isScrolling, setScrolling] = useState(false);
 
   const handleScroll = () => {
-    if (scroll.current === 0 && window.scrollY >= 0) {
-      scroll.current = window.scrollY;
+    if (scroll === 0 && window.scrollY >= 0) {
+      scroll = window.scrollY;
       setScrolling(true);
-    } else if (scroll.current >= 0 && window.scrollY === 0) {
-      scroll.current = 0;
+    } else if (scroll >= 0 && window.scrollY === 0) {
+      scroll = 0;
       setScrolling(false);
     }
   };

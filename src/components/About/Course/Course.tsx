@@ -1,17 +1,16 @@
 import { Box, Typography } from '@mui/material';
-import { projectContent } from '@/constants/content';
-
-import s from './ProjectStyle';
+import { courseContent } from '@/constants/content';
 import Content from '../Content/Content';
+import s from './CourseStyle';
 
-const Project = () => (
+const Course = () => (
   <Box sx={s.container} component='article'>
     <Typography component='h2' variant='h2' sx={s.title}>
-      About the Project
+      About the Course
     </Typography>
 
-    <Content content={projectContent} />
+    <Content content={courseContent} />
   </Box>
 );
 
-export default Project;
+export default Course;

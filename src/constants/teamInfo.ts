@@ -16,7 +16,7 @@ export const teamInfo = [
     id: 1,
     firstName: 'Dmitrii',
     lastName: 'Samsonenko',
-    photo: '/avatar.jpg',
+    photo: '/2.webp',
     role: 'Developer',
     git: 'https://github.com/Friday-13',
     bio: `I'm a Python developer with a background in embedded systems, where I developed software in C for various devices and measurement systems.  I'm transitioning to web development with a focus on backend roles, while also cultivating an interest in frontend development and other web-related skills. Self-education is a key part of my professional development. I enjoy learning new skills and strive to communicate effectively with all team members. The most rewarding aspect of my work is creating new applications or features that are both functional and beneficial. `,
