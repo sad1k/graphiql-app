@@ -8,7 +8,6 @@ const Course = () => (
     <Typography component='h2' variant='h2' sx={s.title}>
       About the Course
     </Typography>
-
     <Content content={courseContent} />
   </Box>
 );

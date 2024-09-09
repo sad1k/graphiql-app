@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
+
+import _debounce from 'lodash/debounce';
+
+const handleDebounceTime = 100;
 
 const useScrolling = () => {
-  let scroll = 0;
+  let prevPosition = window.scrollY;
 
-  const [isScrolling, setScrolling] = useState(false);
+  const [scroll, setScroll] = useState(Boolean(window.scrollY));
 
-  const handleScroll = () => {
-    if (scroll === 0 && window.scrollY >= 0) {
-      scroll = window.scrollY;
-      setScrolling(true);
-    } else if (scroll >= 0 && window.scrollY === 0) {
-      scroll = 0;
-      setScrolling(false);
-    }
-  };
+  const handleScroll = _debounce(() => {
+    const currentPosition = window.scrollY;
 
-  useEffect(() => {
+    prevPosition < currentPosition ? setScroll(true) : setScroll(false);
+    prevPosition = currentPosition;
+  }, handleDebounceTime);
+
+  useLayoutEffect(() => {
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -23,7 +24,7 @@ const useScrolling = () => {
     };
   }, []);
 
-  return [isScrolling];
+  return [scroll];
 };
 
 export default useScrolling;
