@@ -29,7 +29,7 @@
       "@hooks/*": ["./src/hooks/*"],
       "@providers/*": ["./src/providers/*"],
       "@constants/*": ["./src/constants/*"],
-      "@types/*": ["./src/types/*"],
+      "@types/*": ["./src/types/*"]
     },
     "noImplicitAny": true
   },
