@@ -74,7 +74,7 @@ export const GraphQlPage = ({
         setJSON(result.data);
       })
       .catch(() => {
-        console.error('Error fetch query');
+        throw new Error('Error fetch query');
       });
   };
 

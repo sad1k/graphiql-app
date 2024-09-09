@@ -8,9 +8,7 @@ export const updateEndpointInUrl = (newEndpoint: string): void => {
   const graphqlIndex = urlParts.indexOf('graphql');
 
   if (graphqlIndex === -1) {
-    console.error('URL не соответствует ожидаемому формату с graphql');
-
-    return;
+    throw new Error('URL не соответствует ожидаемому формату с graphql');
   }
 
   // Кодируем новый endpoint в Base64

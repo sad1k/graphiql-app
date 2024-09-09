@@ -81,8 +81,10 @@ export const GraphQlEditor = ({ sdlUrl, setQuery }: IGraphQlEditorProps) => {
                       editorRef.current.setValue(val);
                     }
                   })
-                  .catch((err) => {
-                    console.error('Error formatting code:', err);
+                  .catch((err: unknown) => {
+                    if (err instanceof Error) {
+                      throw new Error('Error formatting code:', err);
+                    }
                   });
               },
             },

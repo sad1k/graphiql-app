@@ -11,9 +11,7 @@ export const updateBodyInUrl = (newBody: string) => {
   const graphqlIndex = urlParts.indexOf('graphql');
 
   if (graphqlIndex === -1) {
-    console.error('URL не соответствует ожидаемому формату с GRAPHQL');
-
-    return;
+    throw new Error('URL не соответствует ожидаемому формату с GRAPHQL');
   }
 
   // Кодируем новое body в Base64

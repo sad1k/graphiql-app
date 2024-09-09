@@ -32,6 +32,8 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
+    "@typescript-eslint/naming-convention": "error",
+    "react/display-name": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
     "no-debugger": "warn",
@@ -101,7 +103,7 @@
       }
     ],
     "@typescript-eslint/no-unused-expressions": [
-      "error",
+      "off",
       { "allowTernary": true }
     ],
     "prettier/prettier": [
@@ -109,7 +111,19 @@
       {
         "endOfLine": "auto"
       }
-    ]
+    ],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": {
+          "attributes": false
+        }
+      }
+    ],
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-return": "off"
   },
   "root": true
 }
