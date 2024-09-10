@@ -19,8 +19,8 @@ import prettier from 'prettier/standalone';
 import graphqlPlugin from 'prettier/plugins/graphql';
 import { updateBodyInUrl } from '@utils/graphql/updateBodyInUrl';
 import { Loader } from '@components/Loader/Loader';
-import { innerDivStyles, wrapperDivStyles } from './styles';
 import notification from '@/utils/notification/notification';
+import { innerDivStyles, wrapperDivStyles } from './styles';
 
 const LOCAL_KEY = 'graphQlQuery';
 
