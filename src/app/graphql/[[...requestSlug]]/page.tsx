@@ -6,7 +6,7 @@ interface IRoute {
 }
 
 const Page = ({ params }: IRoute) => {
-  if (params) {
+  if (params?.requestSlug) {
     const { 0: endpointUrl64, 1: query64 } = params.requestSlug;
 
     const endpointUrl = endpointUrl64

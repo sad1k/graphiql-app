@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const BODY_POSITION = 2;
 
 export const updateBodyInUrl = (newBody: string) => {

@@ -1,12 +1,15 @@
+/* eslint-disable no-console */
+
 'use client';
 
 import { Box, Button, InputLabel, Stack } from '@mui/material';
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { StyledInput } from '@components/Input/Input';
 import { updateEndpointInUrl } from '@utils/graphql/updateEndpointInUrl';
 import { GraphQLSchema } from 'graphql';
 import { boxStyles } from './styles';
+import { DocumentationView } from '../Documentation/Documentation';
 
 const Editor = dynamic(
   () =>
@@ -54,13 +57,13 @@ export const GraphQlPage = ({
 
   const [json, setJSON] = useState({});
 
-  const handleChangeQuery = (_query: string) => {
+  const handleChangeQuery = useCallback((_query: string) => {
     setQuery(_query);
-  };
+  }, []);
 
-  const handleChangeVariables = (value: string) => {
+  const handleChangeVariables = useCallback((value: string) => {
     setVariables(value);
-  };
+  }, []);
 
   const makeRequest = () => {
     // eslint-disable-next-line no-void
@@ -108,6 +111,7 @@ export const GraphQlPage = ({
             <Editor setQuery={handleChangeQuery} sdlUrl={sdlUrl} />
             <InputLabel>Variables:</InputLabel>
             <VariablesEditor setVariables={handleChangeVariables} />
+            <DocumentationView url={sdlUrl} />
           </>
         ) : (
           ''
