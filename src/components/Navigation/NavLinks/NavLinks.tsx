@@ -8,6 +8,7 @@ import { ABOUT, HOME, SIGN_IN, SIGN_UP } from '@/constants/path';
 import useAuthData from '@/hooks/useAuthData';
 
 import CustomLink from '@/components/Link/Link';
+import { languages } from '@/constants/languages';
 import navStyle from '../NavStyle';
 import LanguageButtons from '../LanguageButtons/LanguageButtons';
 
@@ -29,7 +30,7 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
       role='presentation'
       onClick={toggleDrawer(false)}
     >
-      <LanguageButtons languages={['rus', 'eng']} />
+      <LanguageButtons languages={languages} />
       <Box sx={hr}>|</Box>
       {!authState ? (
         <>

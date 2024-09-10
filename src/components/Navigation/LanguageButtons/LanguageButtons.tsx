@@ -1,27 +1,18 @@
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Box } from '@mui/material';
 import { FC } from 'react';
 import { v4 } from 'uuid';
-
-import navStyle from '../NavStyle';
-
-const { button } = navStyle;
+import CustomLink from '@/components/Link/Link';
 
 interface IProps {
-  languages: Readonly<Array<string>>;
+  languages: Readonly<Array<{ lng: string; href: string }>>;
 }
 
 const LanguageButtons: FC<IProps> = ({ languages }) => (
-  <ToggleButtonGroup
-    exclusive
-    aria-label='Platform'
-    sx={{ display: 'flex', columnGap: 2 }}
-  >
-    {languages.map((el) => (
-      <ToggleButton sx={button} value={el} key={v4()}>
-        {el}
-      </ToggleButton>
+  <Box sx={{ display: 'flex', columnGap: 2 }}>
+    {languages.map(({ lng, href }) => (
+      <CustomLink href={href} text={lng} key={v4()} />
     ))}
-  </ToggleButtonGroup>
+  </Box>
 );
 
 export default LanguageButtons;
