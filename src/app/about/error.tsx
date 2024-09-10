@@ -1,5 +1,6 @@
 'use client';
 
+import notification from '@/utils/notification/notification';
 import { useEffect } from 'react';
 
 const Error = ({
@@ -9,9 +10,7 @@ const Error = ({
   error: Error & { digest?: string };
   reset: () => void;
 }) => {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
+  useEffect(() => notification('error', error.message), [error]);
 
   return (
     <div>
