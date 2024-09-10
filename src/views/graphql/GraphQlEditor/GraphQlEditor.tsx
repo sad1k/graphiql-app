@@ -26,9 +26,14 @@ const LOCAL_KEY = 'graphQlQuery';
 interface IGraphQlEditorProps {
   sdlUrl: string;
   setQuery: (query: string) => void;
+  query: string;
 }
 
-export const GraphQlEditor = ({ sdlUrl, setQuery }: IGraphQlEditorProps) => {
+export const GraphQlEditor = ({
+  query,
+  sdlUrl,
+  setQuery,
+}: IGraphQlEditorProps) => {
   const ref = useRef(null);
   const editorRef = useRef<CodeMirror.Editor | null>(null);
 
@@ -57,7 +62,7 @@ export const GraphQlEditor = ({ sdlUrl, setQuery }: IGraphQlEditorProps) => {
           {
             mode: 'graphql',
             theme: 'monokai',
-            value: localStorage.getItem(LOCAL_KEY) ?? '',
+            value: localStorage.getItem(LOCAL_KEY) || ' ',
             lineNumbers: true,
             lint: true,
             hintOptions: {
@@ -71,7 +76,6 @@ export const GraphQlEditor = ({ sdlUrl, setQuery }: IGraphQlEditorProps) => {
 
                 const currentText = editorRef.current.getValue();
 
-                // Пример форматирования
                 prettier
                   .format(currentText, {
                     parser: 'graphql',
@@ -91,11 +95,14 @@ export const GraphQlEditor = ({ sdlUrl, setQuery }: IGraphQlEditorProps) => {
             },
           },
         );
-
         editorRef.current.on('change', (editor) => {
           setQuery(editor.getValue());
           localStorage.setItem(LOCAL_KEY, editor.getValue());
         });
+
+        editorRef.current.setValue(
+          query || localStorage.getItem(LOCAL_KEY) || ' ',
+        );
 
         editorRef.current.on('blur', (editor) => {
           updateBodyInUrl(editor.getValue());
@@ -118,7 +125,7 @@ export const GraphQlEditor = ({ sdlUrl, setQuery }: IGraphQlEditorProps) => {
         controller.abort('useEffect cleaned');
       }
     };
-  }, [sdlUrl, setQuery]);
+  }, [sdlUrl, setQuery, query]);
 
   return (
     <div style={wrapperDivStyles}>

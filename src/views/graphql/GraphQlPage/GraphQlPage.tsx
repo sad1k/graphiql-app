@@ -1,13 +1,21 @@
-/* eslint-disable no-console */
-
 'use client';
 
-import { Box, Button, InputLabel, Stack } from '@mui/material';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  InputLabel,
+  Stack,
+  Typography,
+} from '@mui/material';
 import dynamic from 'next/dynamic';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StyledInput } from '@components/Input/Input';
 import { updateEndpointInUrl } from '@utils/graphql/updateEndpointInUrl';
 import { GraphQLSchema } from 'graphql';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { boxStyles } from './styles';
 import { DocumentationView } from '../Documentation/Documentation';
 
@@ -40,19 +48,26 @@ const ResponseView = dynamic(
 interface IGraphQlPageProps {
   initEndpointUrl?: string;
   initQuery?: string;
+  initSdlUrl?: string;
 }
 
 export const GraphQlPage = ({
   initEndpointUrl,
   initQuery,
+  initSdlUrl,
 }: IGraphQlPageProps) => {
   const [query, setQuery] = useState<string>(initQuery ?? '');
 
   const [endpointUrl, setEndpointUrl] = useState<string>(initEndpointUrl ?? '');
-  const [sdlUrl, setSdlUrl] = useState<string>('');
+  const [sdlUrl, setSdlUrl] = useState<string>(initSdlUrl ?? '');
 
   const [visible, setVisible] = useState(false);
 
+  useEffect(() => {
+    if (initQuery !== '') {
+      setVisible(true);
+    }
+  }, [initQuery]);
   const [variables, setVariables] = useState('');
 
   const [json, setJSON] = useState({});
@@ -66,7 +81,6 @@ export const GraphQlPage = ({
   }, []);
 
   const makeRequest = () => {
-    // eslint-disable-next-line no-void
     fetch(sdlUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -108,9 +122,19 @@ export const GraphQlPage = ({
         {visible ? (
           <>
             <InputLabel>Query:</InputLabel>
-            <Editor setQuery={handleChangeQuery} sdlUrl={sdlUrl} />
-            <InputLabel>Variables:</InputLabel>
-            <VariablesEditor setVariables={handleChangeVariables} />
+            <Editor
+              query={initQuery ?? ''}
+              setQuery={handleChangeQuery}
+              sdlUrl={sdlUrl}
+            />
+            <Accordion>
+              <AccordionSummary expandIcon={<ArrowDropDownIcon />}>
+                <Typography>Variables</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <VariablesEditor setVariables={handleChangeVariables} />
+              </AccordionDetails>
+            </Accordion>
             <DocumentationView url={sdlUrl} />
           </>
         ) : (

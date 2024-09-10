@@ -15,7 +15,13 @@ const Page = ({ params }: IRoute) => {
 
     const query = query64 ? atob(decodeURIComponent(query64)) : '';
 
-    return <GraphQlPage initEndpointUrl={endpointUrl} initQuery={query} />;
+    return (
+      <GraphQlPage
+        initSdlUrl={endpointUrl}
+        initEndpointUrl={endpointUrl}
+        initQuery={query}
+      />
+    );
   }
 
   return <GraphQlPage />;

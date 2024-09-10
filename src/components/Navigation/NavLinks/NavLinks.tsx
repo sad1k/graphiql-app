@@ -16,7 +16,7 @@ interface INavLinks {
 }
 
 const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
-  const { user } = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.auth.authState);
 
   return (
     <Box
