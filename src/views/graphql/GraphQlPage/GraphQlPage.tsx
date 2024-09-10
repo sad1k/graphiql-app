@@ -18,6 +18,7 @@ import { GraphQLSchema } from 'graphql';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { boxStyles } from './styles';
 import { DocumentationView } from '../Documentation/Documentation';
+import notification from '@/utils/notification/notification';
 
 const Editor = dynamic(
   () =>
@@ -91,7 +92,7 @@ export const GraphQlPage = ({
         setJSON(result.data);
       })
       .catch(() => {
-        throw new Error('Error fetch query');
+        notification('error', 'Error fetch query');
       });
   };
 

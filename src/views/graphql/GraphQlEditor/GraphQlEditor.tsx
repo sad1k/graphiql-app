@@ -20,6 +20,7 @@ import graphqlPlugin from 'prettier/plugins/graphql';
 import { updateBodyInUrl } from '@utils/graphql/updateBodyInUrl';
 import { Loader } from '@components/Loader/Loader';
 import { innerDivStyles, wrapperDivStyles } from './styles';
+import notification from '@/utils/notification/notification';
 
 const LOCAL_KEY = 'graphQlQuery';
 
@@ -88,7 +89,7 @@ export const GraphQlEditor = ({
                   })
                   .catch((err: unknown) => {
                     if (err instanceof Error) {
-                      throw new Error('Error formatting code:', err);
+                      notification('error', 'Error formatting code');
                     }
                   });
               },
@@ -111,7 +112,8 @@ export const GraphQlEditor = ({
       };
 
       initializeEditor().catch((error) => {
-        throw error;
+        if (typeof error === 'string') return;
+        notification('error', 'Initialize editor error');
       });
     }
 
