@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export const updateEndpointInUrl = (newEndpoint: string): void => {
   const currentUrl = window.location.href;
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import CodeMirror from 'codemirror';
 import 'codemirror/lib/codemirror.css'; // Основные стили CodeMirror
 import 'codemirror/addon/hint/show-hint';
