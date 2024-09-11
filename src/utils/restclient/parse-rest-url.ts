@@ -1,5 +1,6 @@
 import { TSearchParam, TSearchParams } from '@/types/search-params';
 import { THeaders } from '@/types/headers';
+import base64url from 'base64url';
 import { DEFAULT_METHOD, isMethod } from './method-type';
 import IRouteUrl from './route-url-interface';
 
@@ -23,7 +24,7 @@ const getUrl = (slug: string[]) => {
   if (slug.length > 1) {
     const [_method, encodedUrl] = slug;
 
-    url = atob(encodedUrl);
+    url = base64url.decode(encodedUrl);
   }
 
   return url;
