@@ -24,7 +24,7 @@ const RootLayout = ({
       <body className={inter.className}>
         <Header />
         <main>
-          <ToastProvider>{children} </ToastProvider>
+          <ToastProvider>{children}</ToastProvider>
         </main>
         <Footer />
       </body>

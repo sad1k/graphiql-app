@@ -8,7 +8,7 @@ import { HOME } from '@/constants/path';
 const isAuth =
   <P extends object>(Component: ComponentType<P>) =>
   (props: P) => {
-    const { authState } = useAppSelector((state) => state.auth);
+    const authState = useAppSelector((state) => state.auth.authState);
 
     useLayoutEffect((): void => {
       if (authState) redirect(HOME);
