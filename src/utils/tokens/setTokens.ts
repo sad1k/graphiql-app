@@ -1,5 +1,5 @@
 import { setCookie } from 'cookies-next';
-import { IFetchUser } from '@types/IUser';
+import { IFetchUser } from '@/types/IUser';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '@constants/cookies';
 
 type TSetTokens = (user: IFetchUser) => void;
