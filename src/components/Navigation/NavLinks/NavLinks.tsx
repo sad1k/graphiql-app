@@ -16,7 +16,7 @@ interface INavLinks {
 }
 
 const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
-  const { user } = useAppSelector((state) => state.user);
+  const auth = useAppSelector((state) => state.auth);
 
   return (
     <Box
@@ -24,7 +24,7 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
       role='presentation'
       onClick={toggleDrawer(false)}
     >
-      {!user ? (
+      {!auth ? (
         <>
           <NavLink path='/login' text='Login' />
           <NavLink path='/signup' text='Sign Up' />

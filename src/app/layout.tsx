@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import './globals.css';
+import ToastProvider from '@/providers/ToastProvider';
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import StoreProvider from './StoreProvider';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,9 @@ const RootLayout = ({
     <StoreProvider>
       <body className={inter.className}>
         <Header />
-        <main>{children}</main>
+        <main>
+          <ToastProvider>{children}</ToastProvider>
+        </main>
         <Footer />
       </body>
     </StoreProvider>
