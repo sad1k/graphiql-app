@@ -16,5 +16,16 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     alias: alias,
+    coverage: {
+      provider: 'v8',
+      exclude: [
+        '**/.eslintrc.cjs',
+        'next-env.d.ts',
+        'vitest.config.ts',
+        'next.config.js',
+        'next.config.mjs',
+        '.next',
+      ],
+    },
   },
 });
