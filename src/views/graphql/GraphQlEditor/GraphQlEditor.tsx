@@ -44,7 +44,6 @@ export const GraphQlEditor = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('123')
     const controller = new AbortController();
     const initializeSchema = async () => {
       const response = await fetch(sdlUrl, {

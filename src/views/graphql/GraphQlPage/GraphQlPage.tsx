@@ -17,7 +17,7 @@ import { StyledInput } from '@components/Input/Input';
 import { updateEndpointInUrl } from '@utils/graphql/updateEndpointInUrl';
 import { GraphQLSchema } from 'graphql';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import notification from '@/utils/notification/notification';
+import notification from '@utils/notification/notification';
 import { boxStyles } from './styles';
 import { DocumentationView } from '../Documentation/Documentation';
 
