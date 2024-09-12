@@ -1,5 +1,5 @@
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/constants/cookies';
 import { CookieValueTypes, getCookie } from 'cookies-next';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/constants/cookies';
 
 type TGetTokens = () => {
   accessToken: CookieValueTypes;
