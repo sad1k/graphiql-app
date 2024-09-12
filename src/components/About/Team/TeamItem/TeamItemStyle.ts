@@ -4,16 +4,16 @@ const flexCenter = { display: 'flex', alignItems: 'center' };
 
 const even = 2;
 
-const backgroundColor = (position: number) =>
+export const backgroundColor = (position: number) =>
   position % even === 0 ? WHITE_COLOR : PINK_COLOR;
 
-const color = (position: number) =>
+export const color = (position: number) =>
   position % even === 0 ? BLUE_COLOR : WHITE_COLOR;
 
-const direction = (position: number) =>
+export const direction = (position: number) =>
   position % even === 0 ? 'row' : 'row-reverse';
 
-const alignSelf = (position: number) =>
+export const alignSelf = (position: number) =>
   position % even === 0 ? 'baseline' : 'end';
 
 const style = {

@@ -22,6 +22,7 @@
     "@mui/material": "^5.16.7",
     "@reduxjs/toolkit": "^2.2.7",
     "@types/lodash": "^4.17.7",
+    "@vitejs/plugin-react": "^4.3.1",
     "cookies-next": "^4.2.1",
     "firebase": "^10.13.0",
     "graphql": "^16.9.0",
@@ -34,11 +35,12 @@
     "react-toastify": "^10.0.5",
     "redux-persist": "^6.0.0",
     "uuid": "^10.0.0",
+    "vitest": "^2.0.5",
     "yup": "^1.4.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.0.0",
+    "@testing-library/react": "^16.0.1",
     "@types/lodash.debounce": "^4.0.8",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -56,10 +58,10 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "husky": "^9.1.5",
+    "jsdom": "^25.0.0",
     "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
-    "typescript": "^5",
-    "vitest": "^2.0.5"
+    "typescript": "^5"
   },
   "config": {
     "commitizen": {

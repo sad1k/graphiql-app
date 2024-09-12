@@ -1,5 +1,5 @@
 import { Box, List, Typography } from '@mui/material';
-import { teamInfo } from '@/constants/teamInfo';
+import { teamInfo } from '@/constants/content';
 import TeamItem from './TeamItem/TeamItem';
 import s from './TeamStyle';
 
