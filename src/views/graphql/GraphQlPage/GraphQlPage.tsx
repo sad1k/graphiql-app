@@ -8,10 +8,6 @@ import {
   Button,
   InputLabel,
   Stack,
-  Table,
-  TableCell,
-  TableHead,
-  TableRow,
   Typography,
   useMediaQuery,
 } from '@mui/material';
@@ -72,7 +68,7 @@ export const GraphQlPage = ({
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (initQuery !== '') {
+    if (initQuery) {
       setVisible(true);
     }
   }, [initQuery]);
@@ -106,7 +102,6 @@ export const GraphQlPage = ({
   return (
     <Stack direction='row' flexWrap={small ? 'wrap' : 'nowrap'}>
       <Box sx={boxStyles}>
-        
         <StyledInput
           variant='outlined'
           value={endpointUrl}

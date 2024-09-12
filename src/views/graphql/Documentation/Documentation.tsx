@@ -13,7 +13,7 @@ import {
 import { createGraphiQLFetcher } from '@graphiql/toolkit';
 import '@graphiql/react/dist/style.css';
 import './CustomColorsDocs.css';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import ArticleIcon from '@mui/icons-material/Article';
 import { IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -22,11 +22,10 @@ interface Props {
   url: string;
 }
 
-export const DocumentationView = ({ url }: Props) => {
+export const DocumentationView = memo(({ url }: Props) => {
   const fetcher = createGraphiQLFetcher({
     url,
   });
-
   const [open, setOpen] = useState(false);
 
   return (
@@ -49,4 +48,4 @@ export const DocumentationView = ({ url }: Props) => {
       </div>
     </>
   );
-};
+});

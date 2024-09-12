@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
   buildClientSchema,
   getIntrospectionQuery,
+  GraphQLSchema,
   IntrospectionQuery,
 } from 'graphql';
 import prettier from 'prettier/standalone';
@@ -38,26 +39,42 @@ export const GraphQlEditor = ({
   const ref = useRef(null);
   const editorRef = useRef<CodeMirror.Editor | null>(null);
 
+  const [schema, setSchema] = useState<GraphQLSchema | null>(null);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('123')
     const controller = new AbortController();
+    const initializeSchema = async () => {
+      const response = await fetch(sdlUrl, {
+        signal: controller.signal,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: getIntrospectionQuery(),
+        }),
+      });
+      const data = (await response.json()) as { data: IntrospectionQuery };
 
+      setSchema(buildClientSchema(data.data));
+    };
+
+    initializeSchema().catch((error) => {
+      if (typeof error === 'string') return;
+      notification('error', 'Initialize Schema error');
+    });
+
+    return () => {
+      controller.abort('useEffect cleaned');
+    };
+  }, []);
+
+  useEffect(() => {
     if (ref.current) {
-      const initializeEditor = async () => {
-        const response = await fetch(sdlUrl, {
-          signal: controller.signal,
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            query: getIntrospectionQuery(),
-          }),
-        });
-        const data = (await response.json()) as { data: IntrospectionQuery };
-        const clientSchema = buildClientSchema(data.data);
-
+      const initializeEditor = () => {
         editorRef.current = CodeMirror.fromTextArea(
           ref.current as unknown as HTMLTextAreaElement,
           {
@@ -67,11 +84,11 @@ export const GraphQlEditor = ({
             lineNumbers: true,
             lint: true,
             hintOptions: {
-              schema: clientSchema,
+              schema: schema || undefined,
             } as unknown as CodeMirror.ShowHintOptions,
-            showHint: true,
+            showHint: schema ? true : undefined,
             extraKeys: {
-              'Ctrl-Space': 'autocomplete',
+              'Ctrl-Space': schema ? 'autocomplete' : '',
               'Shift-Ctrl-F': () => {
                 if (editorRef.current === null) return;
 
@@ -111,10 +128,7 @@ export const GraphQlEditor = ({
         setLoading(false);
       };
 
-      initializeEditor().catch((error) => {
-        if (typeof error === 'string') return;
-        notification('error', 'Initialize editor error');
-      });
+      initializeEditor();
     }
 
     return () => {
@@ -123,11 +137,9 @@ export const GraphQlEditor = ({
           editorRef.current as CodeMirror.Editor & { toTextArea: () => void }
         ).toTextArea();
         editorRef.current = null;
-      } else {
-        controller.abort('useEffect cleaned');
       }
     };
-  }, [sdlUrl, setQuery, query]);
+  }, [sdlUrl]);
 
   return (
     <div style={wrapperDivStyles}>
