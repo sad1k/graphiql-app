@@ -6,9 +6,12 @@ const getResponseResults = async (
   url: string,
   headers: THeaders,
 ) => {
+  const headersInit: HeadersInit = new Headers(
+    headers.map(({ key, value }) => [key, value] as [string, string]),
+  );
   const response = await fetch(url, {
     method,
-    headers: headers.map(({ key, value }) => [key, value]),
+    headers: headersInit,
   });
   const dataObj = (await response.json()) as JSON;
   const data = JSON.stringify(dataObj);
