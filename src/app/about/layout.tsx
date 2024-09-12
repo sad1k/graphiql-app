@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'About US',
 };
 
-const RootLayout = ({ children }: { children: ReactNode }): ReactNode => (
+const RootLayout = ({ children }: { children: ReactNode }) => (
   <section>{children}</section>
 );
 

@@ -8,9 +8,11 @@ interface IProps {
 }
 
 const LanguageButtons: FC<IProps> = ({ languages }) => (
-  <Box sx={{ display: 'flex', columnGap: 2 }}>
+  <Box sx={{ display: 'flex', columnGap: 2 }} component='ul'>
     {languages.map(({ lng, href }) => (
-      <CustomLink href={href} text={lng} key={v4()} />
+      <li key={v4()}>
+        <CustomLink href={href} text={lng} />
+      </li>
     ))}
   </Box>
 );

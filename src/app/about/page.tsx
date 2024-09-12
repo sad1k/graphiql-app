@@ -1,5 +1,10 @@
 import About from '@/components/About/About';
+import { ReactNode } from 'react';
 
-const AboutPage = (): JSX.Element => <About />;
+const AboutPage = (): ReactNode => (
+  <section>
+    <About />;
+  </section>
+);
 
 export default AboutPage;

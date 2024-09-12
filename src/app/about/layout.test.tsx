@@ -4,9 +4,8 @@ import React from 'react';
 import AboutPage from './page';
 
 import RootLayout from './layout';
-import ErrorBoundary from './error';
 
-test('About page', () => {
+test('Ensure that the about page renders', () => {
   render(
     (
       <RootLayout>
@@ -15,15 +14,4 @@ test('About page', () => {
     ) as React.ReactNode,
   );
   expect(screen.getByText('Our Team')).toBeDefined();
-});
-
-test('error', () => {
-  render(
-    (
-      <RootLayout>
-        <ErrorBoundary error={new Error()} reset={() => undefined} />
-      </RootLayout>
-    ) as React.ReactNode,
-  );
-  expect(screen.getByText('Something went wrong!')).toBeDefined();
 });

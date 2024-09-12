@@ -17,7 +17,7 @@ const useScrolling = () => {
 
     const diff = prevPosition - currentPosition;
 
-    if (diff < maxScrolDiff && diff > -minScrolDiff) return;
+    if (diff < maxScrolDiff && diff > minScrolDiff) return;
 
     prevPosition < currentPosition ? setScroll(true) : setScroll(false);
     prevPosition = currentPosition;

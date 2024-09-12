@@ -6,6 +6,7 @@ interface ILink {
   href: string;
   text: string;
   type?: string;
+  key?: string;
 }
 
 const style = (type?: string) => ({
@@ -17,8 +18,8 @@ const style = (type?: string) => ({
   },
 });
 
-const CustomLink: FC<ILink> = ({ href, text, type }) => (
-  <Link href={href} underline='hover' sx={style(type)}>
+const CustomLink: FC<ILink> = ({ href, text, type, key }) => (
+  <Link href={href} underline='hover' sx={style(type)} key={key}>
     {text}
   </Link>
 );
