@@ -17,17 +17,11 @@
     "plugin:import/recommended",
     "prettier",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-type-checked",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript"
+    "plugin:@typescript-eslint/recommended-type-checked"
   ],
   "settings": {
     "import/resolver": {
-      "typescript": {},
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
+      "typescript": {}
     }
   },
   "parser": "@typescript-eslint/parser",
@@ -79,6 +73,7 @@
       }
     ],
     "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "off",
     "react/require-default-props": "off",
     "react/jsx-filename-extension": [
       1,
@@ -125,11 +120,7 @@
           "attributes": false
         }
       }
-    ],
-    "@typescript-eslint/no-unsafe-assignment": "off",
-    "@typescript-eslint/no-unsafe-call": "off",
-    "@typescript-eslint/no-unsafe-member-access": "off",
-    "@typescript-eslint/no-unsafe-return": "off"
+    ]
   },
   "root": true
 }
