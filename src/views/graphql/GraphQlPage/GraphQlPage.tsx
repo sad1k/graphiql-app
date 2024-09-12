@@ -8,7 +8,12 @@ import {
   Button,
   InputLabel,
   Stack,
+  Table,
+  TableCell,
+  TableHead,
+  TableRow,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useState } from 'react';
@@ -62,6 +67,8 @@ export const GraphQlPage = ({
   const [endpointUrl, setEndpointUrl] = useState<string>(initEndpointUrl ?? '');
   const [sdlUrl, setSdlUrl] = useState<string>(initSdlUrl ?? '');
 
+  const small = useMediaQuery('(max-width: 700px)');
+
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -97,8 +104,9 @@ export const GraphQlPage = ({
   };
 
   return (
-    <Stack direction='row'>
+    <Stack direction='row' flexWrap={small ? 'wrap' : 'nowrap'}>
       <Box sx={boxStyles}>
+        
         <StyledInput
           variant='outlined'
           value={endpointUrl}
