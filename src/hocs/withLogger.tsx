@@ -4,7 +4,7 @@ const withLogger =
   <P extends object>(Component: ComponentType<P>) =>
   (props: P) => {
     useEffect(() => {
-      console.log(`Component ${Component.name} is updated.`);
+      // console.log(`Component ${Component.name} is updated.`);
     });
 
     return <Component {...props} />;

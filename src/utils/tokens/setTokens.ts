@@ -1,6 +1,6 @@
-import { IFetchUser } from '@/types/IUser';
 import { setCookie } from 'cookies-next';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/constants/cookies';
+import { IFetchUser } from '@/types/IUser';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '@constants/cookies';
 
 type TSetTokens = (user: IFetchUser) => void;
 

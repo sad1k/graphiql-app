@@ -23,6 +23,7 @@ const withTokenSignIn =
 
     useLayoutEffect(() => {
       signIn().catch((err: Error) => notification('error', err.message));
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [refreshToken]);
 
     return refreshToken ? <Component {...props} /> : null;
