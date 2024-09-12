@@ -21,13 +21,13 @@ const RootLayout = ({
 }>): JSX.Element => (
   <html lang='en' data-lt-installed='true'>
     <StoreProvider>
-      <ToastProvider>
-        <body className={inter.className}>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </body>
-      </ToastProvider>
+      <body className={inter.className}>
+        <Header />
+        <main>
+          <ToastProvider>{children} </ToastProvider>
+        </main>
+        <Footer />
+      </body>
     </StoreProvider>
   </html>
 );
