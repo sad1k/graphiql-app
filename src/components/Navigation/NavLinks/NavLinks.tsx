@@ -27,6 +27,7 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
   return (
     <Box
       sx={isDriverBar ? driverContainer : container}
+      data-testid='open-driverBar-button'
       role='presentation'
       onClick={toggleDrawer(false)}
     >
@@ -38,10 +39,15 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
           <CustomLink href={SIGN_UP} text='Sign Up' type='nav' />
         </>
       ) : (
-        <Box sx={linkContainer}>
+        <Box sx={linkContainer} data-testid='driver-bar-container'>
           <CustomLink href={HOME} text='Home' type='nav' />
           <CustomLink href={ABOUT} text='about us' type='nav' />
-          <Button type='button' onClick={removeAuthData} sx={signOutButton}>
+          <Button
+            type='button'
+            onClick={removeAuthData}
+            sx={signOutButton}
+            data-testid='sign-out-button'
+          >
             Sign Out
           </Button>
         </Box>

@@ -13,7 +13,9 @@ const { burger, drawer } = navStyle;
 const Navigation = () => {
   const [isDrawerOpened, setIsDrawerOpened] = useState(false);
 
-  const toggleDrawer = (newOpen: boolean) => () => setIsDrawerOpened(newOpen);
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setIsDrawerOpened(newOpen);
+  };
 
   return (
     <Toolbar>
