@@ -9,6 +9,7 @@ import MethodSelect from './MethodSelect';
 import UrlInput from './UrlInput';
 import HeadersTable from './HeadersTable';
 import SubmitButton from './SubmitButton';
+import CodeEditor from '@/components/CodeEditor/CodeEditor';
 
 const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
   const methods = useForm<IRestClientForm>({ mode: 'all' });
@@ -39,6 +40,7 @@ const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
 
           <Grid item xs={12}>
             <h4>Body </h4>
+            <CodeEditor />
             {/* TODO: add JSON/Text Editor (the same component in response) */}
           </Grid>
         </Grid>
