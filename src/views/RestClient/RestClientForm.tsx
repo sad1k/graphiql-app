@@ -5,11 +5,11 @@ import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { Grid } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import compileRestUrl from '@/utils/restclient/compile-rest-url';
+import CodeEditor from '@/components/CodeEditor/CodeEditor';
 import MethodSelect from './MethodSelect';
 import UrlInput from './UrlInput';
 import HeadersTable from './HeadersTable';
 import SubmitButton from './SubmitButton';
-import CodeEditor from '@/components/CodeEditor/CodeEditor';
 
 const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
   const methods = useForm<IRestClientForm>({ mode: 'all' });
