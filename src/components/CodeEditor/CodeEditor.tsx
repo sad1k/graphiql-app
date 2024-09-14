@@ -2,22 +2,15 @@ import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
 import { solarizedDark } from '@uiw/codemirror-theme-solarized';
 import { useCallback, useState } from 'react';
-import prettier from 'prettier/standalone';
-import parserBabel from 'prettier/plugins/babel';
-import estreeParser from 'prettier/plugins/estree';
 import { IconButton } from '@mui/material';
 import { AutoFixHigh } from '@mui/icons-material';
+import formatCode from '@/utils/code-editor/format-code';
 
-const formatCode = async (value: string, setter: (value: string) => void) => {
-  const formatedValue = await prettier.format(value, {
-    parser: 'json',
-    plugins: [parserBabel, estreeParser],
-  });
+interface ICodeEditor {
+  isEditable: boolean;
+}
 
-  setter(formatedValue);
-};
-
-const CodeEditor = () => {
+const CodeEditor = ({ isEditable }: ICodeEditor) => {
   const [value, setValue] = useState<string>('');
   const onChange = useCallback((val: string) => {
     console.log('val:', val);
@@ -32,10 +25,13 @@ const CodeEditor = () => {
         extensions={[json()]}
         theme={solarizedDark}
         onChange={onChange}
+        editable={isEditable}
       />
-      <IconButton onClick={() => formatCode(value, setValue)} size='medium'>
-        <AutoFixHigh fontSize='medium' />
-      </IconButton>
+      {isEditable || (
+        <IconButton onClick={() => formatCode(value, setValue)} size='medium'>
+          <AutoFixHigh fontSize='medium' />
+        </IconButton>
+      )}
     </>
   );
 };

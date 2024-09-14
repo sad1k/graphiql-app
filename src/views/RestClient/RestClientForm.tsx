@@ -40,7 +40,7 @@ const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
 
           <Grid item xs={12}>
             <h4>Body </h4>
-            <CodeEditor />
+            <CodeEditor isEditable={true}/>
             {/* TODO: add JSON/Text Editor (the same component in response) */}
           </Grid>
         </Grid>
