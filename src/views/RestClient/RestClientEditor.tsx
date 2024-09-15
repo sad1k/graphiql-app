@@ -6,6 +6,7 @@ const RestClientEditor = ({
   method,
   url,
   headers,
+  body,
   setResponse,
   setStatus,
 }: IRestClientForm) => (
@@ -15,7 +16,7 @@ const RestClientEditor = ({
         method={method}
         url={url}
         headers={headers}
-        body=''
+        body={body}
         setStatus={setStatus}
         setResponse={setResponse}
       />

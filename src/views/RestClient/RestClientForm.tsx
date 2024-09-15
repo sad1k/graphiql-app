@@ -5,8 +5,6 @@ import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { Grid } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import compileRestUrl from '@/utils/restclient/compile-rest-url';
-import { useAppDispatch, useAppSelector } from '@/utils/store/hooks';
-import { saveRequestBody } from '@/utils/store/slices/requestBodySlice';
 import { useEffect } from 'react';
 import executeRequest from '@/utils/restclient/execute-request';
 import CodeField from '@/hocs/CodeField';
@@ -19,23 +17,26 @@ const RestClientForm = ({
   method,
   url,
   headers,
+  body,
   setResponse,
   setStatus,
 }: IRestClientForm) => {
   const methods = useForm<IRestClientInputs>({ mode: 'all' });
   const router = useRouter();
-  const body = useAppSelector((state) => state.requestBody);
 
-  const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<IRestClientInputs> = (data) => {
-    const newRoute = compileRestUrl(data.url, data.method, data.headers);
+    const newRoute = compileRestUrl(
+      data.url,
+      data.method,
+      data.headers,
+      data.body,
+    );
 
-    dispatch(saveRequestBody({ body: data.body }));
     executeRequest({
       method: data.method,
       url: data.url,
       headers: data.headers,
-      body: body.body,
+      body: data.body,
       setStatus,
       setResponse,
     });
@@ -43,17 +44,15 @@ const RestClientForm = ({
   };
 
   useEffect(() => {
-    if (body._persist.rehydrated) {
-      executeRequest({
-        method,
-        url,
-        headers,
-        body: body.body,
-        setStatus,
-        setResponse,
-      });
-    }
-  }, [body._persist.rehydrated]);
+    executeRequest({
+      method,
+      url,
+      headers,
+      body,
+      setStatus,
+      setResponse,
+    });
+  }, []);
 
   return (
     <FormProvider {...methods}>
@@ -75,11 +74,7 @@ const RestClientForm = ({
 
           <Grid item xs={12}>
             <h4>Body </h4>
-            {body._persist.rehydrated ? (
-              <CodeField initialValue={body.body} isInForm />
-            ) : (
-              <CodeField initialValue='' isInForm />
-            )}
+            <CodeField initialValue={body} isInForm />
           </Grid>
         </Grid>
       </form>

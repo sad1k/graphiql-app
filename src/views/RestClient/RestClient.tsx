@@ -8,7 +8,7 @@ import RestClientResponse from './RestClientResponse';
 
 const INITIAL_STATUS = 0;
 
-const RestClient = ({ method, url, headers }: IRestClientInputs) => {
+const RestClient = ({ method, url, headers, body }: IRestClientInputs) => {
   const [response, setResponse] = useState<string>('');
   const [status, setStatus] = useState<number>(INITIAL_STATUS);
 
@@ -25,7 +25,7 @@ const RestClient = ({ method, url, headers }: IRestClientInputs) => {
         method={method}
         url={url}
         headers={headers}
-        body=''
+        body={body}
         setResponse={setResponse}
         setStatus={setStatus}
       />

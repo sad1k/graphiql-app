@@ -4,6 +4,9 @@ import base64url from 'base64url';
 import { DEFAULT_METHOD, isMethod } from './method-type';
 import IRouteUrl from './route-url-interface';
 
+const URL_POSITION = 1;
+const BODY_POSITION = 1;
+
 const getMethod = (slug: string[]) => {
   let method = DEFAULT_METHOD;
 
@@ -21,8 +24,8 @@ const getMethod = (slug: string[]) => {
 const getUrl = (slug: string[]) => {
   let url = '';
 
-  if (slug.length > 1) {
-    const [_method, encodedUrl] = slug;
+  if (slug.length > URL_POSITION) {
+    const [_method, encodedUrl, ..._other] = slug;
 
     url = base64url.decode(encodedUrl);
   }
@@ -55,14 +58,29 @@ const getHeaders = (searchParams: TSearchParams): THeaders => {
   return headers;
 };
 
+const getBody = (slug: string[]): string => {
+  let body = '';
+
+  if (slug.length > BODY_POSITION) {
+    const [_method, _encodedUrl, encodedBody] = slug;
+
+    body = base64url.decode(encodedBody);
+  }
+
+  return body;
+};
+
 const parseRestUrl = ({ params, searchParams }: IRouteUrl) => {
   const { slug } = params;
 
   const method = getMethod(slug);
   const url = getUrl(slug);
+  const body = getBody(slug);
   const headers = getHeaders(searchParams);
 
-  return { method, url, headers };
+  console.log(body);
+
+  return { method, url, headers, body };
 };
 
 export default parseRestUrl;
