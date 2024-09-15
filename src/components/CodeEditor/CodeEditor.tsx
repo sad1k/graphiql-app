@@ -1,19 +1,15 @@
-import CodeMirror from '@uiw/react-codemirror';
-import { json } from '@codemirror/lang-json';
-import { solarizedDark } from '@uiw/codemirror-theme-solarized';
+import CodeMirror, { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import { IconButton } from '@mui/material';
 import { AutoFixHigh } from '@mui/icons-material';
 import formatCode from '@/utils/code-editor/format-code';
 import { Controller, useFormContext } from 'react-hook-form';
 import { IRestClientInputs } from '@/types/rest-client-form';
 
-interface ICodeEditor {
-  isEditable: boolean;
+export interface ICodeEditor extends ReactCodeMirrorProps {
   initialValue: string;
 }
 
-
-const CodeEditor = ({ initialValue, isEditable }: ICodeEditor) => {
+const CodeEditor = ({ initialValue, ...codeMirrorProps }: ICodeEditor) => {
   const { control } = useFormContext<IRestClientInputs>();
 
   return (
@@ -24,18 +20,15 @@ const CodeEditor = ({ initialValue, isEditable }: ICodeEditor) => {
       render={({ field }) => (
         <>
           <CodeMirror
+            {...codeMirrorProps}
             {...field}
-            height='500px'
-            extensions={[json()]}
-            theme={solarizedDark}
-            editable={isEditable}
             id='body-input'
             value={field.value}
             onChange={(value) => {
               field.onChange(value);
             }}
           />
-          {isEditable && (
+          {codeMirrorProps.editable && (
             <IconButton
               onClick={async () => {
                 const formatedValue = await formatCode(field.value);

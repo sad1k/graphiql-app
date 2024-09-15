@@ -5,11 +5,11 @@ import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { Grid } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import compileRestUrl from '@/utils/restclient/compile-rest-url';
-import CodeEditor from '@/components/CodeEditor/CodeEditor';
 import { useAppDispatch, useAppSelector } from '@/utils/store/hooks';
 import { saveRequestBody } from '@/utils/store/slices/requestBodySlice';
 import { useEffect } from 'react';
 import executeRequest from '@/utils/restclient/execute-request';
+import CodeField from '@/hocs/CodeField';
 import MethodSelect from './MethodSelect';
 import UrlInput from './UrlInput';
 import HeadersTable from './HeadersTable';
@@ -76,9 +76,9 @@ const RestClientForm = ({
           <Grid item xs={12}>
             <h4>Body </h4>
             {body._persist.rehydrated ? (
-              <CodeEditor isEditable initialValue={body.body} />
+              <CodeField initialValue={body.body} isInForm />
             ) : (
-              <CodeEditor isEditable initialValue='' />
+              <CodeField initialValue='' isInForm />
             )}
           </Grid>
         </Grid>
