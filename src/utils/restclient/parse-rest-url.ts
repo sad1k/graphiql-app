@@ -77,6 +77,7 @@ const parseRestUrl = ({ params, searchParams }: IRouteUrl) => {
   const url = getUrl(slug);
   const body = getBody(slug);
   const headers = getHeaders(searchParams);
+
   return { method, url, headers, body };
 };
 

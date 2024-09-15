@@ -26,6 +26,7 @@ const executeRequest = ({
       console.error('Error fetching data:', error);
     }
   }
+
   void fetchData();
 };
 
