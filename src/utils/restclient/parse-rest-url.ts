@@ -5,7 +5,7 @@ import { DEFAULT_METHOD, isMethod } from './method-type';
 import IRouteUrl from './route-url-interface';
 
 const URL_POSITION = 1;
-const BODY_POSITION = 1;
+const BODY_POSITION = 2;
 
 const getMethod = (slug: string[]) => {
   let method = DEFAULT_METHOD;
@@ -77,9 +77,6 @@ const parseRestUrl = ({ params, searchParams }: IRouteUrl) => {
   const url = getUrl(slug);
   const body = getBody(slug);
   const headers = getHeaders(searchParams);
-
-  console.log(body);
-
   return { method, url, headers, body };
 };
 
