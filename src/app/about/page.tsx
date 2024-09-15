@@ -1,10 +1,6 @@
 import About from '@/components/About/About';
 import { ReactNode } from 'react';
 
-const AboutPage = (): ReactNode => (
-  <section>
-    <About />;
-  </section>
-);
+const AboutPage = (): ReactNode => <About />;
 
 export default AboutPage;
