@@ -1,38 +1,51 @@
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
 import { solarizedDark } from '@uiw/codemirror-theme-solarized';
-import { useCallback, useState } from 'react';
+import {  useState } from 'react';
 import { IconButton } from '@mui/material';
 import { AutoFixHigh } from '@mui/icons-material';
 import formatCode from '@/utils/code-editor/format-code';
+import { Controller, useFormContext } from 'react-hook-form';
+import { IRestClientForm } from '@/types/rest-client-form';
 
 interface ICodeEditor {
   isEditable: boolean;
+  initialValue: string;
 }
 
-const CodeEditor = ({ isEditable }: ICodeEditor) => {
+const CodeEditor = ({
+  initialValue: initialvalue,
+  isEditable,
+}: ICodeEditor) => {
   const [value, setValue] = useState<string>('');
-  const onChange = useCallback((val: string) => {
-    console.log('val:', val);
-    setValue(val);
-  }, []);
+  const { control } = useFormContext<IRestClientForm>();
 
   return (
-    <>
-      <CodeMirror
-        value={value}
-        height='500px'
-        extensions={[json()]}
-        theme={solarizedDark}
-        onChange={onChange}
-        editable={isEditable}
-      />
-      {isEditable || (
-        <IconButton onClick={() => formatCode(value, setValue)} size='medium'>
-          <AutoFixHigh fontSize='medium' />
-        </IconButton>
+    <Controller
+      name='body'
+      control={control}
+      defaultValue={initialvalue}
+      render={({ field }) => (
+        <>
+          <CodeMirror
+            {...field}
+            height='500px'
+            extensions={[json()]}
+            theme={solarizedDark}
+            editable={isEditable}
+            id='body-input'
+          />
+          {isEditable || (
+            <IconButton
+              onClick={() => formatCode(value, setValue)}
+              size='medium'
+            >
+              <AutoFixHigh fontSize='medium' />
+            </IconButton>
+          )}
+        </>
       )}
-    </>
+    />
   );
 };
 

@@ -6,23 +6,23 @@ import { Grid } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import compileRestUrl from '@/utils/restclient/compile-rest-url';
 import CodeEditor from '@/components/CodeEditor/CodeEditor';
+import { useAppDispatch, useAppSelector } from '@/utils/store/hooks';
+import { saveRequestBody } from '@/utils/store/slices/requestBodySlice';
 import MethodSelect from './MethodSelect';
 import UrlInput from './UrlInput';
 import HeadersTable from './HeadersTable';
 import SubmitButton from './SubmitButton';
-import { useAppDispatch, useAppSelector } from '@/utils/store/hooks';
-import { saveRequestBody } from '@/utils/store/slices/requestBodySlice';
 
 const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
   const methods = useForm<IRestClientForm>({ mode: 'all' });
   const router = useRouter();
   const body = useAppSelector((state) => state.requestBody);
+
   const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<IRestClientForm> = (data) => {
     const newRoute = compileRestUrl(data.url, data.method, data.headers);
-    console.log(body);
-    dispatch(saveRequestBody({ body: data.url }));
 
+    dispatch(saveRequestBody({ body: data.body }));
     router.push(newRoute);
   };
 
@@ -46,8 +46,11 @@ const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
 
           <Grid item xs={12}>
             <h4>Body </h4>
-            <CodeEditor isEditable />
-            {/* TODO: add JSON/Text Editor (the same component in response) */}
+            {body._persist.rehydrated ? (
+              <CodeEditor isEditable initialValue={body.body} />
+            ) : (
+              <CodeEditor isEditable initialValue='' />
+            )}
           </Grid>
         </Grid>
       </form>

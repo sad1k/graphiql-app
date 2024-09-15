@@ -5,7 +5,7 @@ import RestClientForm from './RestClientForm';
 const RestClientEditor = ({ method, url, headers }: IRestClientForm) => (
   <Box component='section' sx={{ width: 1, paddingX: 10 }}>
     <Paper sx={{ padding: 3, mx: 0.5 }}>
-      <RestClientForm method={method} url={url} headers={headers} />
+      <RestClientForm method={method} url={url} headers={headers} body='' />
     </Paper>
   </Box>
 );

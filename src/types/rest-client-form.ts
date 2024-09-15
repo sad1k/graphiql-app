@@ -5,4 +5,5 @@ export interface IRestClientForm {
   method: TMethod;
   url: string;
   headers: THeaders;
+  body: string;
 }

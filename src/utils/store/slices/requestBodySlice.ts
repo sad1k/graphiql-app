@@ -9,7 +9,7 @@ const initialState: IRequestBody = {
 };
 
 const requestBodySlice = createSlice({
-  name: 'requsetBody',
+  name: 'requestBody',
   initialState,
   reducers: {
     saveRequestBody: (state, { payload }: PayloadAction<IRequestBody>) => {

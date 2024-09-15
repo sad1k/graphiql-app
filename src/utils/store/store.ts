@@ -30,7 +30,7 @@ const authPersistConfig = {
 const requestBodyPersistConfig = {
   key: 'requestBody',
   storage,
-  whitelist: ['requestBodyState'],
+  whitelist: ['body'],
 };
 
 const persistedAuthReducer = persistReducer(authPersistConfig, userSlice);
