@@ -7,7 +7,7 @@ import { getTokens } from '@/utils/tokens/getTokens';
 const withTokenSignIn =
   <P extends object>(Component: ComponentType<P>) =>
   (props: P) => {
-    const [saveAuthData, removeAuthData] = useAuthData();
+    const { saveAuthData, removeAuthData } = useAuthData();
 
     const { refreshToken } = getTokens();
 

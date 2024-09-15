@@ -1,22 +1,26 @@
-import { AppBar, Box } from '@mui/material';
-import Link from 'next/link';
-import Image from 'next/image';
+'use client';
+
+import { AppBar } from '@mui/material';
+import useScrolling from '@/hooks/useScrolling';
 import { headerStyle } from './HeaderStyle';
-import Navigation from '../Navigation/Navigation';
+import HeaderContainer from './HeaderContainer';
 
-const { container, header } = headerStyle;
+const { header } = headerStyle;
 
-const Header = () => (
-  <AppBar position='sticky' sx={header}>
-    <Box sx={container}>
-      <Link href='/'>
-        <Image src='/logo.png' width={80} height={80} alt='Logo' />
-      </Link>
-      <Box>
-        <Navigation />
-      </Box>
-    </Box>
-  </AppBar>
-);
+export const LogoSize = 80;
+export const LogoActiveSize = 60;
+
+export const getLogoSize = (isScrolling = false) =>
+  isScrolling ? LogoActiveSize : LogoSize;
+
+const Header = () => {
+  const [isScrolling] = useScrolling();
+
+  return (
+    <AppBar sx={header}>
+      <HeaderContainer isScrolling={isScrolling} />
+    </AppBar>
+  );
+};
 
 export default Header;
