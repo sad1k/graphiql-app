@@ -1,6 +1,6 @@
 'use client';
 
-import { IRestClientForm } from '@/types/rest-client-form';
+import { IRestClientInputs } from '@/types/rest-client-form';
 import { TMethod } from '@/utils/restclient/method-type';
 import {
   Box,
@@ -19,7 +19,7 @@ interface IMethodSelect {
 }
 
 const MethodSelect = ({ initialValue, xs }: IMethodSelect) => {
-  const { control } = useFormContext<IRestClientForm>();
+  const { control } = useFormContext<IRestClientInputs>();
 
   return (
     <Grid item xs={xs}>

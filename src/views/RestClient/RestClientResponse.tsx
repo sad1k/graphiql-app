@@ -1,3 +1,4 @@
+import CodeEditor from '@/components/CodeEditor/CodeEditor';
 import getResponseColor from '@/utils/restclient/get-response-color';
 import getResponseStatus from '@/utils/restclient/get-response-status';
 import { Box, Grid, Paper, Typography } from '@mui/material';
@@ -26,7 +27,7 @@ const RestClientResponse = ({ data, status }: IRestClientResponse) => (
         </Grid>
         <Grid item xs={12}>
           <h4>Body</h4>
-          {/* TODO: add JSON viewer (read-only. The same component as Editor in ClientEditor) */}
+          <CodeEditor initialValue={data} isEditable={false} />
         </Grid>
         <Grid item xs={12}>
           <div>{data}</div>

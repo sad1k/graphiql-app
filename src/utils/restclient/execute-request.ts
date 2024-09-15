@@ -1,13 +1,14 @@
-import { THeaders } from "@/types/headers";
-import getResponseResults from "./getResponseResults";
-import { TMethod } from "./method-type";
+import { IRestClientForm } from '@/types/rest-client-form';
+import getResponseResults from './getResponseResults';
 
-const executeRequest = (
-  method: TMethod,
-  url: string,
-  headers: THeaders,
-  body: string,
-) => {
+const executeRequest = ({
+  method,
+  url,
+  headers,
+  body,
+  setStatus,
+  setResponse,
+}: IRestClientForm) => {
   async function fetchData() {
     try {
       const { status, data: responseData } = await getResponseResults(
@@ -17,8 +18,8 @@ const executeRequest = (
         body,
       );
 
-      console.log(status);
-      console.log(JSON.parse(responseData));
+      setStatus(status);
+      setResponse(responseData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }

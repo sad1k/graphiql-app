@@ -21,9 +21,6 @@ const getResponseResults = async (
   const data = JSON.stringify(dataObj);
   const { status } = response;
 
-  console.log(headers);
-  console.log(headersInit.values().toArray());
-
   return { status, data };
 };
 

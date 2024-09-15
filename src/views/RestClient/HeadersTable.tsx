@@ -5,7 +5,7 @@ import DynamicInputTable, {
   ILegendCeil,
 } from '@/components/DynamicInputTable/DynamicInputTable';
 import { THeaders } from '@/types/headers';
-import { IRestClientForm } from '@/types/rest-client-form';
+import { IRestClientInputs } from '@/types/rest-client-form';
 import { Button, Grid, GridSize } from '@mui/material';
 import { useEffect } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
@@ -18,7 +18,7 @@ interface IHeadersTable {
 }
 
 const HeadersTable = ({ initialHeaders, xs }: IHeadersTable) => {
-  const { control } = useFormContext<IRestClientForm>();
+  const { control } = useFormContext<IRestClientInputs>();
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'headers',
@@ -31,12 +31,12 @@ const HeadersTable = ({ initialHeaders, xs }: IHeadersTable) => {
     });
   }, []);
 
-  const legends: ILegendCeil<IRestClientForm>[] = [
+  const legends: ILegendCeil<IRestClientInputs>[] = [
     { value: 'key', width: 0.3 },
     { value: 'value', width: 0.7 },
   ];
 
-  const rows: ICeil<IRestClientForm>[][] = fields.map((header, index) => [
+  const rows: ICeil<IRestClientInputs>[][] = fields.map((header, index) => [
     {
       value: header.key,
       width: 0.3,

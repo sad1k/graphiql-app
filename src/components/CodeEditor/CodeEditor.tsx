@@ -5,15 +5,16 @@ import { IconButton } from '@mui/material';
 import { AutoFixHigh } from '@mui/icons-material';
 import formatCode from '@/utils/code-editor/format-code';
 import { Controller, useFormContext } from 'react-hook-form';
-import { IRestClientForm } from '@/types/rest-client-form';
+import { IRestClientInputs } from '@/types/rest-client-form';
 
 interface ICodeEditor {
   isEditable: boolean;
   initialValue: string;
 }
 
+
 const CodeEditor = ({ initialValue, isEditable }: ICodeEditor) => {
-  const { control } = useFormContext<IRestClientForm>();
+  const { control } = useFormContext<IRestClientInputs>();
 
   return (
     <Controller
