@@ -34,6 +34,9 @@ const MethodSelect = ({ initialValue, xs }: IMethodSelect) => {
               <Select {...field} labelId='method-selector-label' label='Method'>
                 <MenuItem value='GET'>GET</MenuItem>
                 <MenuItem value='POST'>POST</MenuItem>
+                <MenuItem value='PUT'>PUT</MenuItem>
+                <MenuItem value='PATCH'>PATCH</MenuItem>
+                <MenuItem value='DELETE'>DELETE</MenuItem>
               </Select>
             )}
           />

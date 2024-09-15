@@ -17,7 +17,7 @@ const RestClient = (params: IRouteUrl) => {
       }}
     >
       <h2>REST client</h2>
-      <RestClientEditor method={method} url={url} headers={headers} />
+      <RestClientEditor method={method} url={url} headers={headers} body='' />
       {
         // <RestClientResponse data={data} status={status} />
       }

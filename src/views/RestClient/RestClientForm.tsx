@@ -8,10 +8,12 @@ import compileRestUrl from '@/utils/restclient/compile-rest-url';
 import CodeEditor from '@/components/CodeEditor/CodeEditor';
 import { useAppDispatch, useAppSelector } from '@/utils/store/hooks';
 import { saveRequestBody } from '@/utils/store/slices/requestBodySlice';
+import { useEffect } from 'react';
 import MethodSelect from './MethodSelect';
 import UrlInput from './UrlInput';
 import HeadersTable from './HeadersTable';
 import SubmitButton from './SubmitButton';
+import executeRequest from '@/utils/restclient/execute-request';
 
 const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
   const methods = useForm<IRestClientForm>({ mode: 'all' });
@@ -21,10 +23,16 @@ const RestClientForm = ({ method, url, headers }: IRestClientForm) => {
   const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<IRestClientForm> = (data) => {
     const newRoute = compileRestUrl(data.url, data.method, data.headers);
-
     dispatch(saveRequestBody({ body: data.body }));
+    executeRequest(data.method, data.url, data.headers, body.body);
     router.push(newRoute);
   };
+
+  useEffect(() => {
+    if (body._persist.rehydrated) {
+      executeRequest(method, url, headers, body.body);
+    }
+  }, [body._persist.rehydrated]);
 
   return (
     <FormProvider {...methods}>

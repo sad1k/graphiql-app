@@ -136,7 +136,8 @@
           "attributes": false
         }
       }
-    ]
+    ],
+    "no-void": ["error", { "allowAsStatement": true }]
   },
   "root": true
 }
