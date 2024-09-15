@@ -17,7 +17,7 @@ const useSignInForm = () => {
     resolver: yupResolver(SignInSchema),
     mode: 'onChange',
   });
-  const [saveAuthData] = useSaveAuthData();
+  const { saveAuthData } = useSaveAuthData();
 
   const onSubmit: SubmitHandler<ISignInUser> = async ({ email, password }) => {
     const newUser = await signIn(email, password);

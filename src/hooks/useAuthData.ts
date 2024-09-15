@@ -27,7 +27,7 @@ const useAuthData = () => {
     router.push(SIGN_IN);
   };
 
-  return [saveAuthData, removeAuthData] as const;
+  return { saveAuthData, removeAuthData };
 };
 
 export default useAuthData;

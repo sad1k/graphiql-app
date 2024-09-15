@@ -3,4 +3,5 @@ node_modules/
 out/
 coverage/
 next.config.js
+vitest.config.ts
 
