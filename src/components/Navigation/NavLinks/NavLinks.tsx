@@ -34,6 +34,7 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
       <LanguageButtons languages={languages} />
       <Box sx={hr}>|</Box>
       {!authState ? (
+
         <>
           <CustomLink href={SIGN_IN} text='Sign In' type='nav' />
           <CustomLink href={SIGN_UP} text='Sign Up' type='nav' />
