@@ -1,11 +1,11 @@
 import { IFetchUser } from '@/types/IUser';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-export interface ICartState {
+export interface IAuthState {
   authState: IFetchUser | null;
 }
 
-const initialState: ICartState = {
+const initialState: IAuthState = {
   authState: null,
 };
 

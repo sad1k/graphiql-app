@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
-import { signInWithGoogle } from '@/utils/firebase/signInWithGoogle';
+
+import { signInWithGoogle } from '@utils/firebase/signInWithGoogle';
 
 import useSaveAuthData from '@/hooks/useAuthData';
 

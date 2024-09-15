@@ -20,7 +20,8 @@
     "@hookform/resolvers": "^3.9.0",
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
-    "@reduxjs/toolkit": "^2.2.7",
+    "@reduxjs/toolkit": "^2.2.7",   
+    "@testing-library/react": "^16.0.1",
     "@types/lodash": "^4.17.7",
     "@vitejs/plugin-react": "^4.3.1",
     "cookies-next": "^4.2.1",
@@ -40,7 +41,6 @@
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.0.1",
     "@types/lodash.debounce": "^4.0.8",
     "@types/node": "^20",
     "@types/react": "^18",
