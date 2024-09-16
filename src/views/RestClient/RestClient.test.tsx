@@ -10,6 +10,10 @@ vi.mock('@/utils/restclient/execute-request', () => ({
   default: () => {},
 }));
 
+vi.mock('@/utils/store/hooks', () => ({
+  useAppSelector: () => true,
+}));
+
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
 }));
