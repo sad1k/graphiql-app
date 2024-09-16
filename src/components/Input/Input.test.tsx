@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { StyledInput } from './Input';
 
-describe('UrlInput component', () => {
+describe('Input component', () => {
   it('should render correctly with initial value', () => {
     render(
       <StyledInput
