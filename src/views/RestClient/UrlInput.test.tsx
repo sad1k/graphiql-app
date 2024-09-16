@@ -4,7 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import UrlInput from './UrlInput';
 
 const mockForm = {
-  url: "https://initial-url.com",
+  url: 'https://initial-url.com',
 };
 
 describe('UrlInput component', () => {
@@ -19,13 +19,12 @@ describe('UrlInput component', () => {
   it('should render correctly with initial value', () => {
     render(
       <Wrapper>
-        <UrlInput initialUrl="https://initial-url.com" xs={12} />
-      </Wrapper>
+        <UrlInput initialUrl='https://initial-url.com' xs={12} />
+      </Wrapper>,
     );
 
-    const input = screen.getByPlaceholderText('Enter URL') as HTMLInputElement;
-    expect(input.value).toBe("https://initial-url.com");
+    const input = screen.getByPlaceholderText('Enter URL');
+
+    expect(input.value).toBe('https://initial-url.com');
   });
-
 });
-
