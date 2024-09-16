@@ -3,7 +3,6 @@ import { persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 import userSlice from '@utils/store/slices/userSlice';
 
-
 const createNoopStorage = () => ({
   getItem() {
     return Promise.resolve(null);
@@ -29,7 +28,7 @@ const authPersistConfig = {
 
 const persistedReducer = persistReducer(authPersistConfig, userSlice);
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   auth: persistedReducer,
 });
 
