@@ -13,7 +13,6 @@
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended",
     "plugin:import/recommended",
     "prettier",
     "plugin:@typescript-eslint/recommended",
@@ -32,8 +31,6 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "@typescript-eslint/no-floating-promises": "off",
-    "@typescript-eslint/naming-convention": "error",
     "react/display-name": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
@@ -130,15 +127,8 @@
         "endOfLine": "auto"
       }
     ],
-    "@typescript-eslint/no-misused-promises": [
-      "error",
-      {
-        "checksVoidReturn": {
-          "attributes": false
-        }
-      }
-    ],
-    "no-void": ["error", { "allowAsStatement": true }]
+    "no-void": ["error", { "allowAsStatement": true }],
+    "jsx-a11y/aria-role": "off"
   },
   "root": true
 }

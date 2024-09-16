@@ -15,7 +15,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    alias: alias,
+    alias,
     coverage: {
       provider: 'v8',
       exclude: [
@@ -25,6 +25,7 @@ export default defineConfig({
         'next.config.js',
         'next.config.mjs',
         '.next',
+        './src/mocks',
       ],
     },
   },

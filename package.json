@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/lodash.debounce": "^4.0.8",
@@ -75,8 +76,7 @@
     "husky": "^9.1.5",
     "jsdom": "^25.0.0",
     "lint-staged": "^15.2.9",
-    "typescript": "^5",
-    "vitest": "^2.0.5"
+    "typescript": "^5"
   },
   "config": {
     "commitizen": {
