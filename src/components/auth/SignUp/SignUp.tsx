@@ -16,7 +16,13 @@ const SignUp = (): ReactNode => {
 
   return (
     <FormContainer text='sign up'>
-      <Box component='form' sx={form} onSubmit={handleSubmit(onSubmit)}>
+      <Box
+        component='form'
+        sx={form}
+        onSubmit={() => {
+          void handleSubmit(onSubmit);
+        }}
+      >
         <FormInput
           label='Name'
           type='text'

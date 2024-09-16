@@ -1,23 +1,24 @@
 'use client';
 
-import DynamicInputTable, {
-  ICeil,
-  ILegendCeil,
-} from '@/components/DynamicInputTable/DynamicInputTable';
-import { THeaders } from '@/types/headers';
-import { IRestClientInputs } from '@/types/rest-client-form';
 import { Button, Grid, GridSize } from '@mui/material';
 import { useEffect } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { v4 as uuidv4 } from 'uuid';
+import { IRestClientInputs } from '@/types/rest-client-form';
+import { THeaders } from '@/types/headers';
+import DynamicInputTable, {
+  ICeil,
+  ILegendCeil,
+} from '@/components/DynamicInputTable/DynamicInputTable';
 
 interface IHeadersTable {
   initialHeaders: THeaders;
   xs?: boolean | GridSize;
+  onBlur?: () => void;
 }
 
-const HeadersTable = ({ initialHeaders, xs }: IHeadersTable) => {
+const HeadersTable = ({ initialHeaders, xs, onBlur }: IHeadersTable) => {
   const { control } = useFormContext<IRestClientInputs>();
   const { fields, append, remove } = useFieldArray({
     control,
@@ -42,12 +43,14 @@ const HeadersTable = ({ initialHeaders, xs }: IHeadersTable) => {
       width: 0.3,
       key: uuidv4(),
       name: `headers.${index}.key`,
+      onBlur,
     },
     {
       value: header.value,
       width: 0.65,
       key: uuidv4(),
       name: `headers.${index}.value`,
+      onBlur,
     },
   ]);
 

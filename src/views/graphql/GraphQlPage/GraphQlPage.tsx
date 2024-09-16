@@ -13,13 +13,17 @@ import {
 } from '@mui/material';
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useState } from 'react';
-import { StyledInput } from '@components/Input/Input';
+import { StyledInput } from '@/components/Input/Input';
 import { updateEndpointInUrl } from '@utils/graphql/updateEndpointInUrl';
 import { GraphQLSchema } from 'graphql';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import notification from '@utils/notification/notification';
-import { boxStyles } from './styles';
+import { FormProvider, useForm } from 'react-hook-form';
+import HeadersTable from '@/views/RestClient/HeadersTable';
+import { THeaders } from '@/types/headers';
+import { updateHeadersInUrl } from '@/utils/graphql/updateHeadersInUrl';
 import { DocumentationView } from '../Documentation/Documentation';
+import { boxStyles } from './styles';
 
 const Editor = dynamic(
   () =>
@@ -51,12 +55,14 @@ interface IGraphQlPageProps {
   initEndpointUrl?: string;
   initQuery?: string;
   initSdlUrl?: string;
+  initHeaders?: THeaders;
 }
 
 export const GraphQlPage = ({
   initEndpointUrl,
   initQuery,
   initSdlUrl,
+  initHeaders,
 }: IGraphQlPageProps) => {
   const [query, setQuery] = useState<string>(initQuery ?? '');
 
@@ -98,6 +104,17 @@ export const GraphQlPage = ({
         notification('error', 'Error fetch query');
       });
   };
+  const methods = useForm<{ headers: THeaders }>({ mode: 'onChange' });
+  const { getValues } = methods;
+
+  const handleBlur = () => {
+    const headersMap = Object.fromEntries(
+      getValues('headers').map(({ key, value }) => [key, value]),
+    );
+    const updatedUrl = updateHeadersInUrl(headersMap);
+
+    window.history.pushState({}, '', updatedUrl); // Обновляем URL
+  };
 
   return (
     <Stack direction='row' flexWrap={small ? 'wrap' : 'nowrap'}>
@@ -107,7 +124,9 @@ export const GraphQlPage = ({
           value={endpointUrl}
           label='Endpoint URL:'
           placeholder='https://example.com/graphql'
-          onChange={(e) => setEndpointUrl(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEndpointUrl(e.target.value)
+          }
           onBlur={() => {
             updateEndpointInUrl(endpointUrl);
             setSdlUrl(`${endpointUrl}?sdl`);
@@ -117,7 +136,9 @@ export const GraphQlPage = ({
         <StyledInput
           variant='outlined'
           value={sdlUrl}
-          onChange={(e) => setSdlUrl(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setSdlUrl(e.target.value)
+          }
           label='SDL URL:'
           placeholder='https://example.com/schema'
         />
@@ -137,6 +158,19 @@ export const GraphQlPage = ({
               </AccordionSummary>
               <AccordionDetails>
                 <VariablesEditor setVariables={handleChangeVariables} />
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ArrowDropDownIcon />}>
+                <Typography>Headers</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <FormProvider {...methods}>
+                  <HeadersTable
+                    onBlur={handleBlur}
+                    initialHeaders={initHeaders ?? []}
+                  />
+                </FormProvider>
               </AccordionDetails>
             </Accordion>
             <DocumentationView url={sdlUrl} />
