@@ -1,8 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
-import userSlice from '@/utils/store/slices/userSlice';
-import requestBodySlice from '@/utils/store/slices/requestBodySlice';
+import userSlice from '@utils/store/slices/userSlice';
 
 const createNoopStorage = () => ({
   getItem() {
@@ -27,21 +26,10 @@ const authPersistConfig = {
   whitelist: ['authState'],
 };
 
-const requestBodyPersistConfig = {
-  key: 'requestBody',
-  storage,
-  whitelist: ['body'],
-};
+const persistedReducer = persistReducer(authPersistConfig, userSlice);
 
-const persistedAuthReducer = persistReducer(authPersistConfig, userSlice);
-const persistedRequestBodyReducer = persistReducer(
-  requestBodyPersistConfig,
-  requestBodySlice,
-);
-
-const rootReducer = combineReducers({
-  auth: persistedAuthReducer,
-  requestBody: persistedRequestBodyReducer,
+export const rootReducer = combineReducers({
+  auth: persistedReducer,
 });
 
 export const store = configureStore({

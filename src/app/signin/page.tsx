@@ -4,6 +4,10 @@ const SignIn = dynamic(() => import('@/components/auth/SingIn/SingIn'), {
   ssr: false,
 });
 
-const SignInPage = (): JSX.Element => <SignIn />;
+const SignInPage = (): JSX.Element => (
+  <section data-testid='sign-in'>
+    <SignIn />
+  </section>
+);
 
 export default SignInPage;

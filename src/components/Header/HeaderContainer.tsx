@@ -22,6 +22,7 @@ const HeaderContainer = ({ isScrolling }: { isScrolling: boolean }) => (
         width={getLogoSize(isScrolling)}
         height={getLogoSize(isScrolling)}
         alt='Logo'
+        priority
       />
     </Link>
     <Box>
