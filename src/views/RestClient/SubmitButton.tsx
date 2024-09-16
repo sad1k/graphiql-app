@@ -12,6 +12,7 @@ const SubmitButton = ({ xs }: ISubmitButton) => (
       sx={{ height: 0.95, width: 1 }}
       endIcon={<SendIcon />}
       type='submit'
+      data-testid='rest-client-submit'
     >
       Send
     </Button>

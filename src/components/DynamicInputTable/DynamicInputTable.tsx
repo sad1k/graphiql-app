@@ -34,7 +34,7 @@ const DynamicInputTable = <T extends FieldValues>({
   remove,
   control,
 }: IDynamicInputTable<T>) => (
-  <Stack spacing={2}>
+  <Stack spacing={2} data-testid='dynamic-table-rows'>
     <Stack
       direction='row'
       spacing={1}
