@@ -1,8 +1,8 @@
 import CodeMirror, { ReactCodeMirrorProps } from '@uiw/react-codemirror';
 import { IconButton } from '@mui/material';
 import { AutoFixHigh } from '@mui/icons-material';
-import formatCode from '@/utils/code-editor/format-code';
 import { Controller, useFormContext } from 'react-hook-form';
+import formatCode from '@/utils/code-editor/format-code';
 import { IRestClientInputs } from '@/types/rest-client-form';
 
 export interface ICodeEditor extends ReactCodeMirrorProps {
@@ -30,10 +30,10 @@ const CodeEditor = ({ initialValue, ...codeMirrorProps }: ICodeEditor) => {
           />
           {codeMirrorProps.editable && (
             <IconButton
-              onClick={async () => {
-                const formatedValue = await formatCode(field.value);
-
-                field.onChange(formatedValue);
+              onClick={() => {
+                void formatCode(field.value).then((formatedValue) => {
+                  void field.onChange(formatedValue);
+                });
               }}
               size='medium'
             >

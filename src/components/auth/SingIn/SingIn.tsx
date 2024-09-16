@@ -1,10 +1,10 @@
 'use client';
 
 import { ReactNode } from 'react';
+import { Box } from '@mui/material';
 import useSignInForm from '@/hooks/useSignInForm';
 import isAuth from '@/hocs/isAuth';
 
-import { Box } from '@mui/material';
 import FormInput from '../FormInput/FormInput';
 
 import AuthButtons from '../AuthButtons/AuthButtons';
@@ -18,7 +18,13 @@ const SignIn = (): ReactNode => {
 
   return (
     <FormContainer text='sign in'>
-      <Box component='form' sx={form} onSubmit={handleSubmit(onSubmit)}>
+      <Box
+        component='form'
+        sx={form}
+        onSubmit={() => {
+          void handleSubmit(onSubmit);
+        }}
+      >
         <FormInput
           label='Email'
           type='email'

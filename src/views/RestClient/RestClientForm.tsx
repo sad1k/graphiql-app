@@ -56,7 +56,11 @@ const RestClientForm = ({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form
+        onSubmit={() => {
+          void methods.handleSubmit(onSubmit);
+        }}
+      >
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <h3>RestClient Editor</h3>
