@@ -11,7 +11,7 @@ const RestClientEditor = ({
   setStatus,
 }: IRestClientForm) => (
   <Box component='section' sx={{ width: 1, paddingX: 10 }}>
-    <Paper sx={{ padding: 3, mx: 0.5 }}>
+    <Paper sx={{ padding: 3, mx: 0.5 }} data-testid='rest-client-from-paper'>
       <RestClientForm
         method={method}
         url={url}
