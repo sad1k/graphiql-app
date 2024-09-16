@@ -30,10 +30,10 @@ const CodeEditor = ({ initialValue, ...codeMirrorProps }: ICodeEditor) => {
           />
           {codeMirrorProps.editable && (
             <IconButton
-              onClick={async () => {
-                const formatedValue = await formatCode(field.value);
-
-                field.onChange(formatedValue);
+              onClick={() => {
+                void formatCode(field.value).then((formatedValue) => {
+                  void field.onChange(formatedValue);
+                });
               }}
               size='medium'
             >

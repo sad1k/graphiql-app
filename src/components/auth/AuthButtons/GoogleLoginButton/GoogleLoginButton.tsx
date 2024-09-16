@@ -11,7 +11,7 @@ const { button, icon } = AuthButtonsStyle;
 const GoogleLoginButton = () => {
   const { saveAuthData } = useSaveAuthData();
 
-  const handleLoginWithGoogle = async () => {
+  const handleLoginWithGoogle = async (): Promise<void> => {
     const newUser = await signInWithGoogle();
 
     if (newUser) saveAuthData(newUser);
@@ -22,7 +22,9 @@ const GoogleLoginButton = () => {
       type='button'
       variant='contained'
       sx={button}
-      onClick={handleLoginWithGoogle}
+      onClick={() => {
+        void handleLoginWithGoogle();
+      }}
     >
       <GoogleIcon sx={icon} />
       authorization with google

@@ -24,7 +24,7 @@ const executeRequest = ({
       setStatus(status);
       setResponse(formattedData);
     } catch (error) {
-      notification('error', 'Error fetching data:');
+      notification('error', 'Error fetching data');
     }
   }
 

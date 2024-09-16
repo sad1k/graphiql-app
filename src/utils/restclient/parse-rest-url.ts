@@ -25,7 +25,7 @@ const getUrl = (slug: string[]) => {
   let url = '';
 
   if (slug.length > URL_POSITION) {
-    const [_method, encodedUrl, ..._other] = slug;
+    const [, encodedUrl] = slug;
 
     url = base64url.decode(encodedUrl);
   }
@@ -62,7 +62,7 @@ const getBody = (slug: string[]): string => {
   let body = '';
 
   if (slug.length > BODY_POSITION) {
-    const [_method, _encodedUrl, encodedBody] = slug;
+    const [, , encodedBody] = slug;
 
     body = base64url.decode(encodedBody);
   }
