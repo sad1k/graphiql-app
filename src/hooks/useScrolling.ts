@@ -4,8 +4,8 @@ import _debounce from 'lodash/debounce';
 
 const handleDebounceTime = 100;
 
-const maxScrolDiff = 25;
-const minScrolDiff = -25;
+const maxScrolDiff = 40;
+const minScrolDiff = -40;
 
 const useScrolling = () => {
   let prevPosition = window ? window.scrollY : 0;

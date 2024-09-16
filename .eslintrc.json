@@ -113,6 +113,7 @@
     ],
     "no-void": ["error", { "allowAsStatement": true }],
     "jsx-a11y/aria-role": "off",
+    "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/unbound-method": "off"
   },
   "root": true

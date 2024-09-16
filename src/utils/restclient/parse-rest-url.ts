@@ -73,12 +73,16 @@ const getBody = (slug: string[]): string => {
 const parseRestUrl = ({ params, searchParams }: IRouteUrl) => {
   const { slug } = params;
 
-  const method = getMethod(slug);
-  const url = getUrl(slug);
-  const body = getBody(slug);
-  const headers = getHeaders(searchParams);
+  if (slug) {
+    const method = getMethod(slug);
+    const url = getUrl(slug);
+    const body = getBody(slug);
+    const headers = getHeaders(searchParams);
 
-  return { method, url, headers, body };
+    return { method, url, headers, body };
+  }
+
+  return { method: DEFAULT_METHOD, url: '', headers: [], body: '' };
 };
 
 export default parseRestUrl;

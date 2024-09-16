@@ -44,23 +44,21 @@ const RestClientForm = ({
   };
 
   useEffect(() => {
-    executeRequest({
-      method,
-      url,
-      headers,
-      body,
-      setStatus,
-      setResponse,
-    });
+    if (url !== '') {
+      executeRequest({
+        method,
+        url,
+        headers,
+        body,
+        setStatus,
+        setResponse,
+      });
+    }
   }, []);
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={() => {
-          void methods.handleSubmit(onSubmit);
-        }}
-      >
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <h3>RestClient Editor</h3>
