@@ -17,7 +17,7 @@ const useSignUpForm = () => {
     resolver: yupResolver(SignUpSchema),
     mode: 'onChange',
   });
-  const [saveAuthData] = useSaveAuthData();
+  const { saveAuthData } = useSaveAuthData();
 
   const onSubmit: SubmitHandler<ISignUpUser> = async ({
     name,

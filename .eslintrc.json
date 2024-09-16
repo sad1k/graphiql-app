@@ -127,14 +127,7 @@
         "endOfLine": "auto"
       }
     ],
-    "@typescript-eslint/no-misused-promises": [
-      "error",
-      {
-        "checksVoidReturn": {
-          "attributes": false
-        }
-      }
-    ],
+    "no-void": ["error", { "allowAsStatement": true }],
     "jsx-a11y/aria-role": "off"
   },
   "root": true

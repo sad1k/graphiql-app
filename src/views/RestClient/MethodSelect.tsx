@@ -1,6 +1,6 @@
 'use client';
 
-import { IRestClientForm } from '@/types/rest-client-form';
+import { IRestClientInputs } from '@/types/rest-client-form';
 import { TMethod } from '@/utils/restclient/method-type';
 import {
   Box,
@@ -19,7 +19,7 @@ interface IMethodSelect {
 }
 
 const MethodSelect = ({ initialValue, xs }: IMethodSelect) => {
-  const { control } = useFormContext<IRestClientForm>();
+  const { control } = useFormContext<IRestClientInputs>();
 
   return (
     <Grid item xs={xs}>
@@ -34,6 +34,9 @@ const MethodSelect = ({ initialValue, xs }: IMethodSelect) => {
               <Select {...field} labelId='method-selector-label' label='Method'>
                 <MenuItem value='GET'>GET</MenuItem>
                 <MenuItem value='POST'>POST</MenuItem>
+                <MenuItem value='PUT'>PUT</MenuItem>
+                <MenuItem value='PATCH'>PATCH</MenuItem>
+                <MenuItem value='DELETE'>DELETE</MenuItem>
               </Select>
             )}
           />

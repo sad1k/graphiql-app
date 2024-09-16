@@ -1,6 +1,6 @@
 'use client';
 
-import { IRestClientForm } from '@/types/rest-client-form';
+import { IRestClientInputs } from '@/types/rest-client-form';
 import { Grid, GridSize, TextField } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 
@@ -10,7 +10,7 @@ interface IUrlInput {
 }
 
 const UrlInput = ({ initialUrl, xs }: IUrlInput) => {
-  const { control } = useFormContext<IRestClientForm>();
+  const { control } = useFormContext<IRestClientInputs>();
 
   return (
     <Grid item xs={xs}>
