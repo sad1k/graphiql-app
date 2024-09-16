@@ -1,6 +1,7 @@
 import { IRestClientForm } from '@/types/rest-client-form';
 import getResponseResults from './getResponseResults';
 import formatCode from '../code-editor/format-code';
+import notification from '../notification/notification';
 
 const executeRequest = ({
   method,
@@ -23,7 +24,7 @@ const executeRequest = ({
       setStatus(status);
       setResponse(formattedData);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      notification('error', 'Error fetching data:');
     }
   }
 

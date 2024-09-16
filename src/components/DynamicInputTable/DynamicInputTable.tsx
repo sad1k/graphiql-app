@@ -18,7 +18,7 @@ export interface ICeil<T> extends ILegendCeil<T> {
   key: string;
   name: Path<T>;
   value: PathValue<T, Path<T>>;
-  onBlur: () => void;
+  onBlur?: () => void;
 }
 
 export interface IDynamicInputTable<T extends FieldValues> {

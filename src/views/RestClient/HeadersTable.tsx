@@ -1,21 +1,21 @@
 'use client';
 
-import DynamicInputTable, {
-  ICeil,
-  ILegendCeil,
-} from '@/components/DynamicInputTable/DynamicInputTable';
-import { THeaders } from '@/types/headers';
-import { IRestClientInputs } from '@/types/rest-client-form';
 import { Button, Grid, GridSize } from '@mui/material';
 import { useEffect } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { v4 as uuidv4 } from 'uuid';
+import { IRestClientInputs } from '@/types/rest-client-form';
+import { THeaders } from '@/types/headers';
+import DynamicInputTable, {
+  ICeil,
+  ILegendCeil,
+} from '@/components/DynamicInputTable/DynamicInputTable';
 
 interface IHeadersTable {
   initialHeaders: THeaders;
   xs?: boolean | GridSize;
-  onBlur: () => void;
+  onBlur?: () => void;
 }
 
 const HeadersTable = ({ initialHeaders, xs, onBlur }: IHeadersTable) => {
