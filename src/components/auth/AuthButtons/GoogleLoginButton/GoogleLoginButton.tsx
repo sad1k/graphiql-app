@@ -9,7 +9,7 @@ import { AuthButtonsStyle } from '../AuthButtonsStyle';
 const { button, icon } = AuthButtonsStyle;
 
 const GoogleLoginButton = () => {
-  const [saveAuthData] = useSaveAuthData();
+  const { saveAuthData } = useSaveAuthData();
 
   const handleLoginWithGoogle = async () => {
     const newUser = await signInWithGoogle();

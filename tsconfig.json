@@ -24,6 +24,7 @@
       "@components/*": ["./src/components/*"],
       "@views/*": ["./src/views/*"],
       "@utils/*": ["./src/utils/*"],
+      "@customTypes/*": ["./src/types/*"],
       "@styles/*": ["./src/styles/*"],
       "@hocs/*": ["./src/hocs/*"],
       "@hooks/*": ["./src/hooks/*"],
@@ -33,6 +34,12 @@
     },
     "noImplicitAny": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "vitest.config.ts",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
