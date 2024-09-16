@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import CodeMirror from 'codemirror';
 import 'codemirror/lib/codemirror.css'; // Основные стили CodeMirror
 import 'codemirror/addon/hint/show-hint';
@@ -12,12 +13,14 @@ import { useEffect, useRef, useState } from 'react';
 import {
   buildClientSchema,
   getIntrospectionQuery,
+  GraphQLSchema,
   IntrospectionQuery,
 } from 'graphql';
 import prettier from 'prettier/standalone';
 import graphqlPlugin from 'prettier/plugins/graphql';
 import { updateBodyInUrl } from '@utils/graphql/updateBodyInUrl';
 import { Loader } from '@components/Loader/Loader';
+import notification from '@/utils/notification/notification';
 import { innerDivStyles, wrapperDivStyles } from './styles';
 
 const LOCAL_KEY = 'graphQlQuery';
@@ -25,52 +28,71 @@ const LOCAL_KEY = 'graphQlQuery';
 interface IGraphQlEditorProps {
   sdlUrl: string;
   setQuery: (query: string) => void;
+  query: string;
 }
 
-export const GraphQlEditor = ({ sdlUrl, setQuery }: IGraphQlEditorProps) => {
+export const GraphQlEditor = ({
+  query,
+  sdlUrl,
+  setQuery,
+}: IGraphQlEditorProps) => {
   const ref = useRef(null);
   const editorRef = useRef<CodeMirror.Editor | null>(null);
+
+  const [schema, setSchema] = useState<GraphQLSchema | null>(null);
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
+    const initializeSchema = async () => {
+      const response = await fetch(sdlUrl, {
+        signal: controller.signal,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: getIntrospectionQuery(),
+        }),
+      });
+      const data = (await response.json()) as { data: IntrospectionQuery };
 
+      setSchema(buildClientSchema(data.data));
+    };
+
+    initializeSchema().catch((error) => {
+      if (typeof error === 'string') return;
+      notification('error', 'Initialize Schema error');
+    });
+
+    return () => {
+      controller.abort('useEffect cleaned');
+    };
+  }, []);
+
+  useEffect(() => {
     if (ref.current) {
-      const initializeEditor = async () => {
-        const response = await fetch(sdlUrl, {
-          signal: controller.signal,
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            query: getIntrospectionQuery(),
-          }),
-        });
-        const data = (await response.json()) as { data: IntrospectionQuery };
-        const clientSchema = buildClientSchema(data.data);
-
+      const initializeEditor = () => {
         editorRef.current = CodeMirror.fromTextArea(
           ref.current as unknown as HTMLTextAreaElement,
           {
             mode: 'graphql',
             theme: 'monokai',
-            value: localStorage.getItem(LOCAL_KEY) ?? '',
+            value: localStorage.getItem(LOCAL_KEY) || ' ',
             lineNumbers: true,
             lint: true,
             hintOptions: {
-              schema: clientSchema,
+              schema: schema || undefined,
             } as unknown as CodeMirror.ShowHintOptions,
-            showHint: true,
+            showHint: schema ? true : undefined,
             extraKeys: {
-              'Ctrl-Space': 'autocomplete',
+              'Ctrl-Space': schema ? 'autocomplete' : '',
               'Shift-Ctrl-F': () => {
                 if (editorRef.current === null) return;
 
                 const currentText = editorRef.current.getValue();
 
-                // Пример форматирования
                 prettier
                   .format(currentText, {
                     parser: 'graphql',
@@ -81,18 +103,23 @@ export const GraphQlEditor = ({ sdlUrl, setQuery }: IGraphQlEditorProps) => {
                       editorRef.current.setValue(val);
                     }
                   })
-                  .catch((err) => {
-                    console.error('Error formatting code:', err);
+                  .catch((err: unknown) => {
+                    if (err instanceof Error) {
+                      notification('error', 'Error formatting code');
+                    }
                   });
               },
             },
           },
         );
-
         editorRef.current.on('change', (editor) => {
           setQuery(editor.getValue());
           localStorage.setItem(LOCAL_KEY, editor.getValue());
         });
+
+        editorRef.current.setValue(
+          query || localStorage.getItem(LOCAL_KEY) || ' ',
+        );
 
         editorRef.current.on('blur', (editor) => {
           updateBodyInUrl(editor.getValue());
@@ -100,9 +127,7 @@ export const GraphQlEditor = ({ sdlUrl, setQuery }: IGraphQlEditorProps) => {
         setLoading(false);
       };
 
-      initializeEditor().catch((error) => {
-        throw error;
-      });
+      initializeEditor();
     }
 
     return () => {
@@ -111,11 +136,9 @@ export const GraphQlEditor = ({ sdlUrl, setQuery }: IGraphQlEditorProps) => {
           editorRef.current as CodeMirror.Editor & { toTextArea: () => void }
         ).toTextArea();
         editorRef.current = null;
-      } else {
-        controller.abort('useEffect cleaned');
       }
     };
-  }, [sdlUrl, setQuery]);
+  }, [sdlUrl]);
 
   return (
     <div style={wrapperDivStyles}>

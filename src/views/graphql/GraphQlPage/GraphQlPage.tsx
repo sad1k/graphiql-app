@@ -1,11 +1,28 @@
 'use client';
 
-import { Box, Button, InputLabel, Stack } from '@mui/material';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  InputLabel,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
-import { StyledInput } from '@components/Input/Input';
+import { useCallback, useEffect, useState } from 'react';
+import { StyledInput } from '@/components/Input/Input';
 import { updateEndpointInUrl } from '@utils/graphql/updateEndpointInUrl';
 import { GraphQLSchema } from 'graphql';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import notification from '@utils/notification/notification';
+import { FormProvider, useForm } from 'react-hook-form';
+import HeadersTable from '@/views/RestClient/HeadersTable';
+import { THeaders } from '@/types/headers';
+import { updateHeadersInUrl } from '@/utils/graphql/updateHeadersInUrl';
+import { DocumentationView } from '../Documentation/Documentation';
 import { boxStyles } from './styles';
 
 const Editor = dynamic(
@@ -37,33 +54,43 @@ const ResponseView = dynamic(
 interface IGraphQlPageProps {
   initEndpointUrl?: string;
   initQuery?: string;
+  initSdlUrl?: string;
+  initHeaders?: THeaders;
 }
 
 export const GraphQlPage = ({
   initEndpointUrl,
   initQuery,
+  initSdlUrl,
+  initHeaders,
 }: IGraphQlPageProps) => {
   const [query, setQuery] = useState<string>(initQuery ?? '');
 
   const [endpointUrl, setEndpointUrl] = useState<string>(initEndpointUrl ?? '');
-  const [sdlUrl, setSdlUrl] = useState<string>('');
+  const [sdlUrl, setSdlUrl] = useState<string>(initSdlUrl ?? '');
+
+  const small = useMediaQuery('(max-width: 700px)');
 
   const [visible, setVisible] = useState(false);
 
+  useEffect(() => {
+    if (initQuery) {
+      setVisible(true);
+    }
+  }, [initQuery]);
   const [variables, setVariables] = useState('');
 
   const [json, setJSON] = useState({});
 
-  const handleChangeQuery = (_query: string) => {
+  const handleChangeQuery = useCallback((_query: string) => {
     setQuery(_query);
-  };
+  }, []);
 
-  const handleChangeVariables = (value: string) => {
+  const handleChangeVariables = useCallback((value: string) => {
     setVariables(value);
-  };
+  }, []);
 
   const makeRequest = () => {
-    // eslint-disable-next-line no-void
     fetch(sdlUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -74,19 +101,32 @@ export const GraphQlPage = ({
         setJSON(result.data);
       })
       .catch(() => {
-        console.error('Error fetch query');
+        notification('error', 'Error fetch query');
       });
+  };
+  const methods = useForm<{ headers: THeaders }>({ mode: 'onChange' });
+  const { getValues } = methods;
+
+  const handleBlur = () => {
+    const headersMap = Object.fromEntries(
+      getValues('headers').map(({ key, value }) => [key, value]),
+    );
+    const updatedUrl = updateHeadersInUrl(headersMap);
+
+    window.history.pushState({}, '', updatedUrl); // Обновляем URL
   };
 
   return (
-    <Stack direction='row'>
+    <Stack direction='row' flexWrap={small ? 'wrap' : 'nowrap'}>
       <Box sx={boxStyles}>
         <StyledInput
           variant='outlined'
           value={endpointUrl}
           label='Endpoint URL:'
           placeholder='https://example.com/graphql'
-          onChange={(e) => setEndpointUrl(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEndpointUrl(e.target.value)
+          }
           onBlur={() => {
             updateEndpointInUrl(endpointUrl);
             setSdlUrl(`${endpointUrl}?sdl`);
@@ -96,7 +136,9 @@ export const GraphQlPage = ({
         <StyledInput
           variant='outlined'
           value={sdlUrl}
-          onChange={(e) => setSdlUrl(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setSdlUrl(e.target.value)
+          }
           label='SDL URL:'
           placeholder='https://example.com/schema'
         />
@@ -105,9 +147,33 @@ export const GraphQlPage = ({
         {visible ? (
           <>
             <InputLabel>Query:</InputLabel>
-            <Editor setQuery={handleChangeQuery} sdlUrl={sdlUrl} />
-            <InputLabel>Variables:</InputLabel>
-            <VariablesEditor setVariables={handleChangeVariables} />
+            <Editor
+              query={initQuery ?? ''}
+              setQuery={handleChangeQuery}
+              sdlUrl={sdlUrl}
+            />
+            <Accordion>
+              <AccordionSummary expandIcon={<ArrowDropDownIcon />}>
+                <Typography>Variables</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <VariablesEditor setVariables={handleChangeVariables} />
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ArrowDropDownIcon />}>
+                <Typography>Headers</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <FormProvider {...methods}>
+                  <HeadersTable
+                    onBlur={handleBlur}
+                    initialHeaders={initHeaders ?? []}
+                  />
+                </FormProvider>
+              </AccordionDetails>
+            </Accordion>
+            <DocumentationView url={sdlUrl} />
           </>
         ) : (
           ''
