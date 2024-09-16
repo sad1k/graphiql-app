@@ -26,6 +26,7 @@ export default defineConfig({
         'next.config.mjs',
         '.next',
         './src/mocks',
+        '**/styles.ts',
       ],
     },
   },
