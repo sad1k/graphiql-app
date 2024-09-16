@@ -18,13 +18,7 @@ const SignIn = (): ReactNode => {
 
   return (
     <FormContainer text='sign in'>
-      <Box
-        component='form'
-        sx={form}
-        onSubmit={() => {
-          void handleSubmit(onSubmit);
-        }}
-      >
+      <Box component='form' sx={form} onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           label='Email'
           type='email'
