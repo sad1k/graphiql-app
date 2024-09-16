@@ -1,5 +1,3 @@
-'use client';
-
 import DynamicInputTable, {
   ICeil,
   ILegendCeil,
@@ -15,9 +13,10 @@ import { v4 as uuidv4 } from 'uuid';
 interface IHeadersTable {
   initialHeaders: THeaders;
   xs?: boolean | GridSize;
+  onBlur: () => void;
 }
 
-const HeadersTable = ({ initialHeaders, xs }: IHeadersTable) => {
+const HeadersTable = ({ initialHeaders, xs, onBlur }: IHeadersTable) => {
   const { control } = useFormContext<IRestClientForm>();
   const { fields, append, remove } = useFieldArray({
     control,
@@ -42,12 +41,14 @@ const HeadersTable = ({ initialHeaders, xs }: IHeadersTable) => {
       width: 0.3,
       key: uuidv4(),
       name: `headers.${index}.key`,
+      onBlur,
     },
     {
       value: header.value,
       width: 0.65,
       key: uuidv4(),
       name: `headers.${index}.value`,
+      onBlur,
     },
   ]);
 

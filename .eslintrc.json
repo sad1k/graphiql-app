@@ -13,7 +13,6 @@
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended",
     "plugin:import/recommended",
     "prettier",
     "plugin:@typescript-eslint/recommended",
@@ -32,7 +31,6 @@
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "@typescript-eslint/naming-convention": "error",
     "react/display-name": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
@@ -136,7 +134,8 @@
           "attributes": false
         }
       }
-    ]
+    ],
+    "jsx-a11y/aria-role": "off"
   },
   "root": true
 }

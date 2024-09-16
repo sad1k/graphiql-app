@@ -1,7 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 'use client';
 
 import {
@@ -34,14 +30,19 @@ export const DocumentationView = memo(({ url }: Props) => {
         display='inline'
         variant='h6'
       >{`${open ? 'Закрыть' : 'Открыть'} документацию:`}</Typography>
-      <IconButton onClick={() => setOpen((toggle) => !toggle)}>
+      <IconButton
+        role='IconButton'
+        onClick={() => setOpen((toggle: boolean) => !toggle)}
+      >
         {open ? <CloseIcon /> : <ArticleIcon />}
       </IconButton>
       <div className={`docsColor ${open ? 'visible' : ''}`}>
         <EditorContextProvider>
           <SchemaContextProvider fetcher={fetcher}>
             <ExplorerContextProvider>
-              <DocExplorer />
+              <div style={{ display: 'contents' }} role='document'>
+                <DocExplorer />
+              </div>
             </ExplorerContextProvider>
           </SchemaContextProvider>
         </EditorContextProvider>
