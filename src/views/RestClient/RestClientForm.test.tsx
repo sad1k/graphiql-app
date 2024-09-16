@@ -1,7 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { useRouter } from 'next/navigation';
-import userEvent from '@testing-library/user-event';
 import RestClientForm from './RestClientForm';
 
 vi.mock('@/hocs/CodeField', () => ({
@@ -32,5 +30,4 @@ describe('RestClientResponse component', () => {
 
     expect(status).toBeDefined();
   });
-
 });
