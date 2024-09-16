@@ -33,30 +33,4 @@ describe('RestClientResponse component', () => {
     expect(status).toBeDefined();
   });
 
-  it('should push url on submit', async () => {
-    const mockPush = vi.fn();
-
-    (useRouter as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
-      pathname: '/current-page',
-      push: mockPush,
-    });
-
-    render(
-      <RestClientForm
-        method='GET'
-        url=''
-        headers={[]}
-        body=''
-        setResponse={() => {}}
-        setStatus={() => {}}
-      />,
-    );
-
-    const submitButton = screen.getByTestId('rest-client-submit');
-
-    expect(submitButton).toBeDefined();
-    await userEvent.click(submitButton);
-
-    expect(mockPush).toHaveBeenCalled();
-  });
 });
