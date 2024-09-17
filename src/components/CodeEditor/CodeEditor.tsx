@@ -27,6 +27,7 @@ const CodeEditor = ({ initialValue, ...codeMirrorProps }: ICodeEditor) => {
             onChange={(value) => {
               field.onChange(value);
             }}
+            data-testid='code-editor'
           />
           {codeMirrorProps.editable && (
             <IconButton
@@ -36,6 +37,7 @@ const CodeEditor = ({ initialValue, ...codeMirrorProps }: ICodeEditor) => {
                 });
               }}
               size='medium'
+              data-testid='format-code-button'
             >
               <AutoFixHigh fontSize='medium' />
             </IconButton>

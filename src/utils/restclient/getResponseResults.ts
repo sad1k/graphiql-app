@@ -17,6 +17,7 @@ const getResponseResults = async (
     ...(METHODS_WITH_BODY.includes(method) && { body }),
   };
   const response = await fetch(url, requestOptions);
+
   const dataObj = (await response.json()) as JSON;
   const data = JSON.stringify(dataObj);
   const { status } = response;

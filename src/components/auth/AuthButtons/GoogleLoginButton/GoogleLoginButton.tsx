@@ -23,9 +23,7 @@ const GoogleLoginButton = () => {
       type='button'
       variant='contained'
       sx={button}
-      onClick={() => {
-        void handleLoginWithGoogle();
-      }}
+      onClick={handleLoginWithGoogle}
     >
       <GoogleIcon sx={icon} />
       authorization with google
