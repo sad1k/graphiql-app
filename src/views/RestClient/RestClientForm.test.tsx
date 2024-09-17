@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { useRouter } from 'next/navigation';
 import userEvent from '@testing-library/user-event';
+import executeRequest from '@/utils/restclient/execute-request';
 import RestClientForm from './RestClientForm';
 
 vi.mock('@/hocs/CodeField', () => ({
@@ -9,7 +10,7 @@ vi.mock('@/hocs/CodeField', () => ({
 }));
 
 vi.mock('@/utils/restclient/execute-request', () => ({
-  default: () => {},
+  default: vi.fn(),
 }));
 
 vi.mock('next/navigation', () => ({
@@ -58,5 +59,20 @@ describe('RestClientResponse component', () => {
     await userEvent.click(submitButton);
 
     expect(mockPush).toHaveBeenCalled();
+  });
+
+  it('should push url on submit', () => {
+    render(
+      <RestClientForm
+        method='GET'
+        url='test-url'
+        headers={[]}
+        body=''
+        setResponse={() => {}}
+        setStatus={() => {}}
+      />,
+    );
+
+    expect(executeRequest).toHaveBeenCalled();
   });
 });
