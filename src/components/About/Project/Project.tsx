@@ -13,7 +13,12 @@ const Project = () => {
 
   return (
     <Box sx={s.container} component='article'>
-      <Typography component='h2' variant='h2' sx={s.title}>
+      <Typography
+        component='h2'
+        variant='h2'
+        sx={s.title}
+        data-testid='project-title'
+      >
         {t('projet_title')}
       </Typography>
 
