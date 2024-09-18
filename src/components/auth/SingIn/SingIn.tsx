@@ -4,9 +4,8 @@ import { ReactNode } from 'react';
 import { Box } from '@mui/material';
 import useSignInForm from '@/hooks/useSignInForm';
 import isAuth from '@/hocs/isAuth';
-
+import { SIGN_UP } from '@/constants/path';
 import FormInput from '../FormInput/FormInput';
-
 import AuthButtons from '../AuthButtons/AuthButtons';
 import { AuthFormStyle } from '../AuthFormStyle';
 import FormContainer from '../FormContainer/FormContainer';
@@ -17,7 +16,7 @@ const SignIn = (): ReactNode => {
   const { register, handleSubmit, errors, isValid, onSubmit } = useSignInForm();
 
   return (
-    <FormContainer text='sign in'>
+    <FormContainer text='sign in' href={SIGN_UP} linkText='Sign Up'>
       <Box component='form' sx={form} onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           label='Email'

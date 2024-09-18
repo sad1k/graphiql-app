@@ -1,8 +1,4 @@
-import dynamic from 'next/dynamic';
-
-const Home = dynamic(() => import('@/components/Home/Home'), {
-  ssr: false,
-});
+import Home from '@/components/Home/Home';
 
 const Page = () => (
   <section>

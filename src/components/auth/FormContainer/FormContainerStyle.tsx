@@ -10,4 +10,17 @@ export const FormContainerStyle = {
     textAlign: 'center',
     textTransform: 'capitalize',
   },
+
+  titleContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: '3rem',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    rowGap: 2,
+    '@media (min-width: 500px)': {
+      flexDirection: 'row',
+      columnGap: 2,
+    },
+  },
 };

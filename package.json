@@ -23,8 +23,8 @@
     "@hookform/resolvers": "^3.9.0",
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
-    "@testing-library/react": "^16.0.1",
     "@reduxjs/toolkit": "^2.2.7",
+    "@testing-library/react": "^16.0.1",
     "@types/codemirror": "^5.60.15",
     "@types/lodash": "^4.17.7",
     "@uiw/codemirror-theme-solarized": "^4.23.2",
@@ -48,7 +48,7 @@
     "react-redux": "^9.1.2",
     "react-toastify": "^10.0.5",
     "redux-persist": "^6.0.0",
-    "uuid": "^10.0.0",
+    "uuid": "^10.0.0",  
     "vitest": "^2.0.5",
     "yup": "^1.4.0"
   },

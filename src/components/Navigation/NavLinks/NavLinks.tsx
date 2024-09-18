@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { Box, Button } from '@mui/material';
 
 import { useAppSelector } from '@/utils/store/hooks';
-import { ABOUT, HOME, SIGN_IN, SIGN_UP } from '@/constants/path';
+import { HOME, SIGN_IN, SIGN_UP } from '@/constants/path';
 import useAuthData from '@/hooks/useAuthData';
 
 import CustomLink from '@/components/Link/Link';
@@ -41,7 +41,6 @@ const NavLinks: FC<INavLinks> = ({ toggleDrawer, isDriverBar }) => {
       ) : (
         <Box sx={linkContainer} data-testid='driver-bar-container'>
           <CustomLink href={HOME} text='Home' type='nav' />
-          <CustomLink href={ABOUT} text='about us' type='nav' />
           <Button
             type='button'
             onClick={removeAuthData}

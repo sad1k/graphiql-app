@@ -12,7 +12,6 @@ const isAuth =
 
     useLayoutEffect((): void => {
       if (authState) redirect(HOME);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return !authState ? <Component {...props} /> : null;
