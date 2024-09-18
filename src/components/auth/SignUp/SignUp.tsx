@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import isAuth from '@/hocs/isAuth';
 import useSignUpForm from '@/hooks/useSignUpForm';
 import { Box } from '@mui/material';
+import { SIGN_IN } from '@/constants/path';
 import FormInput from '../FormInput/FormInput';
 import AuthButtons from '../AuthButtons/AuthButtons';
 import { AuthFormStyle } from '../AuthFormStyle';
@@ -15,7 +16,7 @@ const SignUp = (): ReactNode => {
   const { register, handleSubmit, errors, isValid, onSubmit } = useSignUpForm();
 
   return (
-    <FormContainer text='sign up'>
+    <FormContainer text='sign up' href={SIGN_IN} linkText='Sign In'>
       <Box component='form' sx={form} onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           label='Name'

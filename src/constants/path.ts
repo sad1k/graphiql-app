@@ -4,4 +4,3 @@ export const SIGN_UP = '/signup';
 export const REST = '/restclient';
 export const GRAPHIQL = '/graphql';
 export const HISTORY = '/history';
-export const ABOUT = '/about';
