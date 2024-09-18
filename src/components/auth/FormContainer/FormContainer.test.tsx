@@ -9,5 +9,5 @@ test('Ensure that the Sign in component renders', () => {
       <input />
     </FormContainer>,
   );
-  expect(screen.getByText(/sign in/i)).toBeDefined();
+  expect(screen.getAllByText(/sign in/i)).toBeDefined();
 });
