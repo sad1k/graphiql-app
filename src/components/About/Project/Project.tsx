@@ -1,17 +1,25 @@
 import { Box, Typography } from '@mui/material';
-import { projectContent } from '@/constants/content';
-
+import { useTranslations } from 'next-intl';
 import s from './ProjectStyle';
 import Content from '../Content/Content';
 
-const Project = () => (
-  <Box sx={s.container} component='article'>
-    <Typography component='h2' variant='h2' sx={s.title}>
-      About the Project
-    </Typography>
+const Project = () => {
+  const t = useTranslations('HomePage');
 
-    <Content content={projectContent} />
-  </Box>
-);
+  const content = [
+    { key: '1', text: t('project_one') },
+    { key: '2', text: t('project_two') },
+  ];
+
+  return (
+    <Box sx={s.container} component='article'>
+      <Typography component='h2' variant='h2' sx={s.title}>
+        {t('projet_title')}
+      </Typography>
+
+      <Content content={content} />
+    </Box>
+  );
+};
 
 export default Project;

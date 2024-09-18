@@ -1,5 +1,6 @@
-import { IFetchUser } from '@/types/IUser';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+
+import { IFetchUser } from '@/types/IUser';
 
 export interface IAuthState {
   authState: IFetchUser | null;
