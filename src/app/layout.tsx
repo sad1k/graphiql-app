@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+// import { Inter } from 'next/font/google';
 import dynamic from 'next/dynamic';
 
 import ToastProvider from '@/providers/ToastProvider';
@@ -11,7 +11,7 @@ const Header = dynamic(() => import('@/components/Header/Header'), {
   ssr: false,
 });
 
-const inter = Inter({ subsets: ['latin'] });
+// const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -33,7 +33,7 @@ const RootLayout = ({
 }>): JSX.Element => (
   <html lang='en' data-lt-installed='true'>
     <StoreProvider>
-      <body className={inter.className}>
+      <body>
         <Header />
         <main>
           <ToastProvider>{children}</ToastProvider>

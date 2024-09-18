@@ -117,7 +117,11 @@ export const GraphQlPage = ({
   };
 
   return (
-    <Stack direction='row' flexWrap={small ? 'wrap' : 'nowrap'}>
+    <Stack
+      direction='row'
+      flexWrap={small ? 'wrap' : 'nowrap'}
+      data-testid='grapql-component'
+    >
       <Box sx={boxStyles}>
         <StyledInput
           variant='outlined'
