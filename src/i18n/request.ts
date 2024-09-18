@@ -12,7 +12,7 @@ export default getRequestConfig(async ({ locale }) => {
 
   if (!routing.locales.includes(currentLocale as 'en' | 'rus')) notFound();
 
-  const messages = (await import(`../../messages/${locale}.json`)) as {
+  const messages = (await import(`../../messages/${currentLocale}.json`)) as {
     default: Record<string, string>;
   };
 
