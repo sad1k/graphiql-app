@@ -16,10 +16,8 @@ describe('Project Component', () => {
           return 'Project Title';
         case 'project_one':
           return 'Project One Description';
-        case 'project_two':
-          return 'Project Two Description';
         default:
-          return key;
+          return 'Project Two Description';
       }
     });
 
