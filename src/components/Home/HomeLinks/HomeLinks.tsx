@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { GRAPHIQL, HISTORY, REST, SIGN_IN, SIGN_UP } from '@/constants/path';
+import { GRAPHIQL, REST, SIGN_IN, SIGN_UP } from '@/constants/path';
 import { Box } from '@mui/material';
 import CustomLink from '@/components/Link/Link';
 import { useTranslations } from 'next-intl';
@@ -29,7 +29,7 @@ const HomeLinks: FC<IHomeLinks> = ({ isAuth }) => {
         <>
           <CustomLink href={REST} text={t('rest')} />
           <CustomLink href={GRAPHIQL} text={t('grapiql')} />
-          <CustomLink href={HISTORY} text={t('history')} />
+          <CustomLink href='#' text={t('history')} />
         </>
       )}
     </Box>

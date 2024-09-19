@@ -8,16 +8,17 @@ import { AuthButtonsStyle } from './AuthButtonsStyle';
 interface IAuthButtons {
   text: string;
   isValid: boolean;
+  or: string;
 }
 const { buttonContainer, button, title } = AuthButtonsStyle;
 
-const AuthButtons: FC<IAuthButtons> = ({ text, isValid }) => (
+const AuthButtons: FC<IAuthButtons> = ({ text, isValid, or }) => (
   <Box sx={buttonContainer}>
     <Button type='submit' variant='contained' sx={button} disabled={!isValid}>
       {text}
     </Button>
     <Typography variant='body1' component='p' sx={title}>
-      OR
+      {or}
     </Typography>
     <GoogleLoginButton />
   </Box>

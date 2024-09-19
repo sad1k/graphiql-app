@@ -25,8 +25,22 @@
   "Links": {
     "signIn": "войти",
     "signUp": "зарегистрироваться",
+    "signOut": "выйти",
+    "home": "главная",
     "rest": "Клиент REST",
     "grapiql": "Клиент GraphiQL",
-    "history": "история"
+    "history": "история",
+    "en": "анг",
+    "rus": "рус"
+  },
+  "Auth": {
+    "name": "имя",
+    "signIn": "войти",
+    "signUp": "зарегистрироваться",
+    "email": "почта",
+    "password": "пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "or": "или",
+    "google": "войти с помощью google"
   }
 }

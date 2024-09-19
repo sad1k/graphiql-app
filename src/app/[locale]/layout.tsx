@@ -49,13 +49,14 @@ const RootLayout: FC<ILayout> = async ({ children, params: { locale } }) => {
     <html lang={locale} data-lt-installed='true'>
       <StoreProvider>
         <body className={inter.className}>
-          <Header />
-          <main>
-            <NextIntlClientProvider messages={messages}>
+          {' '}
+          <NextIntlClientProvider messages={messages}>
+            <Header />
+            <main>
               <ToastProvider>{children}</ToastProvider>{' '}
-            </NextIntlClientProvider>
-          </main>
-          <Footer />
+            </main>
+            <Footer />{' '}
+          </NextIntlClientProvider>
         </body>
       </StoreProvider>
     </html>

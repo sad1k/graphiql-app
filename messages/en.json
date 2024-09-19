@@ -25,8 +25,22 @@
   "Links": {
     "signIn": "sign in",
     "signUp": "sign up",
+    "signOut": "sign out",
+    "home": "home",
     "rest": "REST Client",
     "grapiql": "GraphiQL Client",
-    "history": "history"
+    "history": "history",
+    "en": "en",
+    "rus": "rus"
+  },
+  "Auth": {
+    "signIn": "sign in",
+    "signUp": "sign up",
+    "email": "email",
+    "password": "password",
+    "confirmPassword": "Confirm Password",
+    "or": "or",
+    "google": "authorization with google",
+    "name": "name"
   }
 }

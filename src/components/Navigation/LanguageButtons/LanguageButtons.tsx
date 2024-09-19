@@ -7,7 +7,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { PINK_COLOR, WHITE_COLOR } from '@/constants/colors';
 
 interface IProps {
-  languages: Readonly<Array<string>>;
+  languages: Readonly<Array<{ text: string; href: string }>>;
 }
 
 const style = {
@@ -41,15 +41,15 @@ const LanguageButtons: FC<IProps> = ({ languages }) => {
 
   return (
     <Box sx={{ display: 'flex', columnGap: 2 }} component='ul'>
-      {languages.map((lng) => (
+      {languages.map(({ text, href }) => (
         <li key={v4()}>
           <Button
             sx={style}
             type='button'
-            data-lng={lng}
+            data-lng={href}
             onClick={handleChangeLanguage}
           >
-            {lng}
+            {text}
           </Button>
         </li>
       ))}

@@ -17,15 +17,13 @@ const withTokenSignIn =
     const { refreshToken } = getTokens();
 
     const signIn = async () => {
-      if (authState) return;
-      if (!refreshToken) redirect(SIGN_IN);
-
-      if (refreshToken) {
+      if (!refreshToken) {
+        removeAuthData();
+        redirect(SIGN_IN);
+      } else if (!authState && refreshToken) {
         const user = await signInWithToken(refreshToken);
 
         if (user) saveAuthData(user);
-      } else {
-        removeAuthData();
       }
     };
 
