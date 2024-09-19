@@ -1,0 +1,8 @@
+node_modules/
+.next/
+out/
+coverage/
+next.config.js
+vitest.config.ts
+next.config.mjs
+

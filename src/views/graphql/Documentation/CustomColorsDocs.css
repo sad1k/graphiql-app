@@ -1,0 +1,30 @@
+.docsColor {
+  --color-neutral: 6, 100%, 100%;
+  --color-info: 6, 100%, 100%;
+  --alpha-secondary: 1;
+  --color-warning: 6, 100%, 50%;
+  color: orange;
+  display: none;
+  position: relative;
+  padding: 10px;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  transition: left 0.2s;
+  z-index: 10;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+}
+
+.docsColor.visible {
+  display: block;
+  left: 0%;
+}
+
+.graphiql-doc-explorer-search {
+  background-color: gray;
+  opacity: 0.9;
+}
