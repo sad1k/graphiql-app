@@ -1,10 +1,7 @@
 const style = {
   container: {
     maxWidth: '1200px',
-    m: '5rem auto 0',
-    '@media (min-width: 800px)': {
-      m: '5rem auto',
-    },
+    m: '0 auto',
   },
 
   image: {

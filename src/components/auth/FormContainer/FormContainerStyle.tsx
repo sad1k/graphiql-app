@@ -14,13 +14,9 @@ export const FormContainerStyle = {
   titleContainer: {
     display: 'flex',
     alignItems: 'center',
-    fontSize: '3rem',
+    fontSize: '1.6rem',
     justifyContent: 'center',
     flexDirection: 'column',
     rowGap: 2,
-    '@media (min-width: 500px)': {
-      flexDirection: 'row',
-      columnGap: 2,
-    },
   },
 };

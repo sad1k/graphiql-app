@@ -25,7 +25,7 @@ const style = {
     fontStyle: 'Italic',
     fontSize: '2rem',
     '@media (min-width: 670px)': { fontSize: '3.75rem' },
-    lineHeight: '3rem',
+    lineHeight: '4rem',
   },
 };
 

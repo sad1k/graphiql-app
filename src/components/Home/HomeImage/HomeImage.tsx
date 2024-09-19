@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import Image from 'next/image';
 
 const HomeImage = () => (
-  <Box sx={{ maxWidth: '50rem', m: 'auto' }}>
+  <Box sx={{ maxWidth: '50rem', m: 'auto' }} data-testid='home-image-container'>
     <Image
       src='/main.png'
       width={0}

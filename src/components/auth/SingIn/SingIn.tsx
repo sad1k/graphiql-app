@@ -5,6 +5,7 @@ import { Box } from '@mui/material';
 import useSignInForm from '@/hooks/useSignInForm';
 import isAuth from '@/hocs/isAuth';
 import { SIGN_UP } from '@/constants/path';
+import { useTranslations } from 'next-intl';
 import FormInput from '../FormInput/FormInput';
 import AuthButtons from '../AuthButtons/AuthButtons';
 import { AuthFormStyle } from '../AuthFormStyle';
@@ -15,24 +16,26 @@ const { form } = AuthFormStyle;
 const SignIn = (): ReactNode => {
   const { register, handleSubmit, errors, isValid, onSubmit } = useSignInForm();
 
+  const t = useTranslations('Auth');
+
   return (
-    <FormContainer text='sign in' href={SIGN_UP} linkText='Sign Up'>
+    <FormContainer text={t('signIn')} href={SIGN_UP} linkText={t('signUp')}>
       <Box component='form' sx={form} onSubmit={handleSubmit(onSubmit)}>
         <FormInput
-          label='Email'
+          label={t('signIn')}
           type='email'
           name='email'
           register={register}
           err={errors.email?.message || ''}
         />
         <FormInput
-          label='Password'
+          label={t('password')}
           type='password'
           name='password'
           register={register}
           err={errors.password?.message || ''}
         />
-        <AuthButtons text='sign in' isValid={isValid} />
+        <AuthButtons text={t('signIn')} isValid={isValid} or={t('or')} />
       </Box>
     </FormContainer>
   );

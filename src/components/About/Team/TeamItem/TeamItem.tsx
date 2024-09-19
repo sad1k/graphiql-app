@@ -37,14 +37,12 @@ const TeamItem = ({ item }: { item: ITeamMember }) => {
               <Typography sx={{ letterSpacing: 0.5 }}>
                 <span>{firstName}</span> {lastName}
               </Typography>
-              <Box sx={s.role}>
-                <a href={git} target='_blank' rel='noreferrer'>
-                  <IconButton sx={s.icon(id)}>
-                    <GitHubIcon />
-                  </IconButton>
-                </a>
+              <a style={s.role} href={git} target='_blank' rel='noreferrer'>
+                <IconButton sx={s.icon(id)}>
+                  <GitHubIcon />
+                </IconButton>{' '}
                 <span>{role}</span>
-              </Box>
+              </a>
             </Box>
           </Box>
 

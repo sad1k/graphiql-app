@@ -1,33 +1,53 @@
-import { expect, test } from 'vitest';
+import { describe, it, expect, vi, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from '@/utils/store/store';
-
+import '@testing-library/jest-dom';
+import { useAppSelector } from '@/utils/store/hooks';
 import Home from './Home';
-import HomeTitle from './HomeTitle/HomeTitle';
-import HomeLinks from './HomeLinks/HomeLinks';
 
-test('Ensure that the home component renders', () => {
-  render(
-    <Provider store={store}>
-      <Home />
-    </Provider>,
-  );
-  expect(screen.getByText(/welcome/i)).toBeDefined();
+vi.mock('../About/About', () => ({
+  default: () => <div>About Component</div>,
+}));
 
-  const homeTitle = render(
-    <Provider store={store}>
-      <HomeTitle name='Jack' />
-    </Provider>,
-  );
+vi.mock('./HomeTitle/HomeTitle', () => ({
+  default: ({ name }: { name?: string }) => (
+    <h2 data-testid='home-title'>
+      HomeTitle {name ? `with ${name}` : 'without name'}
+    </h2>
+  ),
+}));
 
-  expect(homeTitle.getByText(/jack/i)).toBeDefined();
+vi.mock('./HomeLinks/HomeLinks', () => ({
+  default: ({ isAuth }: { isAuth: boolean }) => (
+    <nav data-testid='home-links'>HomeLinks {isAuth ? 'Auth' : 'Guest'}</nav>
+  ),
+}));
 
-  const homeLinks = render(
-    <Provider store={store}>
-      <HomeLinks isAuth />
-    </Provider>,
-  );
+vi.mock('@/utils/store/hooks', () => ({
+  useAppSelector: vi.fn(),
+}));
 
-  expect(homeLinks).toBeDefined();
+describe('Home Component', () => {
+  it('renders correctly for unauthenticated users', () => {
+    (useAppSelector as Mock).mockReturnValue(null);
+
+    render(<Home />);
+
+    expect(screen.getByTestId('home-section')).toBeDefined();
+    expect(screen.getByTestId('home-page')).toBeDefined();
+    expect(screen.getByTestId('home-image-container')).toBeDefined();
+    expect(screen.getByText('About Component')).toBeDefined();
+  });
+
+  it('renders correctly for authenticated users', () => {
+    (useAppSelector as Mock).mockReturnValue({ name: 'John Doe' });
+
+    render(<Home />);
+
+    expect(screen.getByTestId('home-section')).toBeDefined();
+    expect(screen.getByTestId('home-page')).toBeDefined();
+    expect(screen.getByTestId('home-title')).toHaveTextContent('with John Doe');
+    expect(screen.getByTestId('home-links')).toHaveTextContent('Auth');
+    expect(screen.getByTestId('home-image-container')).toBeDefined();
+    expect(screen.getByText('About Component')).toBeDefined();
+  });
 });

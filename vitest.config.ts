@@ -27,6 +27,8 @@ export default defineConfig({
         '.next',
         './src/mocks',
         '**/styles.ts',
+        './src/middleware.ts',
+        './src/i18n',
       ],
     },
   },

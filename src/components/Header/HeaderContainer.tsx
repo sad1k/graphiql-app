@@ -1,7 +1,6 @@
 'use client';
 
-import { Box } from '@mui/material';
-import Link from 'next/link';
+import { Box, Link } from '@mui/material';
 import Image from 'next/image';
 import { headerStyle } from './HeaderStyle';
 import Navigation from '../Navigation/Navigation';
