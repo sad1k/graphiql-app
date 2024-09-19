@@ -1,20 +1,60 @@
-import { Box } from '@mui/material';
-import { FC } from 'react';
+'use client';
+
+import { Box, Button } from '@mui/material';
+import { FC, useTransition } from 'react';
 import { v4 } from 'uuid';
-import CustomLink from '@/components/Link/Link';
+import { usePathname, useRouter } from 'next/navigation';
+import { PINK_COLOR, WHITE_COLOR } from '@/constants/colors';
 
 interface IProps {
-  languages: Readonly<Array<{ lng: string; href: string }>>;
+  languages: Readonly<Array<string>>;
 }
 
-const LanguageButtons: FC<IProps> = ({ languages }) => (
-  <Box sx={{ display: 'flex', columnGap: 2 }} component='ul'>
-    {languages.map(({ lng, href }) => (
-      <li key={v4()}>
-        <CustomLink href={href} text={lng} />
-      </li>
-    ))}
-  </Box>
-);
+const style = {
+  textTransform: 'capitalize',
+  color: PINK_COLOR,
+  fontWeight: '600',
+  '&:hover': {
+    color: WHITE_COLOR,
+  },
+};
+
+const LanguageButtons: FC<IProps> = ({ languages }) => {
+  const router = useRouter();
+  const [, startTransition] = useTransition();
+
+  const pathname = usePathname();
+
+  const handleChangeLanguage = (e: React.MouseEvent<HTMLElement>) => {
+    const nextLocale = e.currentTarget.getAttribute('data-lng');
+
+    startTransition(() => {
+      const path = pathname.split('/');
+
+      path.splice(1, 1);
+
+      const newPathname = `/${nextLocale}${path.join('/')}`;
+
+      router.replace(newPathname);
+    });
+  };
+
+  return (
+    <Box sx={{ display: 'flex', columnGap: 2 }} component='ul'>
+      {languages.map((lng) => (
+        <li key={v4()}>
+          <Button
+            sx={style}
+            type='button'
+            data-lng={lng}
+            onClick={handleChangeLanguage}
+          >
+            {lng}
+          </Button>
+        </li>
+      ))}
+    </Box>
+  );
+};
 
 export default LanguageButtons;
